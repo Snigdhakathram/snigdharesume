@@ -124,7 +124,7 @@ body {
 .pixelated-image-card {
   background-color: transparent;
   color: var(--foreground);
-  border-radius: 15px;
+  border-radius: 9999px;
   border: 2px solid var(--neutral-300);
   width: 100%;
   max-width: 100%;
