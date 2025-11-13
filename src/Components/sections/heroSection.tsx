@@ -15,6 +15,8 @@ import PixelTransition from "../ui/PixelTransition";
 import Image from "next/image";
 import Link from "next/link";
 import { socialLinks, type SocialLink } from "@/data/social";
+import { Mail } from "lucide-react";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 
 function SocialIconWithTooltip({
   link,
@@ -59,7 +61,7 @@ function SocialIconWithTooltip({
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-all duration-200 group"
+          className=" w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-all duration-200 group"
           aria-label={link.title}
           onMouseMove={handleMouseMove}
         >
@@ -88,8 +90,8 @@ function SocialIconWithTooltip({
             }}
             className="absolute -top-12 left-1/2 -translate-x-1/2 flex text-xs flex-col items-center justify-center rounded-md bg-foreground z-50 shadow-xl px-4 py-1.5"
           >
-            <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px" />
-            <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px" />
+            <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-linear-to-r from-transparent via-emerald-500 to-transparent h-px" />
+            <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-linear-to-r from-transparent via-sky-500 to-transparent h-px" />
             <div className="font-bold text-background relative z-30 text-sm">
               {link.title}
             </div>
@@ -154,7 +156,7 @@ export default function HeroSection() {
                       alt="Vranda Garg"
                       width={400}
                       height={400}
-                      className="w-full bg-gradient-to-tl from-neutral-700 to-neutral-800 h-full object-cover"
+                      className="w-full bg-linear-to-tl from-neutral-700 to-neutral-800 h-full object-cover"
                     />
                   }
                   secondContent={
@@ -217,12 +219,14 @@ export default function HeroSection() {
             <div className="flex gap-3">
               <Link
                 href="#contact"
-                className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border-1 border-neutral-300 font-medium"
+                className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
               >
-                <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-gradient-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
+                <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
+                  <Mail className="w-4 h-4 mr-2" />
                   Contact
                 </div>
                 <div className="absolute inline-flex h-12 w-full translate-x-full items-center justify-center bg-foreground px-6 text-background transition duration-300 group-hover:translate-x-0">
+                  <Mail className="w-4 h-4 mr-2" />
                   Contact
                 </div>
               </Link>
@@ -230,12 +234,14 @@ export default function HeroSection() {
                 href="https://vrandagarg.in/VrandaGargResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border-1 border-neutral-300 font-medium"
+                className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
               >
-                <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-gradient-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
+                <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
+                  <HiOutlineDocumentText className="w-4 h-4 mr-2" />
                   Resume
                 </div>
                 <div className="absolute inline-flex h-12 w-full translate-x-full items-center justify-center bg-foreground px-6 text-background transition duration-300 group-hover:translate-x-0">
+                  <HiOutlineDocumentText className="w-4 h-4 mr-2" />
                   Resume
                 </div>
               </Link>
