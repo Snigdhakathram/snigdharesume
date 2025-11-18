@@ -3,9 +3,10 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ArrowLeft, Calendar, Clock, Users, Video, Layers } from "lucide-react";
+import { ExternalLink, ArrowLeft, Calendar, Clock, Users, Video, Layers, Github, Globe } from "lucide-react";
 import { Project } from "@/data/projects";
 import ReactMarkdown from "react-markdown";
+import Magnetic from "@/Components/ui/Magnetic";
 
 interface ProjectDetailsViewProps {
   project: Project;
@@ -51,7 +52,7 @@ export default function ProjectDetailsView({ project }: ProjectDetailsViewProps)
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="space-y-2"
+            className="space-y-2 py-2"
           >
             <motion.div variants={fadeInUp}>
               <Link
@@ -63,12 +64,54 @@ export default function ProjectDetailsView({ project }: ProjectDetailsViewProps)
               </Link>
             </motion.div>
 
-            <motion.h1
-              variants={fadeInUp}
-              className="text-5xl md:text-7xl font-bold text-foreground tracking-tight"
-            >
-              {project.name}
-            </motion.h1>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <motion.h1
+                variants={fadeInUp}
+                className="text-5xl md:text-7xl font-bold text-foreground "
+              >
+                {project.name}
+              </motion.h1>
+
+              <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-2">
+                {project.liveDemoUrl && (
+                  <Magnetic>
+                    <Link
+                      href={project.liveDemoUrl}
+                      target="_blank"
+                      className="relative group block cursor-pointer"
+                    >
+                      <div className="w-14 h-14 rounded-full bg-background border border-neutral-200 flex items-center justify-center text-foreground transition-all duration-500 group-hover:bg-foreground group-hover:text-background group-hover:scale-110 shadow-lg">
+                        <Globe className="w-6 h-6 transition-transform duration-500 " />
+                      </div>
+
+                      {/* Floating Label */}
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 whitespace-nowrap pointer-events-none shadow-xl z-50">
+                        Visit Live Site
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-foreground" />
+                      </div>
+                    </Link>
+                  </Magnetic>
+                )}
+
+                <Magnetic>
+                  <Link
+                    href={project.githubUrl}
+                    target="_blank"
+                    className="relative group block cursor-pointer"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-600 transition-all duration-500 group-hover:bg-foreground group-hover:text-background group-hover:scale-110 shadow-md hover:shadow-lg">
+                      <Github className="w-6 h-6 transition-transform duration-500 " />
+                    </div>
+
+                    {/* Floating Label */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 whitespace-nowrap pointer-events-none shadow-xl z-50">
+                      Source Code
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-foreground" />
+                    </div>
+                  </Link>
+                </Magnetic>
+              </motion.div>
+            </div>
 
 
           </motion.div>
@@ -156,6 +199,9 @@ export default function ProjectDetailsView({ project }: ProjectDetailsViewProps)
           {/* Right Column - Sticky Sidebar */}
           <div className="lg:col-span-4">
             <div className="sticky top-24 space-y-5">
+              {/* Action Buttons */}
+
+
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
