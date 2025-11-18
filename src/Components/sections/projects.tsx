@@ -12,7 +12,7 @@ export default function Projects({ limit }: ProjectsProps) {
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
 
   return (
-    <section className="py-16 border-t border-neutral-200/50 mt-8">
+    <section className="py-16   ">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

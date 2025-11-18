@@ -25,15 +25,21 @@ export const projectsData: Project[] = [
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1759138327/AV_1_zztl3w.png",
     description:
-      "Next-Generation AI Chat Platform-Experience intelligent conversations with 20+ advanced AI models. Fast, secure, and designed for the future of communication.",
+      "Next-generation AI chat platform engineered for **performance** and **scalability**.\n\n• **30+ Premium AI Models** - GPT-5, Gemini 2.5, Claude 4, Grok 4, DeepSeek, Qwen with **intelligent routing**\n• **Sub-100ms Response Time** - Local-first architecture with **IndexedDB + Appwrite** cloud integration\n• **Plan Mode** - Interactive diagrams and visualizations using **Mermaid syntax**\n• **AI-Powered Image Generation** - Google Gemini 2.5 Flash with **context-aware** generation\n• **Voice Input** - OpenAI Whisper **speech-to-text** integration\n• **Intelligent Web Search** - Parallel AI, Tavily, and Exa with **automatic tool selection**\n• **Multi-Format File Upload** - AI analysis with **PDF thumbnails** and pagination\n• **Real-Time Sync** - Instant synchronization across all devices with **WebSocket** connections\n• **Advanced Features** - BYOK support, tiered access system, **Better Stack** logging, **Upstash Redis** rate limiting\n• **Production Ready** - Deployed at cappychat.com with **99.9% uptime**",
     techStack: [
-      "Tailwind CSS",
-      "Next.js",
+      "Next.js 15",
       "TypeScript",
-      "Open Router",
-      "Vercel AI SDK",
-      "Appwrite Realtime DB",
+
+
       "Zustand",
+
+      "Appwrite",
+      "OpenRouter",
+
+
+      "Cloudinary",
+      "Better Stack",
+
     ],
     liveDemoUrl: "https://cappychat.com",
     githubUrl: "https://github.com/cyberboyayush/cappychat",

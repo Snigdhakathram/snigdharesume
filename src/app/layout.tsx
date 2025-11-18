@@ -30,7 +30,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen relative`}
       >
-
         <Background />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
