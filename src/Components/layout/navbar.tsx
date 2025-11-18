@@ -91,7 +91,7 @@ export default function Navbar() {
     >
       <div
         ref={outsideClickRef}
-        className="flex p-2 flex-wrap items-center gap-1 rounded-full border border-neutral-400/80 bg-linear-to-tl from-neutral-50/70 via-neutral-100/60 to-neutral-50/70 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
+        className="flex p-2 flex-wrap items-center gap-3 rounded-full border border-neutral-400/80 bg-linear-to-tl from-neutral-50/70 via-neutral-100/60 to-neutral-50/70 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
       >
         {navItems.map((item, index) => {
           const Icon = item.icon;
