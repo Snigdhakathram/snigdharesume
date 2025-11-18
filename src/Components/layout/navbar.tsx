@@ -1,14 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Home, FolderOpen, Mail, Moon, Sun } from "lucide-react";
-import Magnetic from "../ui/Magnetic";
+import { useOnClickOutside } from "usehooks-ts";
+import { cn } from "@/lib/utils";
+
+const buttonVariants = {
+  initial: {
+    gap: 0,
+    paddingLeft: ".5rem",
+    paddingRight: ".5rem",
+  },
+  animate: (isSelected: boolean) => ({
+
+    transition: isSelected
+      ? { type: "spring" as const, bounce: 0, duration: 0.5, stiffness: 300, damping: 30 }
+      : { type: "spring" as const, bounce: 0, duration: 0.35, stiffness: 400, damping: 35 },
+  }),
+};
+
+const spanVariants = {
+  initial: {
+    width: 0,
+    opacity: 0,
+  },
+  animate: {
+    width: "auto",
+    opacity: 1,
+    transition: { type: "spring" as const, bounce: 0, duration: 0.5, stiffness: 300, damping: 30 }
+  },
+  exit: {
+    width: 0,
+    opacity: 0,
+    transition: { type: "spring" as const, bounce: 0, duration: 0.35, stiffness: 400, damping: 35 }
+  },
+};
 
 export default function Navbar() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isClient, setIsClient] = useState(false);
+  const [selected, setSelected] = useState<number | null>(null);
+  const outsideClickRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(outsideClickRef as React.RefObject<HTMLDivElement>, () => {
+    setSelected(null);
+  });
 
   useEffect(() => {
     const handleThemeInit = () => {
@@ -46,42 +84,80 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
+      className="fixed top-6  left-1/2 -translate-x-1/2 z-50"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="backdrop-blur-md bg-neutral-100/60 border border-neutral-300/30 rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
-        {navItems.map((item) => (
-          <Magnetic key={item.name}>
-            <Link
-              href={item.href}
-              className="p-3 rounded-full hover:bg-neutral-200/50 transition-colors block group relative"
-              aria-label={item.name}
+      <div
+        ref={outsideClickRef}
+        className="flex p-2 flex-wrap items-center gap-1 rounded-full border border-neutral-400/80 bg-linear-to-tl from-neutral-50/70 via-neutral-100/60 to-neutral-50/70 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
+      >
+        {navItems.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={item.name}
+              variants={buttonVariants}
+              initial={false}
+              animate="animate"
+              custom={selected === index}
             >
-              <item.icon className="w-5 h-5 text-neutral-600 group-hover:text-foreground transition-colors" />
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium text-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-neutral-100 px-2 py-1 rounded-md shadow-sm pointer-events-none">
-                {item.name}
-              </span>
-            </Link>
-          </Magnetic>
-        ))}
+              <Link
+                href={item.href}
+                onClick={() => setSelected(index)}
+                className={cn(
+                  "relative flex items-center rounded-full px-3 py-2.5 my-0.5 text-sm font-medium transition-colors duration-200",
+                  selected === index
+                    ? "bg-neutral-800 text-background "
+                    : "text-neutral-700 hover:bg-neutral-100 hover:text-foreground"
+                )}
+                aria-label={item.name}
+              >
+                <Icon size={20} className="shrink-0" />
 
-        <div className="w-px h-6 bg-neutral-300/50 mx-1" />
+                <AnimatePresence initial={false}>
+                  {selected === index && (
+                    <motion.div variants={spanVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit" className="flex items-center gap-2">
+                      <motion.div
 
-        <Magnetic>
-          <button
-            onClick={toggleTheme}
-            className="p-3 rounded-full hover:bg-neutral-200/50 transition-colors group relative"
-            aria-label="Toggle Theme"
-          >
-            {theme === "light" ? (
-              <Moon className="w-5 h-5 text-neutral-600 group-hover:text-foreground transition-colors" />
-            ) : (
-              <Sun className="w-5 h-5 text-neutral-600 group-hover:text-foreground transition-colors" />
-            )}
-          </button>
-        </Magnetic>
+                        className="w-.5  "
+                      />
+                      <motion.span
+
+                        className="overflow-hidden whitespace-nowrap"
+                      >
+
+                        {item.name}
+                      </motion.span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Link>
+            </motion.div>
+          );
+        })}
+
+        <div className="mx-0.5 h-6 w-px bg-neutral-300/60" />
+
+        <motion.button
+          variants={buttonVariants}
+          initial={false}
+          animate="animate"
+          custom={false}
+          onClick={toggleTheme}
+          className="relative mr-2 flex items-center rounded-full px-3 py-2.5 text-sm font-medium text-neutral-700 transition-colors duration-200 hover:bg-neutral-100 hover:text-foreground"
+          aria-label="Toggle Theme"
+        >
+          {theme === "light" ? (
+            <Moon size={20} className="shrink-0" />
+          ) : (
+            <Sun size={20} className="shrink-0" />
+          )}
+        </motion.button>
       </div>
     </motion.nav>
   );
