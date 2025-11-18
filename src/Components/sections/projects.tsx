@@ -12,17 +12,24 @@ export default function Projects({ limit }: ProjectsProps) {
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
 
   return (
-    <section className="py-8">
+    <section className="py-16 border-t border-neutral-200/50 mt-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-left">
-          Projects
-        </h2>
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-left">
+            Projects
+          </h2>
+          {limit && (
+            <a href="/projects" className="text-sm text-neutral-500 hover:text-foreground transition-colors">
+              View All →
+            </a>
+          )}
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {displayedProjects.map((project, index) => (
             <ProjectCard
               key={project.id}

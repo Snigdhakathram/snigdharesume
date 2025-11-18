@@ -6,17 +6,17 @@ import SkillCard from "@/Components/ui/SkillCard";
 
 export default function Skills() {
   return (
-    <section className="py-16">
+    <section className="py-16 border-t border-neutral-200/50 mt-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="text-4xl md:text-4xl font-bold text-foreground mb-6 text-left">
+        <h2 className="text-4xl md:text-4xl font-bold text-foreground mb-8 text-left">
           Skills
         </h2>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {Object.entries(skillsData).map(
             ([category, skills], categoryIndex) => (
               <motion.div
