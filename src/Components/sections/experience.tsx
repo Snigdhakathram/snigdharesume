@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { experienceData } from "@/data/experience";
-import SpotlightCard from "@/Components/ui/SpotlightCard";
 import Image from "next/image";
 import { Trophy, Medal, Code, GraduationCap, Briefcase } from "lucide-react";
 
@@ -46,7 +45,7 @@ export default function Experience() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <SpotlightCard className="bg-neutral-100/70 border-neutral-200 shadow-sm rounded-2xl p-6 md:p-8 hover:shadow-xl transition-all duration-300">
+            <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-6 md:p-8  transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0">
@@ -71,7 +70,7 @@ export default function Experience() {
                         {item.name} {item.company && <span className="text-neutral-400">•</span>} {item.company}
                       </p>
                     </div>
-                    <span className="self-start rounded-lg md:self-center text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
+                    <span className="self-start rounded-lg md:self-start text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
                       {item.duration}
                     </span>
                   </div>
@@ -92,7 +91,7 @@ export default function Experience() {
                   </div>
                 </div>
               </div>
-            </SpotlightCard>
+            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -144,7 +143,7 @@ export default function Experience() {
                   >
                     {/* Content Side */}
                     <div className="flex-1 md:w-1/2 md:px-8 pl-20">
-                      <SpotlightCard className="bg-neutral-100 border-neutral-200 p-6 hover:shadow-lg transition-shadow duration-300">
+                      <div className="bg-card border border-neutral-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
                         <div className="flex items-start justify-between mb-4 gap-4">
                           <div className="flex items-center gap-3">
                             <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
@@ -183,7 +182,7 @@ export default function Experience() {
                             </span>
                           ))}
                         </div>
-                      </SpotlightCard>
+                      </div>
                     </div>
 
                     {/* Center Icon */}
