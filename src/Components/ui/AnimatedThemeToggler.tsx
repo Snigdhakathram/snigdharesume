@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { RxMoon } from "react-icons/rx";
 
@@ -16,13 +16,19 @@ export const AnimatedThemeToggler = ({
     duration = 400,
     ...props
 }: AnimatedThemeTogglerProps) => {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(true);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-        const root = document.documentElement;
-        const currentTheme = root.getAttribute("data-theme");
-        setIsDark(currentTheme === "dark");
+        if (typeof window !== "undefined") {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute("data-theme");
+            setIsDark(currentTheme === "dark" || !currentTheme);
+            
+            if (!currentTheme) {
+                 root.setAttribute("data-theme", "dark");
+            }
+        }
     }, []);
 
     const toggleTheme = useCallback(async () => {

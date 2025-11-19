@@ -26,10 +26,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen relative`}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'light') {
+                  document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
         <Background />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
