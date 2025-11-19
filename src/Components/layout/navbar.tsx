@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Home, FolderOpen, Mail, Moon, Sun } from "lucide-react";
+import { Home, FolderOpen, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { RxMoon } from "react-icons/rx";
-import { ImSun } from "react-icons/im";
+import { AnimatedThemeToggler } from "@/Components/ui/AnimatedThemeToggler";
 
 const buttonVariants = {
   initial: {
@@ -41,7 +40,6 @@ const spanVariants = {
 };
 
 export default function Navbar() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isClient, setIsClient] = useState(false);
   const [selected, setSelected] = useState<number>(0);
   const pathname = usePathname();
@@ -58,7 +56,6 @@ export default function Navbar() {
       const currentTheme = savedTheme || (prefersDark ? "dark" : "light");
 
       document.documentElement.setAttribute("data-theme", currentTheme);
-      setTheme(currentTheme);
       setIsClient(true);
     };
 
@@ -83,13 +80,6 @@ export default function Navbar() {
       setSelected(currentIndex);
     }
   }, [pathname]);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
 
   if (!isClient) return null;
 
@@ -159,21 +149,10 @@ export default function Navbar() {
 
         <div className="mx-0.5 h-6 w-px bg-neutral-300/60" />
 
-        <motion.button
-          variants={buttonVariants}
-          initial={false}
-          animate="animate"
-          custom={false}
-          onClick={toggleTheme}
+        <AnimatedThemeToggler
+          duration={400}
           className="relative mr-2 flex items-center rounded-full px-3 py-2.5 text-sm font-medium text-neutral-700 transition-colors duration-200 hover:bg-neutral-100 hover:text-foreground"
-          aria-label="Toggle Theme"
-        >
-          {theme === "light" ? (
-            <RxMoon size={20} className="shrink-0" />
-          ) : (
-            <ImSun size={20} className="shrink-0" />
-          )}
-        </motion.button>
+        />
       </div>
     </motion.nav>
   );
