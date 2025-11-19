@@ -8,9 +8,9 @@ export default function SkillsMarquee() {
   const duplicatedSkills = [...allSkills, ...allSkills];
 
   return (
-    <div className="w-full overflow-hidden py-8 ">
+    <div className="w-full overflow-hidden py-3 md:py-8 ">
       <motion.div
-        className="flex gap-8"
+        className="flex gap-1 md:gap-8"
         animate={{
           x: [0, -50 + "%"],
         }}

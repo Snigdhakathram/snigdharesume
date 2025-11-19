@@ -28,8 +28,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full relative overflow-hidden border-t border-neutral-200 bg-background/50 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-10">
           {/* Left Side: Big Text */}
           <div className="flex flex-col gap-4">
             <div className="flex flex-col">
@@ -74,7 +74,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-neutral-200/50 flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-neutral-500">
+        <div className="mt-4 md:mt-16 pt-8 border-t border-neutral-200/50 flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-neutral-500">
           <p>© {currentYear} Vranda Garg. All rights reserved.</p>
           {/* <div className="flex gap-6">
             <span className="hover:text-black transition-colors cursor-pointer">

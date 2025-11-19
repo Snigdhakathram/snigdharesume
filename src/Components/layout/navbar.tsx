@@ -77,6 +77,11 @@ export default function Navbar() {
     });
 
     if (currentIndex !== -1) {
+      // Wrap state update in a transition or check if mounted to avoid sync render issues if strict mode is on
+      // but for simple nav state, just ensuring it doesn't cycle is key.
+      // The linter warning about setState in effect is generally about render loops,
+      // but here it depends on pathname which is external.
+      // We can suppress or ignore if we are sure, but let's keep it simple.
       setSelected(currentIndex);
     }
   }, [pathname]);
@@ -97,7 +102,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
-        className="flex p-2 flex-wrap items-center gap-3 rounded-full border border-neutral-200/60 bg-linear-to-tl from-neutral-50/80 via-neutral-100/80 to-neutral-50/80 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
+        className="flex p-2  items-center gap-3 rounded-full border border-neutral-200/60 bg-linear-to-tl from-neutral-50/80 via-neutral-100/80 to-neutral-50/80 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
       >
         {navItems.map((item, index) => {
           const Icon = item.icon;
@@ -127,7 +132,7 @@ export default function Navbar() {
                     <motion.div variants={spanVariants}
                       initial="initial"
                       animate="animate"
-                      exit="exit" className="flex items-center gap-2">
+                      exit="exit" className="hidden md:flex items-center gap-2">
                       <motion.div
 
                         className="w-.5  "

@@ -20,20 +20,20 @@ export default function Experience() {
     const item = experienceData[0];
 
     return (
-      <section className="py-16 px-8 relative">
+      <section className="py-12 md:py-16 px-5 md:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="flex items-center flex-col justify-center mb-8">
+          <div className="flex items-center flex-col justify-center mb-5 md:mb-8">
             <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-300 shadow-sm">
               Journey
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center">
               Experience
             </h2>
-            <div className="max-w-md text-center mt-3 text-neutral-700">
+            <div className="max-w-md text-center mt-1 md:mt-3 text-neutral-700">
               My professional journey and achievements in technology and development.
             </div>
           </div>
@@ -48,8 +48,8 @@ export default function Experience() {
             <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-6 md:p-8  transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
-                <div className="shrink-0">
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden  ">
+                <div className="shrink-0 flex flex-row gap-2">
+                  <div className="relative w-12 h-12 md:w-20 md:h-20 overflow-hidden  ">
                     <Image
                       src={item.logo}
                       alt={item.name}
@@ -57,12 +57,21 @@ export default function Experience() {
                       className="object-contain p-1"
                     />
                   </div>
+
+                  <div className="md:hidden">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      {item.role}
+                    </h3>
+                    <p className="text-base md:text-lg font-medium text-neutral-600">
+                      {item.name} {item.company && <span className="text-neutral-400">•</span>} {item.company}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Content Section */}
                 <div className="grow">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                    <div>
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2 md:mb-4">
+                    <div className="hidden md:block">
                       <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
                         {item.role}
                       </h3>
@@ -75,7 +84,7 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <p className="text-base text-neutral-600 leading-relaxed mb-6 text-justify">
+                  <p className="text-base text-neutral-600 leading-relaxed mb-3 md:mb-6 text-justify">
                     {item.description}
                   </p>
 

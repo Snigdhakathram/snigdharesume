@@ -35,26 +35,26 @@ export default function ProjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-      <SpotlightCard 
+      <SpotlightCard
         className="group h-full bg-neutral-100 border-neutral-200 transition-all duration-300 flex flex-col"
         spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
       >
-          <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="relative h-48 w-full overflow-hidden block cursor-pointer">
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </Link>
+        <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="relative h-48 w-full overflow-hidden block cursor-pointer">
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </Link>
 
-          <div className="p-6 flex flex-col grow">
-            <div className="flex items-center justify-between mb-2">
-              <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:underline decoration-neutral-400 underline-offset-4 transition-all">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground">
-                  {name}
-                </h3>
-              </Link>
+        <div className="p-3 md:p-6 flex flex-col grow">
+          <div className="flex items-center justify-between mb-2">
+            <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:underline decoration-neutral-400 underline-offset-4 transition-all">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                {name}
+              </h3>
+            </Link>
             <Link
               href={githubUrl}
               target="_blank"
@@ -66,11 +66,11 @@ export default function ProjectCard({
             </Link>
           </div>
 
-          <p className="text-sm text-justify text-neutral-600 mb-4 leading-relaxed line-clamp-3 grow">
+          <p className="text-sm text-justify text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow">
             {description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-3 md:mb-6">
             {techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
@@ -89,7 +89,7 @@ export default function ProjectCard({
           <div className="flex gap-3 mt-auto z-10 relative">
             <Link
               href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`}
-              className="flex-1 px-4 py-2.5 rounded-lg border border-foreground bg-foreground text-background hover:bg-neutral-800 transition-colors text-center text-sm font-medium"
+              className="flex-1 px-4 py-2.5 rounded-lg border border-foreground bg-neutral-800 text-background hover:bg-neutral-800 transition-colors text-center text-sm font-medium"
             >
               Details
             </Link>

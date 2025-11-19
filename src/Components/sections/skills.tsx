@@ -21,7 +21,7 @@ export default function Skills() {
   const displayedSkills = getFilteredSkills();
 
   return (
-    <section className="py-20 px-4 md:px-8">
+    <section className="py-12 md:py-20 px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -30,11 +30,11 @@ export default function Skills() {
         className="max-w-6xl mx-auto"
       >
         {/* Header */}
-        <div className="flex items-center flex-col justify-center mb-8">
+        <div className="flex items-center flex-col justify-center mb-5 md:mb-8">
           <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-200 shadow-sm">
             Expertise
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center mb-2 md:mb-4">
             Skills & Tools
           </h2>
           <div className="max-w-md text-center text-neutral-600">
@@ -44,7 +44,7 @@ export default function Skills() {
 
         {/* Tabs */}
         <div className="flex justify-center mb-6">
-          <div className="flex flex-wrap justify-center gap-2 bg-card p-1.5 rounded-xl border border-neutral-200">
+          <div className="flex flex-wrap justify-center md:gap-2 bg-card p-1.5 rounded-xl border border-neutral-200">
             {categories.map((category) => (
               <button
                 key={category}
@@ -73,7 +73,7 @@ export default function Skills() {
         {/* Skills Grid */}
         <motion.div
           layout
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
         >
           <AnimatePresence mode="popLayout">
             {displayedSkills.map((skill) => (

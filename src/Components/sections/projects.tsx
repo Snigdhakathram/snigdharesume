@@ -16,7 +16,7 @@ export default function Projects({ limit }: ProjectsProps) {
   const pathname = usePathname();
 
   return (
-    <section className="py-16 px-8">
+    <section className="py-10 md:py-16 px-5 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export default function Projects({ limit }: ProjectsProps) {
           )}
         </div>
 
-        <div className="grid grid-cols-1 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 bg-card border border-neutral-200 shadow-sm rounded-2xl p-4 md:p-8 md:grid-cols-2 gap-8">
           {displayedProjects.map((project, index) => (
             <ProjectCard
               key={project.id}

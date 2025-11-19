@@ -116,20 +116,20 @@ export default function HeroSection() {
   return (
     <section className="min-h-screen max-w-4xl mx-auto flex items-center justify-center ">
       <div className="w-full border-l border-r border-neutral-200 relative">
-        <div className=" mt-24  mx-8 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8">
+        <div className=" mt-24  mx-4 md:mx-8 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-4"
+            className="space-y-2 md:space-y-4"
           >
-            <div className="flex items-start gap-6 lg:gap-8">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-3 lg:gap-8">
               <div className="flex-1">
-                <h1 className="text-3xl md:text-5xl font-semibold text-foreground">
+                <h1 className="text-2xl text-center md:text-left md:text-5xl font-semibold text-foreground">
                   Hi,I&apos;m
 
                 </h1>
-                <h1 className="text-3xl md:text-6xl mt-2 font-semibold text-foreground">
+                <h1 className="text-2xl text-center md:text-left md:text-6xl mt-2 font-semibold text-foreground">
                   Vranda Garg
                 </h1>
 
@@ -144,8 +144,8 @@ export default function HeroSection() {
                     animate={{ y: 0 }}
                     exit={{ y: "-120%" }}
                     transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    mainClassName="px-3 bg-gradient-to-tl from-neutral-100 to-neutral-300 text-neutral-900 overflow-hidden py-2 justify-center rounded-lg border border-neutral-200"
-                    splitLevelClassName="overflow-hidden pb-1"
+                    mainClassName="px-3 text-lg md:text-4xl bg-gradient-to-tl from-neutral-100 to-neutral-300 text-neutral-900 overflow-hidden py-2 justify-center rounded-lg border border-neutral-200"
+                    splitLevelClassName="overflow-hidden md:pb-1"
                   />
                 </div>
               </div>
@@ -156,7 +156,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 className="shrink-0"
               >
-                <div className="w-32 h-32 md:w-40 md:h-40">
+                <div className="w-28 h-28 md:w-40 md:h-40">
                   <PixelTransition
                     firstContent={
                       <Image
@@ -192,7 +192,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="space-y-3"
             >
-              <p className="text-base md:text-lg text-justify text-neutral-600 leading-relaxed">
+              <p className="text-sm md:text-lg text-justify text-neutral-600 leading-relaxed">
                 I&apos;m a Full Stack Developer with a passion for creating
                 beautiful, responsive, and user-friendly web experiences. I
                 specialize in building modern web applications that combine
@@ -218,14 +218,14 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               className="flex flex-col  items-start sm:items-start gap-4 pt-4"
             >
-              <div className="flex gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
                 <Link
                   href="#contact"
-                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
+                  className="group w-full md:w-auto relative inline-flex h-8 md:h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
                 >
 
-                  <div className="inline-flex h-12 items-center justify-center bg-neutral-800 hover:bg-neutral-700 px-6 text-background">
-                    <Mail className="w-4 h-4 mr-2" />
+                  <div className="inline-flex w-full md:w-auto text-sm md:text-base h-8 md:h-12 items-center justify-center bg-neutral-800 hover:bg-neutral-700 px-6 text-background">
+                    <Mail className="md:w-4 md:h-4 h-3 w-3 mr-2" />
                     Contact
                   </div>
                 </Link>
@@ -233,16 +233,16 @@ export default function HeroSection() {
                   href="https://vrandagarg.in/VrandaGargResume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-200 font-medium"
+                  className="group relative w-full md:w-auto  inline-flex text-sm md:text-base h-8 md:h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-200 font-medium"
                 >
-                  <div className="inline-flex h-12 items-center justify-center bg-linear-to-r from-neutral-200 via-neutral-100 to-neutral-200 hover:from-neutral-100 hover:via-neutral-200 hover:to-neutral-100 px-6 transition-colors text-foreground">
-                    <HiOutlineDocumentText className="w-4 h-4 mr-2" />
+                  <div className="inline-flex w-full md:w-auto text-sm md:text-base h-8 md:h-12 items-center justify-center bg-linear-to-r from-neutral-200 via-neutral-100 to-neutral-200 hover:from-neutral-100 hover:via-neutral-200 hover:to-neutral-100 px-6 transition-colors text-foreground">
+                    <HiOutlineDocumentText className="md:w-4 md:h-4 h-3 w-3 mr-2" />
                     Resume
                   </div>
                 </Link>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex mx-auto md:mx-0 justify-center md:justify-start items-center gap-4">
                 {socialLinks.map((link, index) => (
                   <SocialIconWithTooltip
                     key={link.title}

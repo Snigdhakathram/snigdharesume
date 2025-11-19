@@ -65,21 +65,21 @@ export default function Contact() {
     }
 
     return (
-        <section id="contact" className="w-full py-20 px-4 md:px-8 relative overflow-hidden  ">
+        <section id="contact" className="w-full py-10 md:py-20 px-4 md:px-8 relative overflow-hidden  ">
             <div className="max-w-4xl mx-auto relative z-10">
 
                 {/* Header Section */}
-                <div className="text-center mb-6 space-y-2">
+                <div className="text-center mb-3 md:mb-6 space-y-2">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                        <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
                             Let&apos;s work on
                         </h2>
-                        <div className="h-14 md:h-16 flex items-center justify-center mt-2 overflow-hidden">
+                        <div className="h-14 md:h-16 flex items-center justify-center md:mt-2 overflow-hidden">
                             <RotatingText
                                 texts={["New Projects", "Collaborations", "Ideas", "Growth"]}
                                 rotationInterval={2000}
@@ -89,7 +89,7 @@ export default function Contact() {
                                 animate={{ y: 0 }}
                                 exit={{ y: "-120%" }}
                                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                                mainClassName="text-4xl md:text-5xl font-bold text-foreground "
+                                mainClassName="text-3xl md:text-5xl font-bold text-foreground "
                                 splitLevelClassName="overflow-hidden pb-2"
                             />
                         </div>
@@ -162,7 +162,7 @@ export default function Contact() {
                                         className="w-full h-full bg-card rounded-xl overflow-hidden font-mono text-sm shadow-inner  flex flex-col"
                                     >
                                         {/* VS Code Header */}
-                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-100 select-none border-none outline-none">
+                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-100 select-none  outline-none">
                                             <div className="flex items-center gap-2">
                                                 <div className="flex gap-1.5 mr-4">
                                                     <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
@@ -188,22 +188,22 @@ export default function Contact() {
                                         </div>
 
                                         {/* IDE Body */}
-                                        <div className="flex flex-1 overflow-hidden border-none outline-none">
+                                        <div className="flex flex-1 overflow-hidden  outline-none">
                                             {/* Activity Bar */}
-                                            <div className="w-12 bg-neutral-100 flex flex-col items-center py-4 gap-6 text-neutral-700 border-r border-t border-neutral-200 shrink-0 z-10 border-none outline-none">
-                                                <div className="text-neutral-800 border-l-2 border-blue-400 pl-2 pr-3 ">
-                                                    <Files className="w-6 h-6" />
+                                            <div className="w-8 min-h-[430px] md:w-12 bg-neutral-100 flex flex-col items-center py-4 gap-6 text-neutral-700 border-r border-t border-neutral-200 shrink-0 z-10  outline-none">
+                                                <div className="text-neutral-800 border-l-2 border-blue-400 pl-2 pr-2 ">
+                                                    <Files className="md:w-6 h-4 md:h-6 w-4" />
                                                 </div>
-                                                <Search className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
-                                                <GitBranch className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
-                                                <Blocks className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                <Search className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
+                                                <GitBranch className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
+                                                <Blocks className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
                                                 <div className="mt-auto">
-                                                    <Settings className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                    <Settings className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
                                                 </div>
                                             </div>
 
                                             {/* Explorer Pane */}
-                                            <div className="w-48 bg-neutral-100 min-h-[400px] border-r border-t border-neutral-200 hidden md:flex flex-col text-neutral-700 shrink-0 border-none outline-none">
+                                            <div className="w-48 bg-neutral-100 min-h-[400px] border-r border-t border-neutral-200 hidden md:flex flex-col text-neutral-700 shrink-0  outline-none">
                                                 <div className="text-[11px] font-bold px-4 py-3 text-neutral-700">EXPLORER</div>
                                                 <div className="px-2">
                                                     <div className="flex items-center gap-1 py-1 px-2 text-xs font-bold text-blue-400 hover:bg-card cursor-pointer rounded-sm outline-none focus:outline-none ring-0">
@@ -254,9 +254,9 @@ export default function Contact() {
                                             </div>
 
                                             {/* Editor Area */}
-                                            <div className="flex-1 flex flex-col bg-neutral-100 min-w-0 border-none outline-none">
+                                            <div className="flex-1 flex flex-col bg-neutral-100 min-w-0  outline-none">
                                                 {/* Tab Bar */}
-                                                <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200 border-none outline-none">
+                                                <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200  outline-none">
                                                     <div
                                                         onClick={() => setActiveFile("contact.tsx")}
                                                         onMouseDown={(e) => e.preventDefault()}
@@ -279,7 +279,7 @@ export default function Contact() {
                                                             "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
                                                             activeFile === "socialLinks.tsx"
                                                                 ? "bg-card rounded-t-sm border-t-yellow-400 text-foreground"
-                                                                : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
+                                                                : "bg-neutral-100 border-t-transparent  text-[#969696] hover:bg-neutral-100"
                                                         )}
                                                         tabIndex={-1}
                                                     >
@@ -290,7 +290,7 @@ export default function Contact() {
                                                 </div>
 
                                                 {/* Editor Content */}
-                                                <div className="p-6 bg-card overflow-auto flex-1">
+                                                <div className="md:p-6 min-h-[400px] bg-card overflow-auto flex-1">
                                                     {activeFile === "contact.tsx" ? (
                                                         formState === "success" ? (
                                                             <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
@@ -313,9 +313,9 @@ export default function Contact() {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <form onSubmit={handleSubmit} className="space-y-1.5 relative font-mono text-[13px] md:text-sm leading-relaxed">
+                                                            <form onSubmit={handleSubmit} className="space-y-1.5 min-h-[400px] relative font-mono text-[13px] md:text-sm leading-relaxed">
                                                                 <div className="flex group">
-                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">1</span>
                                                                     <div className="flex flex-wrap">
                                                                         <span className="text-[#c678dd]">const</span>&nbsp;
                                                                         <span className="text-[#61afef]">sendMessage</span>&nbsp;
@@ -330,7 +330,7 @@ export default function Contact() {
                                                                 </div>
 
                                                                 <div className="flex group items-baseline">
-                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">2</span>
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">2</span>
                                                                     <div className="flex-1 flex flex-wrap items-center">
                                                                         <span className="text-[#e06c75] ml-4">name</span>
                                                                         <span className="text-neutral-400">:</span>&nbsp;
@@ -340,7 +340,7 @@ export default function Contact() {
                                                                             name="name"
                                                                             required
                                                                             placeholder="Your Name"
-                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
                                                                         />
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <span className="text-neutral-400">,</span>
@@ -348,7 +348,7 @@ export default function Contact() {
                                                                 </div>
 
                                                                 <div className="flex group items-baseline">
-                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">3</span>
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">3</span>
                                                                     <div className="flex-1 flex flex-wrap items-center">
                                                                         <span className="text-[#e06c75] ml-4">email</span>
                                                                         <span className="text-neutral-400">:</span>&nbsp;
@@ -358,7 +358,7 @@ export default function Contact() {
                                                                             name="email"
                                                                             required
                                                                             placeholder="you@email.com"
-                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
                                                                         />
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <span className="text-neutral-400">,</span>
@@ -366,7 +366,7 @@ export default function Contact() {
                                                                 </div>
 
                                                                 <div className="flex group items-start">
-                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none pt-1">4</span>
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none pt-1">4</span>
                                                                     <div className="flex-1 flex flex-wrap">
                                                                         <span className="text-[#e06c75] ml-4 pt-1">message</span>
                                                                         <span className="text-neutral-400 pt-1">:</span>&nbsp;
@@ -376,18 +376,18 @@ export default function Contact() {
                                                                             required
                                                                             rows={2}
                                                                             placeholder="Let's build something cool..."
-                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
+                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
                                                                         />
                                                                         <span className="text-[#98c379] pt-1">&quot;</span>
                                                                     </div>
                                                                 </div>
 
                                                                 <div className="flex group">
-                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">5</span>
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">5</span>
                                                                     <span className="text-neutral-400">{`}`}</span>
                                                                 </div>
 
-                                                                <div className="mt-8 flex justify-end">
+                                                                <div className="mt-8 absolute bottom-4 right-4 flex justify-end">
                                                                     <button
                                                                         type="submit"
                                                                         disabled={formState === "submitting"}
@@ -412,7 +412,7 @@ export default function Contact() {
                                                         // Social Links Code View
                                                         <div className="space-y-1.5 font-mono text-[13px] md:text-sm leading-relaxed">
                                                             <div className="flex group">
-                                                                <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                                <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">1</span>
                                                                 <div className="flex flex-wrap">
                                                                     <span className="text-[#c678dd]">export</span>&nbsp;
                                                                     <span className="text-[#c678dd]">const</span>&nbsp;
@@ -424,18 +424,18 @@ export default function Contact() {
                                                             {socialLinks.map((link, index) => (
                                                                 <div key={link.title} className="group">
                                                                     <div className="flex">
-                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 2}</span>
+                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 2}</span>
                                                                         <span className="text-neutral-400 ml-4">{`{`}</span>
                                                                     </div>
                                                                     <div className="flex items-center">
-                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 3}</span>
+                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 3}</span>
                                                                         <span className="text-[#e06c75] ml-8">name</span>
                                                                         <span className="text-neutral-400">:</span>&nbsp;
                                                                         <span className="text-[#98c379]">&quot;{link.title}&quot;</span>
                                                                         <span className="text-neutral-400">,</span>
                                                                     </div>
                                                                     <div className="flex items-center">
-                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 4}</span>
+                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 4}</span>
                                                                         <span className="text-[#e06c75] ml-8">url</span>
                                                                         <span className="text-neutral-400">:</span>&nbsp;
                                                                         <a
@@ -449,13 +449,13 @@ export default function Contact() {
                                                                         <span className="text-neutral-400">,</span>
                                                                     </div>
                                                                     <div className="flex">
-                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 5}</span>
+                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 5}</span>
                                                                         <span className="text-neutral-400 ml-4">{`},`}</span>
                                                                     </div>
                                                                 </div>
                                                             ))}
                                                             <div className="flex group">
-                                                                <span className="text-[#495162] w-8 text-right mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
+                                                                <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
                                                                 <span className="text-neutral-400">];</span>
                                                             </div>
                                                         </div>
@@ -569,69 +569,71 @@ export default function Contact() {
                 </motion.div>
 
                 {/* Footer / Socials */}
-                <div className="flex flex-col items-center gap-8">
-                    <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200  to-transparent" />
+                {view === "non-technical" && (
+                    <div className="flex flex-col items-center gap-4 md:gap-8">
+                        <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200  to-transparent" />
 
-                    <div className="flex items-center gap-4 flex-wrap justify-center">
-                        {socialLinks.map((link) => {
-                            const Icon = link.icon;
-                            return (
-                                <Magnetic key={link.title}>
-                                    <a
-                                        href={link.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-foreground  transition-all group"
-                                        aria-label={link.title}
-                                    >
-                                        <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
-                                    </a>
-                                </Magnetic>
-                            );
-                        })}
+                        <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center">
+                            {socialLinks.map((link) => {
+                                const Icon = link.icon;
+                                return (
+                                    <Magnetic key={link.title}>
+                                        <a
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="md:w-12 md:h-12 w-10 h-10 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-foreground  transition-all group"
+                                            aria-label={link.title}
+                                        >
+                                            <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
+                                        </a>
+                                    </Magnetic>
+                                );
+                            })}
 
-                        <Magnetic>
-                            <button
-                                onClick={handleCopyEmail}
-                                className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group relative"
-                                aria-label="Copy Email"
-                            >
-                                <AnimatePresence mode="wait">
-                                    {copied ? (
-                                        <motion.div
-                                            key="check"
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            exit={{ scale: 0 }}
+                            <Magnetic>
+                                <button
+                                    onClick={handleCopyEmail}
+                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group relative"
+                                    aria-label="Copy Email"
+                                >
+                                    <AnimatePresence mode="wait">
+                                        {copied ? (
+                                            <motion.div
+                                                key="check"
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1 }}
+                                                exit={{ scale: 0 }}
+                                            >
+                                                <Check className="w-5 h-5 text-green-500" />
+                                            </motion.div>
+                                        ) : (
+                                            <motion.div
+                                                key="copy"
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1 }}
+                                                exit={{ scale: 0 }}
+                                            >
+                                                <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                    {copied && (
+                                        <motion.span
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: -40 }}
+                                            exit={{ opacity: 0 }}
+                                            className="absolute text-xs font-medium bg-neutral-900  text-foreground  px-2 py-1 rounded-md whitespace-nowrap pointer-events-none"
                                         >
-                                            <Check className="w-5 h-5 text-green-500" />
-                                        </motion.div>
-                                    ) : (
-                                        <motion.div
-                                            key="copy"
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            exit={{ scale: 0 }}
-                                        >
-                                            <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
-                                        </motion.div>
+                                            Copied!
+                                        </motion.span>
                                     )}
-                                </AnimatePresence>
-                                {copied && (
-                                    <motion.span
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: -40 }}
-                                        exit={{ opacity: 0 }}
-                                        className="absolute text-xs font-medium bg-neutral-900  text-foreground  px-2 py-1 rounded-md whitespace-nowrap pointer-events-none"
-                                    >
-                                        Copied!
-                                    </motion.span>
-                                )}
-                            </button>
-                        </Magnetic>
-                    </div>
+                                </button>
+                            </Magnetic>
+                        </div>
 
-                </div>
+                    </div>
+                )}
             </div>
         </section>
     );

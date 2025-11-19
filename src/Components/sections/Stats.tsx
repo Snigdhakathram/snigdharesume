@@ -35,7 +35,7 @@ export default function Stats() {
     }, []);
 
     return (
-        <section className="py-10 relative z-20 px-8">
+        <section className="py-10 relative z-20 px-5 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
 
                 {/* GitHub Repo Card */}

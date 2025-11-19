@@ -8,7 +8,6 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
-  Users,
   Video,
   Layers,
   Github,
@@ -52,26 +51,12 @@ export default function ProjectDetailsView({
     projectsData[currentIndex + 1] || projectsData[0];
 
   return (
-    <div className="min-h-screen w-full  pb-10">
-      {/* Fixed Morphed Background */}
-      {/* <div className="fixed top-0 left-0 right-0 h-screen w-full z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/50 to-background z-10" />
-        <Image
-          src={project.image}
-          alt={project.name}
-          fill
-          className="object-cover blur-3xl opacity-20 scale-110"
-          priority
-        />
-      </div> */}
+    <div className="min-h-screen w-full ">
+
 
       <div className="max-w-4xl mx-auto relative z-10 px-4 md:px-0">
         <div className="w-full border-l border-r pt-16 border-neutral-200 relative  ">
-          {/* Top Border & Icons */}
-          {/* <div className="border-t border-neutral-200 relative">
-            <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
-            <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
-          </div> */}
+
 
           <div className="p-6 md:p-10">
             {/* Back Link */}
@@ -97,7 +82,7 @@ export default function ProjectDetailsView({
               className="space-y-8"
             >
               {/* Header Section */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6  pb-4">
+              <div className="flex flex-row md:items-end justify-between gap-6  pb-4">
                 <motion.h1
                   variants={fadeInUp}
                   className="text-4xl md:text-6xl font-bold text-foreground"
@@ -287,7 +272,7 @@ export default function ProjectDetailsView({
                   {project.contributors && project.contributors.length > 0 && (
                     <motion.div variants={fadeInUp} className="space-y-4">
                       <h3 className="font-semibold text-foreground text-sm uppercase tracking-wider flex items-center gap-2">
-                        <Users className="w-4 h-4 text-neutral-500" />
+
                         Team
                       </h3>
                       <div className="flex flex-wrap gap-3">
@@ -317,7 +302,7 @@ export default function ProjectDetailsView({
                                   {contributor.name}
                                 </span>
                                 <span className="text-[10px] text-neutral-500 font-medium flex items-center gap-1">
-                                  <Github className="w-3 h-3" />
+
                                   @{username}
                                 </span>
                               </div>

@@ -20,7 +20,7 @@ export default function SkillCard({
   return (
     <SpotlightCard
       className={cn(
-        "p-4 rounded-2xl",
+        "p-2 md:p-4 rounded-2xl",
         "bg-card text-foreground",
         "border-neutral-200",
         "transition-all duration-300 ease-out cursor-default",
@@ -31,8 +31,8 @@ export default function SkillCard({
     >
       <div className="flex flex-col items-center justify-center h-full w-full">
         {Icon && showIcon && (
-          <div className="mb-4 h-14 w-14 flex items-center justify-center rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
-            <Icon className="w-8 h-8" />
+          <div className="mb-4 h-10 w-10 md:h-14  md:w-14 flex items-center justify-center rounded-lg md:rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
+            <Icon className="md:w-8 md:h-8 w-5 h-5" />
           </div>
         )}
         <span className="text-sm font-bold text-center text-foreground leading-tight">
