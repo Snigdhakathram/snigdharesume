@@ -115,7 +115,7 @@ export default function Stats() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="md:col-span-1 h-48 shadow-sm"
+                    className="md:col-span-1 h-48 rounded-xl shadow-sm"
                 >
                     <Link href="https://github.com/VrandaaGarg/" target="_blank" className="h-full block">
                         <div className="h-full bg-card border border-neutral-200 rounded-xl relative overflow-hidden p-0">
@@ -143,7 +143,7 @@ export default function Stats() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.3, delay: 0.3 }}
                             viewport={{ once: true }}
-                            className="flex-1 shadow-sm"
+                            className="flex-1 shadow-sm rounded-xl"
                         >
                             <Link href="https://www.linkedin.com/in/vrandagarg/" target="_blank" className="h-full block">
                                 <div className="h-full bg-[#0077b5] border border-neutral-300 rounded-xl flex items-center justify-center hover:brightness-110 transition-all">
@@ -156,7 +156,7 @@ export default function Stats() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.3, delay: 0.4 }}
                             viewport={{ once: true }}
-                            className="flex-1 shadow-sm"
+                            className="flex-1 shadow-sm rounded-xl"
                         >
                             <Link href="https://x.com/vrandaagarg" target="_blank" className="h-full block">
                                 <div className="h-full bg-card border border-neutral-300/70 rounded-xl flex items-center justify-center hover:bg-neutral-100 transition-all">
@@ -179,7 +179,8 @@ export default function Stats() {
                                     {loading ? '...' : wakaTime?.humanReadableTotal || '0h'}
                                 </h3>
                                 <p className="text-[10px] text-neutral-600">
-                                    coding stats (wakatime)
+                                    coding stats (last 7 days) <br />
+
                                 </p>
                             </div>
                             <div className="absolute -bottom-4 -right-4 w-20 h-20  blur-3xl rounded-full" />
