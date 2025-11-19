@@ -55,7 +55,7 @@ export default function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full bg-neutral-200 hover:bg-neutral-300 transition-colors z-10"
+              className="p-2 border border-neutral-300 bg-neutral-200 hover:bg-neutral-300 transition-colors z-10"
               aria-label="View GitHub"
             >
               <IconBrandGithub className="w-5 h-5 text-foreground" />
@@ -70,13 +70,13 @@ export default function ProjectCard({
             {techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs rounded-full bg-neutral-200 text-foreground"
+                className="px-3 py-1 text-xs border border-neutral-300 bg-neutral-200 text-foreground"
               >
                 {tech}
               </span>
             ))}
             {techStack.length > 4 && (
-              <span className="px-3 py-1 text-xs rounded-full bg-neutral-200 text-foreground">
+              <span className="px-3 py-1 text-xs border border-neutral-300 bg-neutral-200 text-foreground">
                 +{techStack.length - 4}
               </span>
             )}
@@ -85,7 +85,7 @@ export default function ProjectCard({
           <div className="flex gap-3 mt-auto z-10 relative">
             <Link
               href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`}
-              className="flex-1 px-4 py-2.5 rounded-lg bg-foreground text-background hover:bg-neutral-800 transition-colors text-center text-sm font-medium"
+              className="flex-1 px-4 py-2.5 border border-foreground bg-foreground text-background hover:bg-neutral-800 transition-colors text-center text-sm font-medium"
             >
               Details
             </Link>
@@ -94,7 +94,7 @@ export default function ProjectCard({
                 href={liveDemoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-2.5 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
               >
                 Live <ExternalLink className="w-4 h-4" />
               </Link>

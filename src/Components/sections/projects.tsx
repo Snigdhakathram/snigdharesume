@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { projectsData } from "@/data/projects";
+import Link from "next/link";
 import ProjectCard from "@/Components/ui/ProjectCard";
 
 interface ProjectsProps {
@@ -12,20 +13,21 @@ export default function Projects({ limit }: ProjectsProps) {
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
 
   return (
-    <section className="py-16   ">
+    <section className="py-16 px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
+
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground text-left">
             Projects
           </h2>
           {limit && (
-            <a href="/projects" className="text-sm text-neutral-500 hover:text-foreground transition-colors">
+            <Link href="/projects" className="text-sm text-neutral-500 hover:text-foreground transition-colors">
               View All →
-            </a>
+            </Link>
           )}
         </div>
 
