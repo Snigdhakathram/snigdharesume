@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import { IconBrandGithub } from "@tabler/icons-react";
 
 interface ProjectCardProps {
@@ -36,21 +35,26 @@ export default function ProjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-      <SpotlightCard className="group h-full bg-neutral-100 border-neutral-200  transition-all duration-300 flex flex-col">
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            src={image}
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
+      <SpotlightCard 
+        className="group h-full bg-neutral-100 border-neutral-200 transition-all duration-300 flex flex-col"
+        spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+      >
+          <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="relative h-48 w-full overflow-hidden block cursor-pointer">
+            <Image
+              src={image}
+              alt={name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </Link>
 
-        <div className="p-6 flex flex-col grow">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl md:text-2xl font-bold text-foreground">
-              {name}
-            </h3>
+          <div className="p-6 flex flex-col grow">
+            <div className="flex items-center justify-between mb-2">
+              <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:underline decoration-neutral-400 underline-offset-4 transition-all">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                  {name}
+                </h3>
+              </Link>
             <Link
               href={githubUrl}
               target="_blank"

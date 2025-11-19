@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
+import { RxMoon } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 
@@ -76,13 +77,13 @@ export const AnimatedThemeToggler = ({
             ref={buttonRef}
             onClick={toggleTheme}
             className={cn(
-                "relative inline-flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-800",
+                "relative inline-flex items-center justify-center rounded-lg p-2 transition-colors cursor-pointer hover:bg-background",
                 className
             )}
             aria-label="Toggle theme"
             {...props}
         >
-            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {isDark ? <Sun className="w-5 h-5" /> : <RxMoon className="w-5 h-5" />}
             <span className="sr-only">Toggle theme</span>
         </button>
     );

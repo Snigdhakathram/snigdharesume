@@ -2,6 +2,7 @@
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import SpotlightCard from "@/Components/ui/SpotlightCard";
 
 interface SkillCardProps {
   name: string;
@@ -17,25 +18,27 @@ export default function SkillCard({
   showIcon = true,
 }: SkillCardProps) {
   return (
-    <div
+    <SpotlightCard
       className={cn(
-        "flex flex-col items-center justify-center p-4 rounded-2xl",
+        "p-4 rounded-2xl",
         "bg-card text-foreground",
-        "border border-neutral-200",
-        "hover:shadow-lg hover:border-neutral-300",
+        "border-neutral-200",
         "transition-all duration-300 ease-out cursor-default",
         "aspect-square",
         className
       )}
+      spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
     >
-      {Icon && showIcon && (
-        <div className="mb-4 p-3 rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
-          <Icon className="w-8 h-8" />
-        </div>
-      )}
-      <span className="text-sm font-bold text-center text-foreground leading-tight">
-        {name}
-      </span>
-    </div>
+      <div className="flex flex-col items-center justify-center h-full w-full">
+        {Icon && showIcon && (
+          <div className="mb-4 h-14 w-14 flex items-center justify-center rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
+            <Icon className="w-8 h-8" />
+          </div>
+        )}
+        <span className="text-sm font-bold text-center text-foreground leading-tight">
+          {name}
+        </span>
+      </div>
+    </SpotlightCard>
   );
 }

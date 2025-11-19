@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { projectsData } from "@/data/projects";
-import Link from "next/link";
 import ProjectCard from "@/Components/ui/ProjectCard";
 
 interface ProjectsProps {
