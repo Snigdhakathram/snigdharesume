@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { projectsData } from "@/data/projects";
 import ProjectCard from "@/Components/ui/ProjectCard";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface ProjectsProps {
   limit?: number;
@@ -10,6 +13,7 @@ interface ProjectsProps {
 
 export default function Projects({ limit }: ProjectsProps) {
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
+  const pathname = usePathname();
 
   return (
     <section className="py-16 px-8">
@@ -30,6 +34,17 @@ export default function Projects({ limit }: ProjectsProps) {
             These are some of the projects I&apos;ve worked on. I love building
             things and I&apos;m always looking for new challenges.
           </div>
+          {pathname === "/" && (
+            <div className="mt-4">
+              <Link
+                href="/projects"
+                className="px-4 py-2.5 flex rounded-xl border hover:bg-neutral-950 border-foreground bg-neutral-800 text-background  transition-colors text-center text-sm font-medium"
+              >
+                View All
+                <ChevronDown className="w-4 h-4 ml-2 -rotate-90" />
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8 md:grid-cols-2 gap-8">
