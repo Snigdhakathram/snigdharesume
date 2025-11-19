@@ -48,10 +48,7 @@ export default function Contact() {
 
     return (
         <section id="contact" className="py-24 px-8 relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -z-10 mix-blend-screen" />
-                <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] -z-10 mix-blend-screen" />
-            </div>
+
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -60,10 +57,7 @@ export default function Contact() {
                 transition={{ duration: 0.6 }}
                 className="relative"
             >
-                <Plus className="absolute -bottom-3 -left-3 h-6 w-6 text-foreground z-20 bg-background" />
-                <Plus className="absolute -bottom-3 -right-3 h-6 w-6 text-foreground z-20 bg-background" />
-                {/* Main Card Container */}
-                <div className="bg-background border border-b-0 border-neutral-200 shadow-sm relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+                <div className="bg-background border rounded-2xl border-neutral-200 shadow-sm relative grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
 
                     {/* Left Column: Info */}
                     <div className="p-8 lg:p-12 flex flex-col justify-between relative z-10">
@@ -79,7 +73,7 @@ export default function Contact() {
 
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4 text-neutral-600 group transition-colors hover:text-foreground">
-                                    <div className="w-12 h-12 flex items-center justify-center border border-neutral-300 bg-neutral-100 group-hover:bg-neutral-200 transition-colors">
+                                    <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 group-hover:bg-neutral-200 transition-colors">
                                         <MapPin className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -89,7 +83,7 @@ export default function Contact() {
                                 </div>
 
                                 <div className="flex items-center gap-4 text-neutral-600 group cursor-pointer" onClick={handleCopy}>
-                                    <div className="w-12 h-12 flex items-center justify-center border border-neutral-300 bg-neutral-100 group-hover:bg-neutral-200 transition-colors">
+                                    <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 group-hover:bg-neutral-200 transition-colors">
                                         <Mail className="w-5 h-5" />
                                     </div>
                                     <div className="flex-1">
@@ -119,7 +113,7 @@ export default function Contact() {
                                             href={link.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-10 h-10 flex items-center justify-center bg-neutral-50 border border-neutral-200 hover:border-neutral-400 hover:-translate-y-1 transition-all duration-300 group"
+                                            className="w-10 h-10 flex items-center justify-center rounded-lg bg-neutral-50 border border-neutral-200 hover:border-neutral-400 hover:-translate-y-1 transition-all duration-300 group"
                                             aria-label={link.title}
                                         >
                                             <Icon className="w-4 h-4 text-neutral-500 group-hover:text-foreground transition-colors" />
@@ -134,13 +128,13 @@ export default function Contact() {
                     <div className="bg-neutral-50/50 lg:border-l border-neutral-200 p-8 lg:p-12 relative">
                         {/* View Switcher - Absolute positioned */}
                         <div className="absolute top-6 left-6 z-20">
-                            <div className="bg-neutral-100 p-1 border border-neutral-200 inline-flex items-center gap-1">
+                            <div className="bg-neutral-100 p-1 rounded-lg border border-neutral-200 inline-flex items-center gap-1">
                                 <button
                                     onClick={() => setView("non-technical")}
                                     className={cn(
-                                        "px-3 py-1.5 text-xs font-medium transition-all duration-300 flex items-center gap-2",
+                                        "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 flex items-center gap-2",
                                         view === "non-technical"
-                                            ? "bg-white text-foreground border border-neutral-200"
+                                            ? "bg-white text-background border border-neutral-200"
                                             : "text-neutral-500 hover:text-neutral-700"
                                     )}
                                 >
@@ -150,9 +144,9 @@ export default function Contact() {
                                 <button
                                     onClick={() => setView("technical")}
                                     className={cn(
-                                        "px-3 py-1.5 text-xs font-medium transition-all duration-300 flex items-center gap-2",
+                                        "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 flex items-center gap-2",
                                         view === "technical"
-                                            ? "bg-white text-foreground border border-neutral-200"
+                                            ? "bg-white text-background border border-neutral-200"
                                             : "text-neutral-500 hover:text-neutral-700"
                                     )}
                                 >
@@ -165,7 +159,7 @@ export default function Contact() {
                         <div className="mt-8 h-full">
                             {view === "technical" ? (
                                 /* Editor Window */
-                                <div className="bg-[#1e1e1e] overflow-hidden shadow-lg border border-[#333] font-mono text-sm relative z-10 h-full flex flex-col">
+                                <div className="bg-[#1e1e1e] rounded-lg overflow-hidden shadow-lg border border-[#333] font-mono text-sm relative z-10 h-full flex flex-col">
                                     {/* Window Header */}
                                     <div className="bg-[#252526] px-4 py-3 flex items-center justify-between border-b border-[#1e1e1e]">
                                         <div className="flex items-center gap-2">
@@ -189,7 +183,7 @@ export default function Contact() {
                                                 animate={{ opacity: 1 }}
                                                 className="flex flex-col items-center justify-center h-full text-center"
                                             >
-                                                <div className="w-16 h-16 bg-[#27c93f]/20 border border-[#27c93f]/40 flex items-center justify-center mb-6">
+                                                <div className="w-16 h-16 rounded-lg bg-[#27c93f]/20 border border-[#27c93f]/40 flex items-center justify-center mb-6">
                                                     <Check className="w-8 h-8 text-[#27c93f]" />
                                                 </div>
                                                 <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
@@ -302,7 +296,7 @@ export default function Contact() {
                                                     <button
                                                         type="submit"
                                                         disabled={formState === "submitting"}
-                                                        className="flex items-center gap-2 px-4 py-2 bg-[#0e639c] hover:bg-[#1177bb] text-white border border-[#0e639c] text-xs font-sans transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0e639c] hover:bg-[#1177bb] text-white border border-[#0e639c] text-xs font-sans transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                                     >
                                                         {formState === "submitting" ? (
                                                             <>
@@ -319,7 +313,7 @@ export default function Contact() {
                                                 </div>
 
                                                 {formState === "error" && (
-                                                    <div className="mt-4 p-3 bg-[#f14c4c]/20 border border-[#f14c4c]/50 text-[#f14c4c] text-xs flex items-center gap-2">
+                                                    <div className="mt-4 p-3 rounded-lg bg-[#f14c4c]/20 border border-[#f14c4c]/50 text-[#f14c4c] text-xs flex items-center gap-2">
                                                         <AlertCircle className="w-4 h-4" />
                                                         <span>Runtime Error: Failed to send message. Please try again.</span>
                                                     </div>
@@ -354,9 +348,9 @@ export default function Contact() {
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0.95 }}
                                             animate={{ opacity: 1, scale: 1 }}
-                                            className="flex flex-col items-center justify-center py-12 text-center bg-neutral-50 border border-dashed border-neutral-200"
+                                            className="flex flex-col items-center justify-center py-12 text-center bg-neutral-50 rounded-lg border border-dashed border-neutral-200"
                                         >
-                                            <div className="w-12 h-12 bg-green-500/10 border border-green-500/30 flex items-center justify-center mb-4">
+                                            <div className="w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/30 flex items-center justify-center mb-4">
                                                 <Check className="w-6 h-6 text-green-500" />
                                             </div>
                                             <h3 className="text-lg font-semibold mb-2 text-foreground">Message Sent!</h3>
@@ -404,7 +398,7 @@ export default function Contact() {
                                                 )}
                                             </Button>
                                             {formState === "error" && (
-                                                <div className="p-3 bg-red-500/10 text-red-500 text-sm border border-red-500/30 flex items-center gap-2">
+                                                <div className="p-3 rounded-lg bg-red-500/10 text-red-500 text-sm border border-red-500/30 flex items-center gap-2">
                                                     <AlertCircle className="w-4 h-4" />
                                                     <span>Failed to send message. Please try again.</span>
                                                 </div>

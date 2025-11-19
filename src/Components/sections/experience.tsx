@@ -66,7 +66,7 @@ export default function Experience() {
                         {item.name} {item.company && <span className="text-neutral-400">•</span>} {item.company}
                       </p>
                     </div>
-                    <span className="self-start md:self-center text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
+                    <span className="self-start rounded-lg md:self-center text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
                       {item.duration}
                     </span>
                   </div>
@@ -79,7 +79,7 @@ export default function Experience() {
                     {item.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1.5 text-xs font-medium bg-neutral-200 text-neutral-700 border border-neutral-300/50 hover:bg-neutral-300 transition-colors"
+                        className="px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-200 text-neutral-700 border border-neutral-300/50 hover:bg-neutral-300 transition-colors"
                       >
                         {tech}
                       </span>
@@ -112,7 +112,7 @@ export default function Experience() {
         <div className="relative">
           {/* Vertical Timeline Line */}
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neutral-200 via-neutral-400 to-neutral-200 transform -translate-x-1/2 hidden md:block" />
-          
+
           {/* Mobile Line */}
           <div className="absolute left-8 top-0 bottom-0 w-px bg-neutral-300 md:hidden" />
 
@@ -128,9 +128,8 @@ export default function Experience() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${
-                    isLeft ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${isLeft ? "md:flex-row-reverse" : ""
+                    }`}
                 >
                   {/* Content Side */}
                   <div className="flex-1 md:w-1/2 md:px-8 pl-20">

@@ -63,7 +63,7 @@ function SocialIconWithTooltip({
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 border border-neutral-300 bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-all duration-200 group"
+          className="w-10 h-10 rounded-lg border border-neutral-300 bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-all duration-200 group"
           aria-label={link.title}
           onMouseMove={handleMouseMove}
         >
@@ -90,7 +90,7 @@ function SocialIconWithTooltip({
               rotate: rotate,
               whiteSpace: "nowrap",
             }}
-            className="absolute -top-12 left-1/2 -translate-x-1/2 flex text-xs flex-col items-center justify-center border border-foreground bg-foreground z-50 shadow-xl px-4 py-1.5"
+            className="absolute -top-12 left-1/2 -translate-x-1/2 flex text-xs flex-col items-center justify-center rounded-lg border border-foreground bg-foreground z-50 shadow-xl px-4 py-1.5"
           >
             <div className="absolute inset-x-10 z-30 w-[20%] -bottom-px bg-linear-to-r from-transparent via-emerald-500 to-transparent h-px" />
             <div className="absolute left-10 w-[40%] z-30 -bottom-px bg-linear-to-r from-transparent via-sky-500 to-transparent h-px" />
@@ -139,7 +139,7 @@ export default function HeroSection() {
                     animate={{ y: 0 }}
                     exit={{ y: "-120%" }}
                     transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    mainClassName="px-3 bg-gradient-to-tl from-neutral-200 to-neutral-300 text-foreground overflow-hidden py-2 justify-center border border-neutral-300"
+                    mainClassName="px-3 bg-gradient-to-tl from-neutral-200 to-neutral-300 text-foreground overflow-hidden py-2 justify-center rounded-lg border border-neutral-300"
                     splitLevelClassName="overflow-hidden pb-1"
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function HeroSection() {
               <div className="flex gap-3">
                 <Link
                   href="#contact"
-                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden border border-neutral-300 font-medium"
+                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
                 >
                   <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
                     <Mail className="w-4 h-4 mr-2" />
@@ -237,7 +237,7 @@ export default function HeroSection() {
                   href="https://vrandagarg.in/VrandaGargResume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden border border-neutral-300 font-medium"
+                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
                 >
                   <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
                     <HiOutlineDocumentText className="w-4 h-4 mr-2" />

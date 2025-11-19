@@ -7,12 +7,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full py-8 mt-20 border-t border-neutral-200/50">
+    <footer className="w-full py-8  border-t border-neutral-200/50">
       <div className="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-sm text-neutral-500">
           © {currentYear} Vranda Garg. All rights reserved.
         </div>
-        
+
         <div className="flex items-center gap-6">
           {socialLinks.map((link) => {
             const Icon = link.icon;
