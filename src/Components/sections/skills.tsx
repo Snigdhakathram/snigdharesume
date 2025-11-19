@@ -11,6 +11,7 @@ export default function Skills() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
       >
 
         <h2 className="text-4xl md:text-4xl font-bold text-foreground mb-8 text-left">

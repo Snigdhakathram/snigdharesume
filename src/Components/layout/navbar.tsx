@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Home, FolderOpen, Mail, Moon, Sun } from "lucide-react";
-import { useOnClickOutside } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = {
@@ -41,12 +41,8 @@ const spanVariants = {
 export default function Navbar() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isClient, setIsClient] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
-  const outsideClickRef = useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(outsideClickRef as React.RefObject<HTMLDivElement>, () => {
-    setSelected(null);
-  });
+  const [selected, setSelected] = useState<number>(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleThemeInit = () => {
@@ -66,6 +62,25 @@ export default function Navbar() {
 
     handleThemeInit();
   }, []);
+
+  useEffect(() => {
+    const navItems = [
+      { href: "/" },
+      { href: "/projects" },
+      { href: "/#contact" },
+    ];
+
+    const currentIndex = navItems.findIndex((item) => {
+      if (item.href === "/#contact") {
+        return pathname === "/" && window.location.hash === "#contact";
+      }
+      return pathname === item.href || pathname?.startsWith(item.href + "/");
+    });
+
+    if (currentIndex !== -1) {
+      setSelected(currentIndex);
+    }
+  }, [pathname]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -90,7 +105,6 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
-        ref={outsideClickRef}
         className="flex p-2 flex-wrap items-center gap-3 rounded-full border border-neutral-400/40 bg-linear-to-tl from-neutral-50/70 via-neutral-100/60 to-neutral-50/70 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
       >
         {navItems.map((item, index) => {

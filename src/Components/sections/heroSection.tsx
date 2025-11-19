@@ -14,6 +14,7 @@ import Projects from "./projects";
 import Experience from "./experience";
 import Contact from "./contact";
 import PixelTransition from "../ui/PixelTransition";
+import SkillsMarquee from "../ui/SkillsMarquee";
 import Image from "next/image";
 import Link from "next/link";
 import { socialLinks, type SocialLink } from "@/data/social";
@@ -114,7 +115,7 @@ export default function HeroSection() {
   return (
     <section className="min-h-screen max-w-4xl mx-auto flex items-center justify-center ">
       <div className="w-full border-l border-r border-neutral-200 relative">
-        <div className="px-8 pt-24">
+        <div className=" mt-24  mx-8 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,7 +140,7 @@ export default function HeroSection() {
                     animate={{ y: 0 }}
                     exit={{ y: "-120%" }}
                     transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    mainClassName="px-3 bg-gradient-to-tl from-neutral-200 to-neutral-300 text-foreground overflow-hidden py-2 justify-center rounded-lg border border-neutral-300"
+                    mainClassName="px-3 bg-gradient-to-tl from-neutral-100 to-neutral-300 text-neutral-900 overflow-hidden py-2 justify-center rounded-lg border border-neutral-200"
                     splitLevelClassName="overflow-hidden pb-1"
                   />
                 </div>
@@ -202,15 +203,7 @@ export default function HeroSection() {
                 capabilities, authentication, and database management.
               </p>
 
-              <p className="text-base md:text-lg text-justify text-neutral-600 leading-relaxed">
-                I focus on delivering pixel-perfect interfaces with smooth
-                animations using{" "}
-                <span className="text-foreground font-semibold">
-                  Framer Motion
-                </span>{" "}
-                and modern CSS frameworks. Every project I work on prioritizes
-                user experience, accessibility, and clean, maintainable code.
-              </p>
+
             </motion.div>
 
             <motion.div
@@ -224,11 +217,8 @@ export default function HeroSection() {
                   href="#contact"
                   className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
                 >
-                  <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact
-                  </div>
-                  <div className="absolute inline-flex h-12 w-full translate-x-full items-center justify-center bg-foreground px-6 text-background transition duration-300 group-hover:translate-x-0">
+
+                  <div className="inline-flex h-12 items-center justify-center bg-neutral-800 hover:bg-neutral-700 px-6 text-background">
                     <Mail className="w-4 h-4 mr-2" />
                     Contact
                   </div>
@@ -237,13 +227,9 @@ export default function HeroSection() {
                   href="https://vrandagarg.in/VrandaGargResume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"
+                  className="group relative inline-flex h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-200 font-medium"
                 >
-                  <div className="inline-flex h-12 translate-x-0 items-center justify-center bg-linear-to-r from-neutral-100 to-neutral-200 px-6 text-foreground transition group-hover:-translate-x-[150%]">
-                    <HiOutlineDocumentText className="w-4 h-4 mr-2" />
-                    Resume
-                  </div>
-                  <div className="absolute inline-flex h-12 w-full translate-x-full items-center justify-center bg-foreground px-6 text-background transition duration-300 group-hover:translate-x-0">
+                  <div className="inline-flex h-12 items-center justify-center bg-linear-to-r from-neutral-200 via-neutral-100 to-neutral-200 hover:from-neutral-100 hover:via-neutral-200 hover:to-neutral-100 px-6 transition-colors text-foreground">
                     <HiOutlineDocumentText className="w-4 h-4 mr-2" />
                     Resume
                   </div>
@@ -264,23 +250,29 @@ export default function HeroSection() {
         </div>
 
         <div className="border-t border-neutral-200 mt-16 relative">
-          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-foreground z-20 bg-background" />
-          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-foreground z-20 bg-background" />
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
+        </div>
+        <SkillsMarquee />
+
+        <div className="border-t border-neutral-200 relative">
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Skills />
         <div className="border-t border-neutral-200 relative">
-          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-foreground z-20 bg-background" />
-          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-foreground z-20 bg-background" />
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Experience />
         <div className="border-t border-neutral-200 relative">
-          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-foreground z-20 bg-background" />
-          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-foreground z-20 bg-background" />
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Projects limit={2} />
         <div className="border-t border-neutral-200 relative">
-          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-foreground z-20 bg-background" />
-          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-foreground z-20 bg-background" />
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Contact />
       </div>

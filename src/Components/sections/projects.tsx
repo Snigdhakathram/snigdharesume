@@ -20,18 +20,20 @@ export default function Projects({ limit }: ProjectsProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
 
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-left">
-            Projects
+        <div className="flex items-center flex-col justify-center mb-8">
+          <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-300 shadow-sm">
+            Work
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center">
+            Featured Projects
           </h2>
-          {limit && (
-            <Link href="/projects" className="text-sm text-neutral-500 hover:text-foreground transition-colors">
-              View All →
-            </Link>
-          )}
+          <div className="max-w-md text-center mt-3 text-neutral-700">
+            These are some of the projects I&apos;ve worked on. I love building
+            things and I&apos;m always looking for new challenges.
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8 md:grid-cols-2 gap-8">
           {displayedProjects.map((project, index) => (
             <ProjectCard
               key={project.id}

@@ -26,6 +26,7 @@ export default function Experience() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
         >
 
           <div className="flex items-center justify-between mb-8">
@@ -41,7 +42,7 @@ export default function Experience() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <SpotlightCard className="bg-neutral-100 border-neutral-300/50 p-6 md:p-8 hover:shadow-xl transition-all duration-300">
+            <SpotlightCard className="bg-neutral-50 border-neutral-300/50 p-6 md:p-8 hover:shadow-xl transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0">
@@ -101,6 +102,7 @@ export default function Experience() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
       >
 
         <div className="flex items-center justify-between mb-12">
@@ -133,7 +135,7 @@ export default function Experience() {
                 >
                   {/* Content Side */}
                   <div className="flex-1 md:w-1/2 md:px-8 pl-20">
-                    <SpotlightCard className="bg-neutral-100 border-neutral-300/50 p-6 hover:shadow-lg transition-shadow duration-300">
+                    <SpotlightCard className="bg-neutral-50 border-neutral-300/50 p-6 hover:shadow-lg transition-shadow duration-300">
                       <div className="flex items-start justify-between mb-4 gap-4">
                         <div className="flex items-center gap-3">
                           <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">

@@ -36,18 +36,18 @@ export default function ProjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="h-full"
     >
-      <SpotlightCard className="group h-full bg-neutral-100 border-neutral-300/50 hover:border-neutral-400/80 hover:shadow-xl transition-all duration-300 flex flex-col">
+      <SpotlightCard className="group h-full bg-neutral-100 border-neutral-200  transition-all duration-300 flex flex-col">
         <div className="relative h-48 w-full overflow-hidden">
-          <Image 
-            src={image} 
-            alt={name} 
-            fill 
-            className="object-cover transition-transform duration-500 group-hover:scale-105" 
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
         <div className="p-6 flex flex-col grow">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-xl md:text-2xl font-bold text-foreground">
               {name}
             </h3>
@@ -55,7 +55,7 @@ export default function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-neutral-300 bg-neutral-200 hover:bg-neutral-300 transition-colors z-10"
+              className="p-2 rounded-full border border-neutral-300 bg-card hover:bg-neutral-200 transition-colors z-10"
               aria-label="View GitHub"
             >
               <IconBrandGithub className="w-5 h-5 text-foreground" />
@@ -70,13 +70,13 @@ export default function ProjectCard({
             {techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs rounded-lg border border-neutral-300 bg-neutral-200 text-foreground"
+                className="px-3 py-1 text-xs rounded-lg border border-neutral-300 bg-card text-foreground"
               >
                 {tech}
               </span>
             ))}
             {techStack.length > 4 && (
-              <span className="px-3 py-1 text-xs rounded-lg border border-neutral-300 bg-neutral-200 text-foreground">
+              <span className="px-3 py-1 text-xs rounded-lg border border-neutral-300 bg-card text-foreground">
                 +{techStack.length - 4}
               </span>
             )}
@@ -94,9 +94,9 @@ export default function ProjectCard({
                 href={liveDemoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-2.5 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 bg-card hover:bg-neutral-100 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
               >
-                Live <ExternalLink className="w-4 h-4" />
+                Live Demo
               </Link>
             )}
           </div>
