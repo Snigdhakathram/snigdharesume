@@ -89,7 +89,7 @@ export default function Contact() {
                                 animate={{ y: 0 }}
                                 exit={{ y: "-120%" }}
                                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                                mainClassName="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-neutral-800 to-neutral-500 "
+                                mainClassName="text-4xl md:text-5xl font-bold text-foreground "
                                 splitLevelClassName="overflow-hidden pb-2"
                             />
                         </div>
