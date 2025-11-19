@@ -6,13 +6,20 @@ import { socialLinks } from "@/data/social";
 import {
     Check,
     Play,
-    Terminal,
     Mail,
     Loader2,
     AlertCircle,
     Code2,
     MessageSquare,
-    Send
+    Send,
+    Files,
+    Search,
+    GitBranch,
+    Settings,
+    ChevronRight,
+    ChevronDown,
+    FileCode,
+    Blocks
 } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { Input } from "@/Components/ui/input";
@@ -25,6 +32,7 @@ import RotatingText from "@/Components/ui/RotatingText";
 export default function Contact() {
     const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [view, setView] = useState<"technical" | "non-technical">("non-technical");
+    const [activeFile, setActiveFile] = useState<"contact.tsx" | "socialLinks.tsx">("contact.tsx");
     const [copied, setCopied] = useState(false);
     const email = "gargvranda963@gmail.com";
 
@@ -57,7 +65,7 @@ export default function Contact() {
     }
 
     return (
-        <section id="contact" className="w-full py-20 px-4 md:px-8 relative overflow-hidden bg-transparent">
+        <section id="contact" className="w-full py-20 px-4 md:px-8 relative overflow-hidden  ">
             <div className="max-w-4xl mx-auto relative z-10">
 
                 {/* Header Section */}
@@ -81,7 +89,7 @@ export default function Contact() {
                                 animate={{ y: 0 }}
                                 exit={{ y: "-120%" }}
                                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                                mainClassName="text-4xl md:text-5xl font-bold text-foreground"
+                                mainClassName="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-neutral-800 to-neutral-500 "
                                 splitLevelClassName="overflow-hidden pb-2"
                             />
                         </div>
@@ -92,7 +100,7 @@ export default function Contact() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-neutral-600 text-lg max-w-xl mx-auto"
+                        className="text-neutral-500  text-lg max-w-xl mx-auto"
                     >
                         Whether you have a question, a project proposal, or just want to say hi, I&apos;ll try my best to get back to you!
                     </motion.p>
@@ -114,14 +122,14 @@ export default function Contact() {
                                 key={item.id}
                                 onClick={() => setView(item.id)}
                                 className={cn(
-                                    "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 relative",
-                                    view === item.id ? "text-foreground dark:text-card" : "text-neutral-600  hover:text-neutral-700 "
+                                    "px-4 py-2 cursor-pointer rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 relative",
+                                    view === item.id ? "text-background " : "text-neutral-600  hover:text-neutral-700 "
                                 )}
                             >
                                 {view === item.id && (
                                     <motion.div
                                         layoutId="activeTab"
-                                        className="absolute inset-0 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700"
+                                        className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm border border-neutral-200 "
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
@@ -142,8 +150,8 @@ export default function Contact() {
                     transition={{ duration: 0.5 }}
                     className="mb-8"
                 >
-                    <div className="bg-card backdrop-blur-sm border border-neutral-200 rounded-2xl shadow-sm overflow-hidden">
-                        <div className="relative p-1 min-h-[400px]">
+                    <div className="bg-card  backdrop-blur-sm border border-neutral-200  rounded-xl shadow-sm overflow-hidden">
+                        <div className="relative min-h-[450px]">
                             <AnimatePresence mode="wait">
                                 {view === "technical" ? (
                                     <motion.div
@@ -151,28 +159,141 @@ export default function Contact() {
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
-                                        className="w-full h-full bg-card rounded-xl overflow-hidden font-mono text-sm shadow-inner border border-neutral-300"
+                                        className="w-full h-full bg-card rounded-xl overflow-hidden font-mono text-sm shadow-inner  flex flex-col"
                                     >
                                         {/* VS Code Header */}
-                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-100 select-none">
+                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-100 select-none border-none outline-none">
                                             <div className="flex items-center gap-2">
                                                 <div className="flex gap-1.5 mr-4">
                                                     <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
                                                     <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                                                     <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                                                 </div>
-                                                <div className="flex items-center gap-2 px-3 py-1 bg-card rounded-md text-neutral-700 text-xs border border-neutral-300">
-                                                    <Terminal className="w-3 h-3 text-blue-400" />
-                                                    <span>contact.tsx</span>
+                                                <div className="hidden md:flex items-center gap-2 text-neutral-700 text-xs">
+                                                    <span>portfolio</span>
+                                                    <ChevronRight className="w-3 h-3" />
+                                                    <span>src</span>
+                                                    <ChevronRight className="w-3 h-3" />
+                                                    {/* <span>components</span>
+                                                    <ChevronRight className="w-3 h-3" /> */}
+                                                    <span className="text-foreground">{activeFile}</span>
                                                 </div>
                                             </div>
-                                            <div className="text-xs text-neutral-600">bash</div>
+                                            <div className="text-xs text-neutral-700 flex items-center gap-3">
+                                                <div className="hidden  w-40 h-6 bg-neutral-200 border border-neutral-300 rounded md:flex items-center justify-start pl-2">
+                                                    <Search className="w-3 h-3 mr-2" />
+                                                    portfolio
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        {/* Code Content */}
-                                        <div className="p-6 overflow-x-auto">
-                                            {formState === "success" ? (
-                                                <div className="flex flex-col items-center justify-center h-72 text-center space-y-4">
+                                        {/* IDE Body */}
+                                        <div className="flex flex-1 overflow-hidden border-none outline-none">
+                                            {/* Activity Bar */}
+                                            <div className="w-12 bg-neutral-100 flex flex-col items-center py-4 gap-6 text-neutral-700 border-r border-t border-neutral-200 shrink-0 z-10 border-none outline-none">
+                                                <div className="text-neutral-800 border-l-2 border-blue-400 pl-2 pr-3 ">
+                                                    <Files className="w-6 h-6" />
+                                                </div>
+                                                <Search className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                <GitBranch className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                <Blocks className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                <div className="mt-auto">
+                                                    <Settings className="w-6 h-6 text-neutral-950 transition-colors cursor-pointer" />
+                                                </div>
+                                            </div>
+
+                                            {/* Explorer Pane */}
+                                            <div className="w-48 bg-neutral-100 min-h-[400px] border-r border-t border-neutral-200 hidden md:flex flex-col text-neutral-700 shrink-0 border-none outline-none">
+                                                <div className="text-[11px] font-bold px-4 py-3 text-neutral-700">EXPLORER</div>
+                                                <div className="px-2">
+                                                    <div className="flex items-center gap-1 py-1 px-2 text-xs font-bold text-blue-400 hover:bg-card cursor-pointer rounded-sm outline-none focus:outline-none ring-0">
+                                                        <ChevronDown className="w-3 h-3" />
+                                                        PORTFOLIO
+                                                    </div>
+                                                    <div className="pl-3">
+                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
+                                                            <ChevronRight className="w-3 h-3 text-neutral-700" />
+                                                            <span className="text-neutral-700">.next</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
+                                                            <ChevronDown className="w-3 h-3 text-neutral-700" />
+                                                            <span className="text-neutral-700">src</span>
+                                                        </div>
+                                                        <div className="pl-4">
+                                                            <div
+                                                                onClick={() => setActiveFile("contact.tsx")}
+                                                                onMouseDown={(e) => e.preventDefault()}
+                                                                className={cn(
+                                                                    "flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm transition-colors select-none",
+                                                                    activeFile === "contact.tsx" ? "bg-card border border-neutral-200 text-foreground" : "text-neutral-700 hover:bg-card border border-transparent"
+                                                                )}
+                                                                tabIndex={-1}
+                                                            >
+                                                                <FileCode className="w-3 h-3 text-blue-400" />
+                                                                contact.tsx
+                                                            </div>
+                                                            <div
+                                                                onClick={() => setActiveFile("socialLinks.tsx")}
+                                                                onMouseDown={(e) => e.preventDefault()}
+                                                                className={cn(
+                                                                    "flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm transition-colors select-none",
+                                                                    activeFile === "socialLinks.tsx" ? "bg-card border border-neutral-200 text-foreground" : "text-neutral-700 hover:bg-card border border-transparent"
+                                                                )}
+                                                                tabIndex={-1}
+                                                            >
+                                                                <FileCode className="w-3 h-3 text-yellow-400" />
+                                                                socialLinks.tsx
+                                                            </div>
+                                                            <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
+                                                                <FileCode className="w-3 h-3 text-blue-300" />
+                                                                globals.css
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Editor Area */}
+                                <div className="flex-1 flex flex-col bg-neutral-100 min-w-0 border-none outline-none">
+                                    {/* Tab Bar */}
+                                    <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200 border-none outline-none">
+                                        <div
+                                            onClick={() => setActiveFile("contact.tsx")}
+                                            onMouseDown={(e) => e.preventDefault()}
+                                            className={cn(
+                                                "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
+                                                activeFile === "contact.tsx"
+                                                    ? "bg-card rounded-t-sm border-t-blue-400 text-foreground"
+                                                    : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
+                                            )}
+                                            tabIndex={-1}
+                                        >
+                                            <FileCode className="w-3 h-3 text-blue-400" />
+                                            contact.tsx
+                                            <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
+                                        </div>
+                                        <div
+                                            onClick={() => setActiveFile("socialLinks.tsx")}
+                                            onMouseDown={(e) => e.preventDefault()}
+                                            className={cn(
+                                                "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
+                                                activeFile === "socialLinks.tsx"
+                                                    ? "bg-card rounded-t-sm border-t-yellow-400 text-foreground"
+                                                    : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
+                                            )}
+                                            tabIndex={-1}
+                                        >
+                                            <FileCode className="w-3 h-3 text-yellow-400" />
+                                            socialLinks.tsx
+                                            <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Editor Content */}
+                                    <div className="p-6 bg-card overflow-auto flex-1">
+                                        {activeFile === "contact.tsx" ? (
+                                            formState === "success" ? (
+                                                <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
                                                     <motion.div
                                                         initial={{ scale: 0 }}
                                                         animate={{ scale: 1 }}
@@ -192,83 +313,85 @@ export default function Contact() {
                                                     </button>
                                                 </div>
                                             ) : (
-                                                <form onSubmit={handleSubmit} className="space-y-1.5 relative">
-                                                    {/* Code Lines */}
-                                                    <div className="space-y-3 font-mono text-[13px] md:text-sm leading-relaxed">
-                                                        <div className="flex group">
-                                                            <span className="text-neutral-700 w-8 text-right mr-4 select-none">1</span>
-                                                            <div className="flex flex-wrap">
-                                                                <span className="text-[#c678dd]">const</span>&nbsp;
-                                                                <span className="text-[#61afef]">contact</span>&nbsp;
-                                                                <span className="text-neutral-700">=</span>&nbsp;
-                                                                <span className="text-neutral-700">{`{`}</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="flex group items-baseline">
-                                                            <span className="text-neutral-700 w-8 text-right mr-4 select-none">2</span>
-                                                            <div className="flex-1 flex flex-wrap items-center">
-                                                                <span className="text-[#e06c75] ml-4">name</span>
-                                                                <span className="text-neutral-700">:</span>&nbsp;
-                                                                <span className="text-[#98c379]">&quot;</span>
-                                                                <input
-                                                                    type="text"
-                                                                    name="name"
-                                                                    required
-                                                                    placeholder="Your Name"
-                                                                    className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/70 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
-                                                                />
-                                                                <span className="text-[#98c379]">&quot;</span>
-                                                                <span className="text-neutral-700">,</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="flex group items-baseline">
-                                                            <span className="text-neutral-700 w-8 text-right mr-4 select-none">3</span>
-                                                            <div className="flex-1 flex flex-wrap items-center">
-                                                                <span className="text-[#e06c75] ml-4">email</span>
-                                                                <span className="text-neutral-700">:</span>&nbsp;
-                                                                <span className="text-[#98c379]">&quot;</span>
-                                                                <input
-                                                                    type="email"
-                                                                    name="email"
-                                                                    required
-                                                                    placeholder="you@email.com"
-                                                                    className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/70 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
-                                                                />
-                                                                <span className="text-[#98c379]">&quot;</span>
-                                                                <span className="text-neutral-700">,</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="flex group items-start">
-                                                            <span className="text-neutral-700 w-8 text-right mr-4 select-none pt-1">4</span>
-                                                            <div className="flex-1 flex flex-wrap">
-                                                                <span className="text-[#e06c75] ml-4 pt-1">message</span>
-                                                                <span className="text-neutral-700 pt-1">:</span>&nbsp;
-                                                                <span className="text-[#98c379] pt-1">&quot;</span>
-                                                                <textarea
-                                                                    name="message"
-                                                                    required
-                                                                    rows={2}
-                                                                    placeholder="Let's build something cool..."
-                                                                    className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/70 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
-                                                                />
-                                                                <span className="text-[#98c379] pt-1">&quot;</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="flex group">
-                                                            <span className="text-neutral-700 w-8 text-right mr-4 select-none">5</span>
-                                                            <span className="text-neutral-700">{`}`}</span>
+                                                <form onSubmit={handleSubmit} className="space-y-1.5 relative font-mono text-[13px] md:text-sm leading-relaxed">
+                                                    <div className="flex group">
+                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                        <div className="flex flex-wrap">
+                                                            <span className="text-[#c678dd]">const</span>&nbsp;
+                                                            <span className="text-[#61afef]">sendMessage</span>&nbsp;
+                                                            <span className="text-neutral-400">=</span>&nbsp;
+                                                            <span className="text-[#c678dd]">async</span>&nbsp;
+                                                            <span className="text-neutral-400">(</span>
+                                                            <span className="text-[#e06c75]">data</span>
+                                                            <span className="text-neutral-400">)</span>&nbsp;
+                                                            <span className="text-[#c678dd]">=&gt;</span>&nbsp;
+                                                            <span className="text-neutral-400">{`{`}</span>
                                                         </div>
                                                     </div>
 
-                                                    <div className="mt-6 flex justify-end">
+                                                    <div className="flex group items-baseline">
+                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">2</span>
+                                                        <div className="flex-1 flex flex-wrap items-center">
+                                                            <span className="text-[#e06c75] ml-4">name</span>
+                                                            <span className="text-neutral-400">:</span>&nbsp;
+                                                            <span className="text-[#98c379]">&quot;</span>
+                                                            <input
+                                                                type="text"
+                                                                name="name"
+                                                                required
+                                                                placeholder="Your Name"
+                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                            />
+                                                            <span className="text-[#98c379]">&quot;</span>
+                                                            <span className="text-neutral-400">,</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex group items-baseline">
+                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">3</span>
+                                                        <div className="flex-1 flex flex-wrap items-center">
+                                                            <span className="text-[#e06c75] ml-4">email</span>
+                                                            <span className="text-neutral-400">:</span>&nbsp;
+                                                            <span className="text-[#98c379]">&quot;</span>
+                                                            <input
+                                                                type="email"
+                                                                name="email"
+                                                                required
+                                                                placeholder="you@email.com"
+                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                            />
+                                                            <span className="text-[#98c379]">&quot;</span>
+                                                            <span className="text-neutral-400">,</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex group items-start">
+                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none pt-1">4</span>
+                                                        <div className="flex-1 flex flex-wrap">
+                                                            <span className="text-[#e06c75] ml-4 pt-1">message</span>
+                                                            <span className="text-neutral-400 pt-1">:</span>&nbsp;
+                                                            <span className="text-[#98c379] pt-1">&quot;</span>
+                                                            <textarea
+                                                                name="message"
+                                                                required
+                                                                rows={2}
+                                                                placeholder="Let's build something cool..."
+                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
+                                                            />
+                                                            <span className="text-[#98c379] pt-1">&quot;</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="flex group">
+                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">5</span>
+                                                        <span className="text-neutral-400">{`}`}</span>
+                                                    </div>
+
+                                                    <div className="mt-8 flex justify-end">
                                                         <button
                                                             type="submit"
                                                             disabled={formState === "submitting"}
-                                                            className="group flex items-center gap-2 px-4 py-2 rounded-md bg-foreground hover:bg-neutral-800 cursor-pointer text-neutral-200 border border-neutral-700 text-xs font-mono transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                                            className="group flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-950 cursor-pointer text-neutral-200 border border-neutral-700 text-xs font-mono transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                                         >
                                                             {formState === "submitting" ? (
                                                                 <>
@@ -277,123 +400,177 @@ export default function Contact() {
                                                                 </>
                                                             ) : (
                                                                 <>
-                                                                    <Play className="w-3.5 h-3.5 fill-current text-green-400 " />
+                                                                    <Play className="w-3.5 h-3.5 fill-current text-green-400 group-hover:text-green-300" />
                                                                     <span>Run Script</span>
                                                                 </>
                                                             )}
                                                         </button>
                                                     </div>
                                                 </form>
-                                            )}
-                                        </div>
-                                    </motion.div>
-                                ) : (
-                                    <motion.div
-                                        key="non-technical"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: 20 }}
-                                        className="p-6 md:p-8"
-                                    >
-                                        {formState === "success" ? (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                className="flex flex-col items-center justify-center py-12 text-center"
-                                            >
-                                                <div className="w-20 h-20 rounded-full bg-green-100  flex items-center justify-center mb-6 animate-pulse">
-                                                    <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
-                                                </div>
-                                                <h3 className="text-2xl font-bold text-neutral-800  mb-2">Message Received!</h3>
-                                                <p className="text-neutral-500  mb-8 max-w-xs mx-auto">
-                                                    Thanks for reaching out. I&apos;ll get back to you as soon as possible.
-                                                </p>
-                                                <Button
-                                                    variant="outline"
-                                                    onClick={() => setFormState("idle")}
-                                                    className="rounded-full text-background bg-foreground"
-                                                >
-                                                    Send another message
-                                                </Button>
-                                            </motion.div>
+                                            )
                                         ) : (
-                                            <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                    <div className="space-y-2">
-                                                        <Label htmlFor="name" className="text-neutral-600  font-medium">Name</Label>
-                                                        <Input
-                                                            id="name"
-                                                            name="name"
-                                                            placeholder="John Doe"
-                                                            required
-                                                            disabled={formState === "submitting"}
-                                                            className="bg-neutral-100 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-700 "
-                                                        />
-                                                    </div>
-                                                    <div className="space-y-2">
-                                                        <Label htmlFor="email" className="text-neutral-600  font-medium">Email</Label>
-                                                        <Input
-                                                            id="email"
-                                                            name="email"
-                                                            type="email"
-                                                            placeholder="john@example.com"
-                                                            required
-                                                            disabled={formState === "submitting"}
-                                                            className="bg-neutral-100 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-700 "
-                                                        />
+                                            // Social Links Code View
+                                            <div className="space-y-1.5 font-mono text-[13px] md:text-sm leading-relaxed">
+                                                <div className="flex group">
+                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                    <div className="flex flex-wrap">
+                                                        <span className="text-[#c678dd]">export</span>&nbsp;
+                                                        <span className="text-[#c678dd]">const</span>&nbsp;
+                                                        <span className="text-[#e5c07b]">socialLinks</span>&nbsp;
+                                                        <span className="text-neutral-400">=</span>&nbsp;
+                                                        <span className="text-neutral-400">[</span>
                                                     </div>
                                                 </div>
-
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="message" className="text-neutral-600  font-medium">Message</Label>
-                                                    <Textarea
-                                                        id="message"
-                                                        name="message"
-                                                        placeholder="Tell me about your project..."
-                                                        className="bg-neutral-100 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-700 "
-                                                        required
-                                                        disabled={formState === "submitting"}
-                                                    />
-                                                </div>
-
-                                                <div className="pt-2">
-                                                    <Button
-                                                        type="submit"
-                                                        className="w-full h-12 rounded-xl bg-neutral-800 hover:bg-neutral-900  text-background font-medium transition-all cursor-pointer"
-                                                        disabled={formState === "submitting"}
-                                                    >
-                                                        {formState === "submitting" ? (
-                                                            <>
-                                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                                                Sending...
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                Send Message
-                                                                <Send className="w-4 h-4 ml-2" />
-                                                            </>
-                                                        )}
-                                                    </Button>
-                                                </div>
-
-                                                {formState === "error" && (
-                                                    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
-                                                        <AlertCircle className="w-4 h-4 shrink-0" />
-                                                        <span>Something went wrong. Please try again later.</span>
+                                                {socialLinks.map((link, index) => (
+                                                    <div key={link.title} className="group">
+                                                        <div className="flex">
+                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 2}</span>
+                                                            <span className="text-neutral-400 ml-4">{`{`}</span>
+                                                        </div>
+                                                        <div className="flex items-center">
+                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 3}</span>
+                                                            <span className="text-[#e06c75] ml-8">name</span>
+                                                            <span className="text-neutral-400">:</span>&nbsp;
+                                                            <span className="text-[#98c379]">&quot;{link.title}&quot;</span>
+                                                            <span className="text-neutral-400">,</span>
+                                                        </div>
+                                                        <div className="flex items-center">
+                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 4}</span>
+                                                            <span className="text-[#e06c75] ml-8">url</span>
+                                                            <span className="text-neutral-400">:</span>&nbsp;
+                                                            <a
+                                                                href={link.href}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="text-[#98c379] hover:underline decoration-dashed underline-offset-4 cursor-pointer"
+                                                            >
+                                                                &quot;{link.href}&quot;
+                                                            </a>
+                                                            <span className="text-neutral-400">,</span>
+                                                        </div>
+                                                        <div className="flex">
+                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 5}</span>
+                                                            <span className="text-neutral-400 ml-4">{`},`}</span>
+                                                        </div>
                                                     </div>
-                                                )}
-                                            </form>
+                                                ))}
+                                                <div className="flex group">
+                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
+                                                    <span className="text-neutral-400">];</span>
+                                                </div>
+                                            </div>
                                         )}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                                    </div>
+                                </div>
                         </div>
+                </motion.div>
+                ) : (
+                <motion.div
+                    key="non-technical"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    className="p-6 md:p-8"
+                >
+                    {formState === "success" ? (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex flex-col items-center justify-center py-12 text-center"
+                        >
+                            <div className="w-20 h-20 rounded-full bg-green-100  flex items-center justify-center mb-6 animate-pulse">
+                                <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-neutral-800  mb-2">Message Received!</h3>
+                            <p className="text-neutral-500  mb-8 max-w-xs mx-auto">
+                                Thanks for reaching out. I&apos;ll get back to you as soon as possible.
+                            </p>
+                            <Button
+                                variant="outline"
+                                onClick={() => setFormState("idle")}
+                                className="rounded-full cursor-pointer text-background bg-foreground"
+                            >
+                                Send another message
+                            </Button>
+                        </motion.div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="name" className="text-neutral-600  font-medium">Name</Label>
+                                    <Input
+                                        id="name"
+                                        name="name"
+                                        placeholder="John Doe"
+                                        required
+                                        disabled={formState === "submitting"}
+                                        className="bg-neutral-50 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-700 "
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="email" className="text-neutral-600  font-medium">Email</Label>
+                                    <Input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        placeholder="john@example.com"
+                                        required
+                                        disabled={formState === "submitting"}
+                                        className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-400 "
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="message" className="text-neutral-600  font-medium">Message</Label>
+                                <Textarea
+                                    id="message"
+                                    name="message"
+                                    placeholder="Tell me about your project..."
+                                    className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 text-neutral-900  placeholder:text-neutral-400 "
+                                    required
+                                    disabled={formState === "submitting"}
+                                />
+                            </div>
+
+                            <div className="pt-2">
+                                <Button
+                                    type="submit"
+                                    className="w-full h-12 cursor-pointer rounded-xl bg-neutral-900 hover:bg-neutral-800   text-background  font-medium transition-all hover:scale-[1.01]"
+                                    disabled={formState === "submitting"}
+                                >
+                                    {formState === "submitting" ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            Send Message
+                                            <Send className="w-4 h-4 ml-2" />
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
+
+                            {formState === "error" && (
+                                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+                                    <AlertCircle className="w-4 h-4 shrink-0" />
+                                    <span>Something went wrong. Please try again later.</span>
+                                </div>
+                            )}
+                        </form>
+                    )}
+                </motion.div>
+                                )}
+            </AnimatePresence>
+        </div>
                     </div>
                 </motion.div>
 
-                {/* Footer / Socials */}
-                <div className="flex flex-col items-center gap-8">
-                    <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200 to-transparent" />
+        {/* Footer / Socials */}
+        <div className="flex flex-col items-center gap-8">
+                    <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200  to-transparent" />
 
                     <div className="flex items-center gap-4 flex-wrap justify-center">
                         {socialLinks.map((link) => {
@@ -404,7 +581,7 @@ export default function Contact() {
                                         href={link.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-neutral-900  transition-all group"
+                                        className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-foreground  transition-all group"
                                         aria-label={link.title}
                                     >
                                         <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
@@ -416,7 +593,7 @@ export default function Contact() {
                         <Magnetic>
                             <button
                                 onClick={handleCopyEmail}
-                                className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-neutral-900  transition-all group relative"
+                                className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group relative"
                                 aria-label="Copy Email"
                             >
                                 <AnimatePresence mode="wait">
@@ -445,7 +622,7 @@ export default function Contact() {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: -40 }}
                                         exit={{ opacity: 0 }}
-                                        className="absolute text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-black px-2 py-1 rounded-md whitespace-nowrap pointer-events-none"
+                                        className="absolute text-xs font-medium bg-neutral-900  text-foreground  px-2 py-1 rounded-md whitespace-nowrap pointer-events-none"
                                     >
                                         Copied!
                                     </motion.span>
@@ -454,7 +631,9 @@ export default function Contact() {
                         </Magnetic>
                     </div>
 
-
+                    <p className="text-neutral-400  text-sm">
+                        © {new Date().getFullYear()} Vranda Garg. All rights reserved.
+                    </p>
                 </div>
             </div>
         </section>

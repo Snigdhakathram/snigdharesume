@@ -1,60 +1,103 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { skillsData } from "@/data/skills";
 import SkillCard from "@/Components/ui/SkillCard";
+import { cn } from "@/lib/utils";
 
 export default function Skills() {
+  const [activeTab, setActiveTab] = useState("All");
+  const categories = ["All", ...Object.keys(skillsData)];
+
+  const getFilteredSkills = () => {
+    if (activeTab === "All") {
+      // Flatten all skills into a single array
+      return Object.values(skillsData).flat();
+    }
+    return skillsData[activeTab] || [];
+  };
+
+  const displayedSkills = getFilteredSkills();
+
   return (
-    <section className="py-16 px-8">
+    <section className="py-20 px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
+        className="max-w-6xl mx-auto"
       >
-
-        <h2 className="text-4xl md:text-4xl font-bold text-foreground mb-8 text-left">
-          Skills
-        </h2>
-
-        <div className="space-y-8">
-          {Object.entries(skillsData).map(
-            ([category, skills], categoryIndex) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              >
-                <h3 className="text-xl md:text-2xl  text-neutral-600 mb-4">
-                  {category}
-                </h3>
-
-                <div className="flex flex-wrap gap-3">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: categoryIndex * 0.1 + index * 0.05,
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <SkillCard
-                        name={skill.name}
-                        icon={skill.icon}
-                        className="border-neutral-300/50 hover:border-neutral-400/80 transition-all duration-200"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          )}
+        {/* Header */}
+        <div className="flex items-center flex-col justify-center mb-8">
+          <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-200 shadow-sm">
+            Expertise
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center mb-4">
+            Skills & Tools
+          </h2>
+          <div className="max-w-md text-center text-neutral-600">
+            Explore the technologies and tools I use to craft exceptional digital experiences.
+          </div>
         </div>
+
+        {/* Tabs */}
+        <div className="flex justify-center mb-6">
+          <div className="flex flex-wrap justify-center gap-2 bg-card p-1.5 rounded-xl border border-neutral-200">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveTab(category)}
+                className={cn(
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative z-10",
+                  activeTab === category
+                    ? "text-background"
+                    : "text-neutral-500 hover:text-neutral-700"
+                )}
+              >
+                {activeTab === category && (
+                  <motion.div
+                    layoutId="activeSkillTab"
+                    className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm border border-neutral-200"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Skills Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {displayedSkills.map((skill) => (
+              <motion.div
+                layout
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{
+                  duration: 0.3,
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 300
+                }}
+              >
+                <SkillCard
+                  name={skill.name}
+                  icon={skill.icon}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
     </section>
   );

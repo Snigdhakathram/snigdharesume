@@ -31,9 +31,9 @@ export const socialLinks: SocialLink[] = [
     icon: SiPeerlist,
     href: "https://peerlist.io/vrandagarg",
   },
-  {
-    title: "Instagram",
-    icon: FaInstagram,
-    href: "https://instagram.com/vranda_garg",
-  },
+  // {
+  //   title: "Instagram",
+  //   icon: FaInstagram,
+  //   href: "https://instagram.com/vranda_garg",
+  // },
 ];

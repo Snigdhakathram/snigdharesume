@@ -49,7 +49,7 @@ export default function Experience() {
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0">
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden bg-white border border-neutral-200 p-2 shadow-sm">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden  ">
                     <Image
                       src={item.logo}
                       alt={item.name}
