@@ -631,9 +631,6 @@ export default function Contact() {
                         </Magnetic>
                     </div>
 
-                    <p className="text-neutral-400  text-sm">
-                        © {new Date().getFullYear()} Vranda Garg. All rights reserved.
-                    </p>
                 </div>
             </div>
         </section>
