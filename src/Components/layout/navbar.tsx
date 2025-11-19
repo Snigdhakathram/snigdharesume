@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Home, FolderOpen, Mail, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { RxMoon } from "react-icons/rx";
+import { ImSun } from "react-icons/im";
 
 const buttonVariants = {
   initial: {
@@ -105,7 +107,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div
-        className="flex p-2 flex-wrap items-center gap-3 rounded-full border border-neutral-400/40 bg-linear-to-tl from-neutral-50/70 via-neutral-100/60 to-neutral-50/70 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
+        className="flex p-2 flex-wrap items-center gap-3 rounded-full border border-neutral-200/60 bg-linear-to-tl from-neutral-50/80 via-neutral-100/80 to-neutral-50/80 py-1.5 shadow-[0_4px_16px_rgba(var(--glow-color),0.08)] backdrop-blur-xl"
       >
         {navItems.map((item, index) => {
           const Icon = item.icon;
@@ -124,7 +126,7 @@ export default function Navbar() {
                   "relative flex items-center rounded-full px-3 py-2.5 my-0.5 text-sm font-medium transition-colors duration-200",
                   selected === index
                     ? "bg-neutral-800 text-background "
-                    : "text-neutral-700 hover:bg-neutral-100 hover:text-foreground"
+                    : "text-neutral-700 hover:bg-card hover:text-foreground"
                 )}
                 aria-label={item.name}
               >
@@ -167,9 +169,9 @@ export default function Navbar() {
           aria-label="Toggle Theme"
         >
           {theme === "light" ? (
-            <Moon size={20} className="shrink-0" />
+            <RxMoon size={20} className="shrink-0" />
           ) : (
-            <Sun size={20} className="shrink-0" />
+            <ImSun size={20} className="shrink-0" />
           )}
         </motion.button>
       </div>

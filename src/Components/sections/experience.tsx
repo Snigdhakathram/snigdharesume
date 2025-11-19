@@ -26,13 +26,17 @@ export default function Experience() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
         >
-
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground text-left">
+          <div className="flex items-center flex-col justify-center mb-8">
+            <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-300 shadow-sm">
+              Journey
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center">
               Experience
             </h2>
+            <div className="max-w-md text-center mt-3 text-neutral-700">
+              My professional journey and achievements in technology and development.
+            </div>
           </div>
 
           <motion.div
@@ -42,7 +46,7 @@ export default function Experience() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <SpotlightCard className="bg-neutral-50 border-neutral-300/50 p-6 md:p-8 hover:shadow-xl transition-all duration-300">
+            <SpotlightCard className="bg-neutral-100/70 border-neutral-200 shadow-sm rounded-2xl p-6 md:p-8 hover:shadow-xl transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0">
@@ -102,91 +106,97 @@ export default function Experience() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8"
       >
-
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-left">
+        <div className="flex items-center flex-col justify-center mb-8">
+          <div className="bg-card text-foreground mb-3 px-4 py-1 rounded-full text-sm font-medium border border-neutral-300 shadow-sm">
+            Journey
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center">
             Experience
           </h2>
+          <div className="max-w-md text-center mt-3 text-neutral-700">
+            My professional journey and achievements in technology and development.
+          </div>
         </div>
 
-        <div className="relative">
-          {/* Vertical Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neutral-200 via-neutral-400 to-neutral-200 transform -translate-x-1/2 hidden md:block" />
+        <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-8">
+          <div className="relative">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-neutral-200 via-neutral-400 to-neutral-200 transform -translate-x-1/2 hidden md:block" />
 
-          {/* Mobile Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-neutral-300 md:hidden" />
+            {/* Mobile Line */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-neutral-300 md:hidden" />
 
-          <div className="space-y-12">
-            {experienceData.map((item, index) => {
-              const Icon = iconMap[item.iconType] || Briefcase;
-              const isLeft = item.left;
+            <div className="space-y-12">
+              {experienceData.map((item, index) => {
+                const Icon = iconMap[item.iconType] || Briefcase;
+                const isLeft = item.left;
 
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${isLeft ? "md:flex-row-reverse" : ""
-                    }`}
-                >
-                  {/* Content Side */}
-                  <div className="flex-1 md:w-1/2 md:px-8 pl-20">
-                    <SpotlightCard className="bg-neutral-50 border-neutral-300/50 p-6 hover:shadow-lg transition-shadow duration-300">
-                      <div className="flex items-start justify-between mb-4 gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
-                            <Image
-                              src={item.logo}
-                              alt={item.name}
-                              fill
-                              className="object-contain p-1"
-                            />
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${isLeft ? "md:flex-row-reverse" : ""
+                      }`}
+                  >
+                    {/* Content Side */}
+                    <div className="flex-1 md:w-1/2 md:px-8 pl-20">
+                      <SpotlightCard className="bg-neutral-100 border-neutral-200 p-6 hover:shadow-lg transition-shadow duration-300">
+                        <div className="flex items-start justify-between mb-4 gap-4">
+                          <div className="flex items-center gap-3">
+                            <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
+                              <Image
+                                src={item.logo}
+                                alt={item.name}
+                                fill
+                                className="object-contain p-1"
+                              />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-bold text-foreground leading-tight">
+                                {item.role}
+                              </h3>
+                              <p className="text-sm font-medium text-neutral-600">
+                                {item.name} {item.company && `• ${item.company}`}
+                              </p>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="text-lg font-bold text-foreground leading-tight">
-                              {item.role}
-                            </h3>
-                            <p className="text-sm font-medium text-neutral-600">
-                              {item.name} {item.company && `• ${item.company}`}
-                            </p>
-                          </div>
-                        </div>
-                        <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
-                          {item.duration}
-                        </span>
-                      </div>
-
-                      <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                        {item.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {item.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2.5 py-1 text-[10px] font-medium bg-neutral-200 text-neutral-700 border border-neutral-300/50"
-                          >
-                            {tech}
+                          <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
+                            {item.duration}
                           </span>
-                        ))}
-                      </div>
-                    </SpotlightCard>
-                  </div>
+                        </div>
 
-                  {/* Center Icon */}
-                  <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-neutral-100 border-4 border-white shadow-sm z-10">
-                    <Icon className="w-5 h-5 text-neutral-700" />
-                  </div>
+                        <p className="text-sm text-neutral-600 leading-relaxed mb-4">
+                          {item.description}
+                        </p>
 
-                  {/* Empty Side for Desktop spacing */}
-                  <div className="hidden md:block flex-1" />
-                </motion.div>
-              );
-            })}
+                        <div className="flex flex-wrap gap-2">
+                          {item.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2.5 py-1 text-[10px] font-medium bg-neutral-200 text-neutral-700 border border-neutral-300/50"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </SpotlightCard>
+                    </div>
+
+                    {/* Center Icon */}
+                    <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-neutral-100 border-4 border-white shadow-sm z-10">
+                      <Icon className="w-5 h-5 text-neutral-700" />
+                    </div>
+
+                    {/* Empty Side for Desktop spacing */}
+                    <div className="hidden md:block flex-1" />
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </motion.div>
