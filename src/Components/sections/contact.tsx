@@ -31,7 +31,7 @@ import RotatingText from "@/Components/ui/RotatingText";
 
 export default function Contact() {
     const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const [view, setView] = useState<"technical" | "non-technical">("non-technical");
+    const [view, setView] = useState<"technical" | "non-technical">("technical");
     const [activeFile, setActiveFile] = useState<"contact.tsx" | "socialLinks.tsx">("contact.tsx");
     const [copied, setCopied] = useState(false);
     const email = "gargvranda963@gmail.com";
@@ -254,322 +254,322 @@ export default function Contact() {
                                             </div>
 
                                             {/* Editor Area */}
-                                <div className="flex-1 flex flex-col bg-neutral-100 min-w-0 border-none outline-none">
-                                    {/* Tab Bar */}
-                                    <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200 border-none outline-none">
-                                        <div
-                                            onClick={() => setActiveFile("contact.tsx")}
-                                            onMouseDown={(e) => e.preventDefault()}
-                                            className={cn(
-                                                "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
-                                                activeFile === "contact.tsx"
-                                                    ? "bg-card rounded-t-sm border-t-blue-400 text-foreground"
-                                                    : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
-                                            )}
-                                            tabIndex={-1}
-                                        >
-                                            <FileCode className="w-3 h-3 text-blue-400" />
-                                            contact.tsx
-                                            <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
-                                        </div>
-                                        <div
-                                            onClick={() => setActiveFile("socialLinks.tsx")}
-                                            onMouseDown={(e) => e.preventDefault()}
-                                            className={cn(
-                                                "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
-                                                activeFile === "socialLinks.tsx"
-                                                    ? "bg-card rounded-t-sm border-t-yellow-400 text-foreground"
-                                                    : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
-                                            )}
-                                            tabIndex={-1}
-                                        >
-                                            <FileCode className="w-3 h-3 text-yellow-400" />
-                                            socialLinks.tsx
-                                            <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Editor Content */}
-                                    <div className="p-6 bg-card overflow-auto flex-1">
-                                        {activeFile === "contact.tsx" ? (
-                                            formState === "success" ? (
-                                                <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
-                                                    <motion.div
-                                                        initial={{ scale: 0 }}
-                                                        animate={{ scale: 1 }}
-                                                        className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center"
+                                            <div className="flex-1 flex flex-col bg-neutral-100 min-w-0 border-none outline-none">
+                                                {/* Tab Bar */}
+                                                <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200 border-none outline-none">
+                                                    <div
+                                                        onClick={() => setActiveFile("contact.tsx")}
+                                                        onMouseDown={(e) => e.preventDefault()}
+                                                        className={cn(
+                                                            "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
+                                                            activeFile === "contact.tsx"
+                                                                ? "bg-card rounded-t-sm border-t-blue-400 text-foreground"
+                                                                : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
+                                                        )}
+                                                        tabIndex={-1}
                                                     >
-                                                        <Check className="w-8 h-8 text-green-500" />
-                                                    </motion.div>
-                                                    <div>
-                                                        <h3 className="text-xl font-bold text-neutral-200">Message Sent!</h3>
-                                                        <p className="text-neutral-500 mt-1 text-xs">Function execution completed successfully.</p>
+                                                        <FileCode className="w-3 h-3 text-blue-400" />
+                                                        contact.tsx
+                                                        <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
                                                     </div>
-                                                    <button
-                                                        onClick={() => setFormState("idle")}
-                                                        className="text-blue-400 hover:text-blue-300 text-xs underline decoration-dashed underline-offset-4"
+                                                    <div
+                                                        onClick={() => setActiveFile("socialLinks.tsx")}
+                                                        onMouseDown={(e) => e.preventDefault()}
+                                                        className={cn(
+                                                            "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
+                                                            activeFile === "socialLinks.tsx"
+                                                                ? "bg-card rounded-t-sm border-t-yellow-400 text-foreground"
+                                                                : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
+                                                        )}
+                                                        tabIndex={-1}
                                                     >
-                                                        reset_form()
-                                                    </button>
-                                                </div>
-                                            ) : (
-                                                <form onSubmit={handleSubmit} className="space-y-1.5 relative font-mono text-[13px] md:text-sm leading-relaxed">
-                                                    <div className="flex group">
-                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
-                                                        <div className="flex flex-wrap">
-                                                            <span className="text-[#c678dd]">const</span>&nbsp;
-                                                            <span className="text-[#61afef]">sendMessage</span>&nbsp;
-                                                            <span className="text-neutral-400">=</span>&nbsp;
-                                                            <span className="text-[#c678dd]">async</span>&nbsp;
-                                                            <span className="text-neutral-400">(</span>
-                                                            <span className="text-[#e06c75]">data</span>
-                                                            <span className="text-neutral-400">)</span>&nbsp;
-                                                            <span className="text-[#c678dd]">=&gt;</span>&nbsp;
-                                                            <span className="text-neutral-400">{`{`}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex group items-baseline">
-                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">2</span>
-                                                        <div className="flex-1 flex flex-wrap items-center">
-                                                            <span className="text-[#e06c75] ml-4">name</span>
-                                                            <span className="text-neutral-400">:</span>&nbsp;
-                                                            <span className="text-[#98c379]">&quot;</span>
-                                                            <input
-                                                                type="text"
-                                                                name="name"
-                                                                required
-                                                                placeholder="Your Name"
-                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
-                                                            />
-                                                            <span className="text-[#98c379]">&quot;</span>
-                                                            <span className="text-neutral-400">,</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex group items-baseline">
-                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">3</span>
-                                                        <div className="flex-1 flex flex-wrap items-center">
-                                                            <span className="text-[#e06c75] ml-4">email</span>
-                                                            <span className="text-neutral-400">:</span>&nbsp;
-                                                            <span className="text-[#98c379]">&quot;</span>
-                                                            <input
-                                                                type="email"
-                                                                name="email"
-                                                                required
-                                                                placeholder="you@email.com"
-                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
-                                                            />
-                                                            <span className="text-[#98c379]">&quot;</span>
-                                                            <span className="text-neutral-400">,</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex group items-start">
-                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none pt-1">4</span>
-                                                        <div className="flex-1 flex flex-wrap">
-                                                            <span className="text-[#e06c75] ml-4 pt-1">message</span>
-                                                            <span className="text-neutral-400 pt-1">:</span>&nbsp;
-                                                            <span className="text-[#98c379] pt-1">&quot;</span>
-                                                            <textarea
-                                                                name="message"
-                                                                required
-                                                                rows={2}
-                                                                placeholder="Let's build something cool..."
-                                                                className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
-                                                            />
-                                                            <span className="text-[#98c379] pt-1">&quot;</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex group">
-                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">5</span>
-                                                        <span className="text-neutral-400">{`}`}</span>
-                                                    </div>
-
-                                                    <div className="mt-8 flex justify-end">
-                                                        <button
-                                                            type="submit"
-                                                            disabled={formState === "submitting"}
-                                                            className="group flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-950 cursor-pointer text-neutral-200 border border-neutral-700 text-xs font-mono transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                                        >
-                                                            {formState === "submitting" ? (
-                                                                <>
-                                                                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                                                                    <span>Processing...</span>
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <Play className="w-3.5 h-3.5 fill-current text-green-400 group-hover:text-green-300" />
-                                                                    <span>Run Script</span>
-                                                                </>
-                                                            )}
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            )
-                                        ) : (
-                                            // Social Links Code View
-                                            <div className="space-y-1.5 font-mono text-[13px] md:text-sm leading-relaxed">
-                                                <div className="flex group">
-                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
-                                                    <div className="flex flex-wrap">
-                                                        <span className="text-[#c678dd]">export</span>&nbsp;
-                                                        <span className="text-[#c678dd]">const</span>&nbsp;
-                                                        <span className="text-[#e5c07b]">socialLinks</span>&nbsp;
-                                                        <span className="text-neutral-400">=</span>&nbsp;
-                                                        <span className="text-neutral-400">[</span>
+                                                        <FileCode className="w-3 h-3 text-yellow-400" />
+                                                        socialLinks.tsx
+                                                        <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
                                                     </div>
                                                 </div>
-                                                {socialLinks.map((link, index) => (
-                                                    <div key={link.title} className="group">
-                                                        <div className="flex">
-                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 2}</span>
-                                                            <span className="text-neutral-400 ml-4">{`{`}</span>
+
+                                                {/* Editor Content */}
+                                                <div className="p-6 bg-card overflow-auto flex-1">
+                                                    {activeFile === "contact.tsx" ? (
+                                                        formState === "success" ? (
+                                                            <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
+                                                                <motion.div
+                                                                    initial={{ scale: 0 }}
+                                                                    animate={{ scale: 1 }}
+                                                                    className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center"
+                                                                >
+                                                                    <Check className="w-8 h-8 text-green-500" />
+                                                                </motion.div>
+                                                                <div>
+                                                                    <h3 className="text-xl font-bold text-neutral-200">Message Sent!</h3>
+                                                                    <p className="text-neutral-500 mt-1 text-xs">Function execution completed successfully.</p>
+                                                                </div>
+                                                                <button
+                                                                    onClick={() => setFormState("idle")}
+                                                                    className="text-blue-400 hover:text-blue-300 text-xs underline decoration-dashed underline-offset-4"
+                                                                >
+                                                                    reset_form()
+                                                                </button>
+                                                            </div>
+                                                        ) : (
+                                                            <form onSubmit={handleSubmit} className="space-y-1.5 relative font-mono text-[13px] md:text-sm leading-relaxed">
+                                                                <div className="flex group">
+                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                                    <div className="flex flex-wrap">
+                                                                        <span className="text-[#c678dd]">const</span>&nbsp;
+                                                                        <span className="text-[#61afef]">sendMessage</span>&nbsp;
+                                                                        <span className="text-neutral-400">=</span>&nbsp;
+                                                                        <span className="text-[#c678dd]">async</span>&nbsp;
+                                                                        <span className="text-neutral-400">(</span>
+                                                                        <span className="text-[#e06c75]">data</span>
+                                                                        <span className="text-neutral-400">)</span>&nbsp;
+                                                                        <span className="text-[#c678dd]">=&gt;</span>&nbsp;
+                                                                        <span className="text-neutral-400">{`{`}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex group items-baseline">
+                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">2</span>
+                                                                    <div className="flex-1 flex flex-wrap items-center">
+                                                                        <span className="text-[#e06c75] ml-4">name</span>
+                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <span className="text-[#98c379]">&quot;</span>
+                                                                        <input
+                                                                            type="text"
+                                                                            name="name"
+                                                                            required
+                                                                            placeholder="Your Name"
+                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                        />
+                                                                        <span className="text-[#98c379]">&quot;</span>
+                                                                        <span className="text-neutral-400">,</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex group items-baseline">
+                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">3</span>
+                                                                    <div className="flex-1 flex flex-wrap items-center">
+                                                                        <span className="text-[#e06c75] ml-4">email</span>
+                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <span className="text-[#98c379]">&quot;</span>
+                                                                        <input
+                                                                            type="email"
+                                                                            name="email"
+                                                                            required
+                                                                            placeholder="you@email.com"
+                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                        />
+                                                                        <span className="text-[#98c379]">&quot;</span>
+                                                                        <span className="text-neutral-400">,</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex group items-start">
+                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none pt-1">4</span>
+                                                                    <div className="flex-1 flex flex-wrap">
+                                                                        <span className="text-[#e06c75] ml-4 pt-1">message</span>
+                                                                        <span className="text-neutral-400 pt-1">:</span>&nbsp;
+                                                                        <span className="text-[#98c379] pt-1">&quot;</span>
+                                                                        <textarea
+                                                                            name="message"
+                                                                            required
+                                                                            rows={2}
+                                                                            placeholder="Let's build something cool..."
+                                                                            className="bg-transparent border-none outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
+                                                                        />
+                                                                        <span className="text-[#98c379] pt-1">&quot;</span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex group">
+                                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">5</span>
+                                                                    <span className="text-neutral-400">{`}`}</span>
+                                                                </div>
+
+                                                                <div className="mt-8 flex justify-end">
+                                                                    <button
+                                                                        type="submit"
+                                                                        disabled={formState === "submitting"}
+                                                                        className="group flex items-center gap-2 px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-950 cursor-pointer text-neutral-200 border border-neutral-700 text-xs font-mono transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                                                    >
+                                                                        {formState === "submitting" ? (
+                                                                            <>
+                                                                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                                                                <span>Processing...</span>
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+                                                                                <Play className="w-3.5 h-3.5 fill-current text-green-400 group-hover:text-green-300" />
+                                                                                <span>Run Script</span>
+                                                                            </>
+                                                                        )}
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        )
+                                                    ) : (
+                                                        // Social Links Code View
+                                                        <div className="space-y-1.5 font-mono text-[13px] md:text-sm leading-relaxed">
+                                                            <div className="flex group">
+                                                                <span className="text-[#495162] w-8 text-right mr-4 select-none">1</span>
+                                                                <div className="flex flex-wrap">
+                                                                    <span className="text-[#c678dd]">export</span>&nbsp;
+                                                                    <span className="text-[#c678dd]">const</span>&nbsp;
+                                                                    <span className="text-[#e5c07b]">socialLinks</span>&nbsp;
+                                                                    <span className="text-neutral-400">=</span>&nbsp;
+                                                                    <span className="text-neutral-400">[</span>
+                                                                </div>
+                                                            </div>
+                                                            {socialLinks.map((link, index) => (
+                                                                <div key={link.title} className="group">
+                                                                    <div className="flex">
+                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 2}</span>
+                                                                        <span className="text-neutral-400 ml-4">{`{`}</span>
+                                                                    </div>
+                                                                    <div className="flex items-center">
+                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 3}</span>
+                                                                        <span className="text-[#e06c75] ml-8">name</span>
+                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <span className="text-[#98c379]">&quot;{link.title}&quot;</span>
+                                                                        <span className="text-neutral-400">,</span>
+                                                                    </div>
+                                                                    <div className="flex items-center">
+                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 4}</span>
+                                                                        <span className="text-[#e06c75] ml-8">url</span>
+                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <a
+                                                                            href={link.href}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                            className="text-[#98c379] hover:underline decoration-dashed underline-offset-4 cursor-pointer"
+                                                                        >
+                                                                            &quot;{link.href}&quot;
+                                                                        </a>
+                                                                        <span className="text-neutral-400">,</span>
+                                                                    </div>
+                                                                    <div className="flex">
+                                                                        <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 5}</span>
+                                                                        <span className="text-neutral-400 ml-4">{`},`}</span>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                            <div className="flex group">
+                                                                <span className="text-[#495162] w-8 text-right mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
+                                                                <span className="text-neutral-400">];</span>
+                                                            </div>
                                                         </div>
-                                                        <div className="flex items-center">
-                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 3}</span>
-                                                            <span className="text-[#e06c75] ml-8">name</span>
-                                                            <span className="text-neutral-400">:</span>&nbsp;
-                                                            <span className="text-[#98c379]">&quot;{link.title}&quot;</span>
-                                                            <span className="text-neutral-400">,</span>
-                                                        </div>
-                                                        <div className="flex items-center">
-                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 4}</span>
-                                                            <span className="text-[#e06c75] ml-8">url</span>
-                                                            <span className="text-neutral-400">:</span>&nbsp;
-                                                            <a
-                                                                href={link.href}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="text-[#98c379] hover:underline decoration-dashed underline-offset-4 cursor-pointer"
-                                                            >
-                                                                &quot;{link.href}&quot;
-                                                            </a>
-                                                            <span className="text-neutral-400">,</span>
-                                                        </div>
-                                                        <div className="flex">
-                                                            <span className="text-[#495162] w-8 text-right mr-4 select-none">{index * 4 + 5}</span>
-                                                            <span className="text-neutral-400 ml-4">{`},`}</span>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                                <div className="flex group">
-                                                    <span className="text-[#495162] w-8 text-right mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
-                                                    <span className="text-neutral-400">];</span>
+                                                    )}
                                                 </div>
                                             </div>
+                                        </div>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="non-technical"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 20 }}
+                                        className="p-6 md:p-8"
+                                    >
+                                        {formState === "success" ? (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.9 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                className="flex flex-col items-center justify-center py-12 text-center"
+                                            >
+                                                <div className="w-20 h-20 rounded-full bg-green-100  flex items-center justify-center mb-6 animate-pulse">
+                                                    <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
+                                                </div>
+                                                <h3 className="text-2xl font-bold text-neutral-800  mb-2">Message Received!</h3>
+                                                <p className="text-neutral-500  mb-8 max-w-xs mx-auto">
+                                                    Thanks for reaching out. I&apos;ll get back to you as soon as possible.
+                                                </p>
+                                                <Button
+                                                    variant="outline"
+                                                    onClick={() => setFormState("idle")}
+                                                    className="rounded-full cursor-pointer text-background bg-foreground"
+                                                >
+                                                    Send another message
+                                                </Button>
+                                            </motion.div>
+                                        ) : (
+                                            <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="name" className="text-neutral-600  font-medium">Name</Label>
+                                                        <Input
+                                                            id="name"
+                                                            name="name"
+                                                            placeholder="John Doe"
+                                                            required
+                                                            disabled={formState === "submitting"}
+                                                            className="bg-neutral-50 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-700 "
+                                                        />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="email" className="text-neutral-600  font-medium">Email</Label>
+                                                        <Input
+                                                            id="email"
+                                                            name="email"
+                                                            type="email"
+                                                            placeholder="john@example.com"
+                                                            required
+                                                            disabled={formState === "submitting"}
+                                                            className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-400 "
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="space-y-2">
+                                                    <Label htmlFor="message" className="text-neutral-600  font-medium">Message</Label>
+                                                    <Textarea
+                                                        id="message"
+                                                        name="message"
+                                                        placeholder="Tell me about your project..."
+                                                        className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 text-neutral-900  placeholder:text-neutral-400 "
+                                                        required
+                                                        disabled={formState === "submitting"}
+                                                    />
+                                                </div>
+
+                                                <div className="pt-2">
+                                                    <Button
+                                                        type="submit"
+                                                        className="w-full h-12 cursor-pointer rounded-xl bg-neutral-900 hover:bg-neutral-800   text-background  font-medium transition-all hover:scale-[1.01]"
+                                                        disabled={formState === "submitting"}
+                                                    >
+                                                        {formState === "submitting" ? (
+                                                            <>
+                                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                                Sending...
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Send Message
+                                                                <Send className="w-4 h-4 ml-2" />
+                                                            </>
+                                                        )}
+                                                    </Button>
+                                                </div>
+
+                                                {formState === "error" && (
+                                                    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+                                                        <AlertCircle className="w-4 h-4 shrink-0" />
+                                                        <span>Something went wrong. Please try again later.</span>
+                                                    </div>
+                                                )}
+                                            </form>
                                         )}
-                                    </div>
-                                </div>
-                        </div>
-                </motion.div>
-                ) : (
-                <motion.div
-                    key="non-technical"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    className="p-6 md:p-8"
-                >
-                    {formState === "success" ? (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="flex flex-col items-center justify-center py-12 text-center"
-                        >
-                            <div className="w-20 h-20 rounded-full bg-green-100  flex items-center justify-center mb-6 animate-pulse">
-                                <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-neutral-800  mb-2">Message Received!</h3>
-                            <p className="text-neutral-500  mb-8 max-w-xs mx-auto">
-                                Thanks for reaching out. I&apos;ll get back to you as soon as possible.
-                            </p>
-                            <Button
-                                variant="outline"
-                                onClick={() => setFormState("idle")}
-                                className="rounded-full cursor-pointer text-background bg-foreground"
-                            >
-                                Send another message
-                            </Button>
-                        </motion.div>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <Label htmlFor="name" className="text-neutral-600  font-medium">Name</Label>
-                                    <Input
-                                        id="name"
-                                        name="name"
-                                        placeholder="John Doe"
-                                        required
-                                        disabled={formState === "submitting"}
-                                        className="bg-neutral-50 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-700 "
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="email" className="text-neutral-600  font-medium">Email</Label>
-                                    <Input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        placeholder="john@example.com"
-                                        required
-                                        disabled={formState === "submitting"}
-                                        className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-400 "
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="message" className="text-neutral-600  font-medium">Message</Label>
-                                <Textarea
-                                    id="message"
-                                    name="message"
-                                    placeholder="Tell me about your project..."
-                                    className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 text-neutral-900  placeholder:text-neutral-400 "
-                                    required
-                                    disabled={formState === "submitting"}
-                                />
-                            </div>
-
-                            <div className="pt-2">
-                                <Button
-                                    type="submit"
-                                    className="w-full h-12 cursor-pointer rounded-xl bg-neutral-900 hover:bg-neutral-800   text-background  font-medium transition-all hover:scale-[1.01]"
-                                    disabled={formState === "submitting"}
-                                >
-                                    {formState === "submitting" ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                            Sending...
-                                        </>
-                                    ) : (
-                                        <>
-                                            Send Message
-                                            <Send className="w-4 h-4 ml-2" />
-                                        </>
-                                    )}
-                                </Button>
-                            </div>
-
-                            {formState === "error" && (
-                                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
-                                    <AlertCircle className="w-4 h-4 shrink-0" />
-                                    <span>Something went wrong. Please try again later.</span>
-                                </div>
-                            )}
-                        </form>
-                    )}
-                </motion.div>
+                                    </motion.div>
                                 )}
-            </AnimatePresence>
-        </div>
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </motion.div>
 
-        {/* Footer / Socials */}
-        <div className="flex flex-col items-center gap-8">
+                {/* Footer / Socials */}
+                <div className="flex flex-col items-center gap-8">
                     <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200  to-transparent" />
 
                     <div className="flex items-center gap-4 flex-wrap justify-center">

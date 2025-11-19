@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import RotatingText from "../ui/RotatingText";
 import Skills from "./skills";
+import Stats from "./Stats";
 import Projects from "./projects";
 import Experience from "./experience";
 import Contact from "./contact";
@@ -124,13 +125,16 @@ export default function HeroSection() {
           >
             <div className="flex items-start gap-6 lg:gap-8">
               <div className="flex-1">
-                <h1 className="text-3xl md:text-6xl font-bold text-foreground">
-                  Hi,
-                  <br /> Vranda Garg
+                <h1 className="text-3xl md:text-5xl font-semibold text-foreground">
+                  Hi,I&apos;m
+
+                </h1>
+                <h1 className="text-3xl md:text-6xl mt-2 font-semibold text-foreground">
+                  Vranda Garg
                 </h1>
 
                 <div className="text-xl flex items-center gap-2 md:text-4xl font-semibold text-neutral-700 mt-4">
-                  <span>I&apos;m </span>
+
                   <RotatingText
                     texts={roles}
                     rotationInterval={3000}
@@ -160,18 +164,20 @@ export default function HeroSection() {
                         alt="Vranda Garg"
                         width={400}
                         height={400}
-                        className="w-full bg-linear-to-tl from-neutral-700 to-neutral-800 h-full object-cover"
+                        className="w-full bg-neutral-200 h-full object-cover"
                       />
                     }
                     secondContent={
-                      <div className="w-full h-full flex items-center justify-center bg-neutral-100">
-                        <p className="text-xl font-bold text-foreground">
-                          Let&apos;s <br /> Connect!
-                        </p>
-                      </div>
+                      <Image
+                        src="https://github.com/VrandaaGarg.png"
+                        alt="Vranda Garg"
+                        width={400}
+                        height={400}
+                        className="w-full bg-neutral-200 h-full object-cover"
+                      />
                     }
                     gridSize={12}
-                    pixelColor="var(--foreground)"
+                    pixelColor="var(--background)"
                     once={false}
                     animationStepDuration={0.4}
                     aspectRatio="100%"
@@ -260,6 +266,11 @@ export default function HeroSection() {
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Skills />
+        <div className="border-t border-neutral-200 relative">
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
+        </div>
+        <Stats />
         <div className="border-t border-neutral-200 relative">
           <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
