@@ -22,7 +22,7 @@
 }
 
 :root[data-theme="light"] {
-  --background: #fafafa;
+  --background: #f6f6f6;
   --foreground: #171717;
   --card: #ffffff;
 
@@ -88,7 +88,12 @@ body {
   font-family: var(--font-sans);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
 }
 
