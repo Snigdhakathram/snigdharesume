@@ -18,10 +18,19 @@ export default function Stats() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const STORAGE_KEY = 'wakatime_stats';
+        const STORAGE_DATE_KEY = 'wakatime_stats_date';
+
         const fetchWakaTimeStats = async () => {
             try {
                 const response = await fetch('/api/wakatime');
                 const data = await response.json();
+
+                // Store in localStorage with current date
+                const today = new Date().toDateString();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                localStorage.setItem(STORAGE_DATE_KEY, today);
+
                 setWakaTime(data);
             } catch (error) {
                 console.error('Failed to fetch WakaTime stats:', error);
@@ -31,7 +40,28 @@ export default function Stats() {
             }
         };
 
-        fetchWakaTimeStats();
+        const loadWakaTimeStats = () => {
+            const today = new Date().toDateString();
+            const cachedDate = localStorage.getItem(STORAGE_DATE_KEY);
+            const cachedData = localStorage.getItem(STORAGE_KEY);
+
+            // Check if we have cached data for today
+            if (cachedDate === today && cachedData) {
+                try {
+                    const parsedData = JSON.parse(cachedData);
+                    setWakaTime(parsedData);
+                    setLoading(false);
+                } catch (error) {
+                    console.error('Failed to parse cached data:', error);
+                    fetchWakaTimeStats();
+                }
+            } else {
+                // Fetch fresh data if date doesn't match or no cache exists
+                fetchWakaTimeStats();
+            }
+        };
+
+        loadWakaTimeStats();
     }, []);
 
     return (
@@ -96,12 +126,14 @@ export default function Stats() {
                                 </div>
                                 {/* Using an image for heatmap as per request visual style, referencing user's actual github if possible or placeholder */}
                                 {/* Since I can't dynamically generate it easily without a library, I'll use a stylized placeholder or an image API */}
-                                <div className="w-full h-full overflow-hidden blur-[1px] rounded-xl opacity-100 transition-opacity">
+                                <div className="w-full h-full overflow-hidden blur-[1px] rounded-xl opacity-100 transition-opacity relative">
                                     {/* Using ghchart as a placeholder representation */}
-                                    <img
+                                    <Image
                                         src="https://ghchart.rshah.org/03C851/VrandaaGarg"
                                         alt="GitHub Contributions"
-                                        className="w-full h-full object-cover object-right"
+                                        fill
+                                        unoptimized
+                                        className="object-cover object-right"
                                     />
                                 </div>
                             </div>
@@ -207,7 +239,7 @@ export default function Stats() {
                                 <span className="text-neutral-400 font-medium tracking-widest uppercase text-sm">Discord</span>
                             </div>
                             <h3 className="text-2xl font-bold text-foreground mb-1">vrandagarg</h3>
-                            <p className="text-neutral-500 text-sm">Let's chat about tech & anime</p>
+                            <p className="text-neutral-500 text-sm">Let&apos;s chat about tech & anime</p>
                         </div>
                     </div>
                 </motion.div>

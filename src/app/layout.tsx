@@ -4,6 +4,7 @@ import "./globals.css";
 import Background from "@/Components/ui/Background";
 import Navbar from "@/Components/layout/navbar";
 import Footer from "@/Components/layout/footer";
+import ThemeProvider from "@/Components/layout/ThemeProvider";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -30,25 +31,14 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased flex flex-col min-h-screen relative font-sans`}
       >
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.getItem('theme') === 'light') {
-                  document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              } catch (_) {}
-            `,
-          }}
-        />
-        <Background />
-        <div className="relative z-10 flex flex-col min-h-screen">
-          <Navbar />
-          <div className="grow">{children}</div>
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <Background />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Navbar />
+            <div className="grow">{children}</div>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

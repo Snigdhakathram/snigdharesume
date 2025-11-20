@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { RxMoon } from "react-icons/rx";
+import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 
@@ -16,20 +17,9 @@ export const AnimatedThemeToggler = ({
     duration = 400,
     ...props
 }: AnimatedThemeTogglerProps) => {
-    const [isDark, setIsDark] = useState(true);
+    const { theme, setTheme } = useTheme();
     const buttonRef = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const root = document.documentElement;
-            const currentTheme = root.getAttribute("data-theme");
-            setIsDark(currentTheme === "dark" || !currentTheme);
-            
-            if (!currentTheme) {
-                 root.setAttribute("data-theme", "dark");
-            }
-        }
-    }, []);
+    const isDark = theme === "dark";
 
     const toggleTheme = useCallback(async () => {
         if (!buttonRef.current) return;
@@ -38,9 +28,7 @@ export const AnimatedThemeToggler = ({
 
         if (!document.startViewTransition) {
             flushSync(() => {
-                setIsDark(!isDark);
-                document.documentElement.setAttribute("data-theme", newTheme);
-                localStorage.setItem("theme", newTheme);
+                setTheme(newTheme);
             });
             return;
         }
@@ -55,9 +43,7 @@ export const AnimatedThemeToggler = ({
 
         const transition = document.startViewTransition(() => {
             flushSync(() => {
-                setIsDark(!isDark);
-                document.documentElement.setAttribute("data-theme", newTheme);
-                localStorage.setItem("theme", newTheme);
+                setTheme(newTheme);
             });
         });
 
@@ -76,7 +62,7 @@ export const AnimatedThemeToggler = ({
                 pseudoElement: "::view-transition-new(root)",
             }
         );
-    }, [isDark, duration]);
+    }, [isDark, duration, setTheme]);
 
     return (
         <button
