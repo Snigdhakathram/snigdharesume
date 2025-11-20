@@ -88,6 +88,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--glow-color), 0.4) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--glow-color), 0.4);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
