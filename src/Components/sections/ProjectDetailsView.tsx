@@ -55,16 +55,16 @@ export default function ProjectDetailsView({
 
 
       <div className="max-w-4xl mx-auto relative z-10 px-4 md:px-0">
-        <div className="w-full border-l border-r pt-16 border-neutral-200 relative  ">
+        <div className="w-full border-l border-r pt-20 border-neutral-200 relative  ">
 
 
-          <div className="p-6 md:p-10">
+          <div className="p-5 md:p-10">
             {/* Back Link */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-8"
+              className="mb-4 md:mb-8"
             >
               <Link
                 href="/projects"
@@ -82,7 +82,7 @@ export default function ProjectDetailsView({
               className="space-y-8"
             >
               {/* Header Section */}
-              <div className="flex flex-row md:items-end justify-between gap-6  pb-4">
+              <div className="flex flex-wrap flex-row items-end justify-between gap-3 md:gap-6  md:pb-4">
                 <motion.h1
                   variants={fadeInUp}
                   className="text-4xl md:text-6xl font-bold text-foreground"
@@ -101,8 +101,8 @@ export default function ProjectDetailsView({
                         target="_blank"
                         className="relative group block cursor-pointer"
                       >
-                        <div className="w-12 h-12 rounded-full bg-card border border-neutral-200 flex items-center justify-center text-neutral-800 transition-all duration-500 group-hover:bg-foreground group-hover:text-background shadow-md">
-                          <Globe className="w-5 h-5" />
+                        <div className="md:w-12 md:h-12 w-9 h-9 rounded-full bg-card border border-neutral-200 flex items-center justify-center text-neutral-800 transition-all duration-500 group-hover:bg-foreground group-hover:text-background shadow-md">
+                          <Globe className="md:w-5 md:h-5 w-4 h-4" />
                         </div>
                       </Link>
                     </Magnetic>
@@ -114,8 +114,8 @@ export default function ProjectDetailsView({
                       target="_blank"
                       className="relative group block cursor-pointer"
                     >
-                      <div className="w-12 h-12 rounded-full bg-card border border-neutral-200 flex items-center justify-center text-neutral-800 transition-all duration-500 group-hover:bg-foreground group-hover:text-background shadow-md">
-                        <Github className="w-5 h-5" />
+                      <div className="md:w-12 md:h-12 w-9 h-9 rounded-full bg-card border border-neutral-200 flex items-center justify-center text-neutral-800 transition-all duration-500 group-hover:bg-foreground group-hover:text-background shadow-md">
+                        <Github className="md:w-5 md:h-5 w-4 h-4" />
                       </div>
                     </Link>
                   </Magnetic>
@@ -136,7 +136,7 @@ export default function ProjectDetailsView({
                 />
               </motion.div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-10 md:pt-4">
                 {/* Left Column - Description */}
                 <div className="lg:col-span-2 space-y-8">
                   <motion.div variants={fadeInUp}>

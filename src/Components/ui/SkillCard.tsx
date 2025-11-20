@@ -35,7 +35,7 @@ export default function SkillCard({
             <Icon className="md:w-8 md:h-8 w-5 h-5" />
           </div>
         )}
-        <span className="text-sm font-bold text-center text-foreground leading-tight">
+        <span className="text-[10px] md:text-sm font-bold text-center text-foreground leading-tight">
           {name}
         </span>
       </div>

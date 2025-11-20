@@ -45,7 +45,7 @@ export default function Experience() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-6 md:p-8  transition-all duration-300">
+            <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-5 md:p-8  transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0 flex flex-row gap-2">

@@ -140,6 +140,8 @@ html {
   flex-wrap: wrap;
   white-space: pre-wrap;
   position: relative;
+  justify-content: center;
+  text-align: center;
 }
 
 .text-rotate-sr-only {

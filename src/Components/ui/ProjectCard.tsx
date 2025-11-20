@@ -100,7 +100,7 @@ export default function ProjectCard({
                 rel="noopener noreferrer"
                 className="flex-1 px-4 py-2.5 bg-card hover:bg-neutral-100 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
               >
-                Live Demo
+                Live 
               </Link>
             )}
           </div>

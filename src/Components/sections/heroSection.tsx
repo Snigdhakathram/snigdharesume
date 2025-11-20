@@ -116,7 +116,7 @@ export default function HeroSection() {
   return (
     <section className="min-h-screen max-w-4xl mx-auto flex items-center justify-center ">
       <div className="w-full border-l border-r border-neutral-200 relative">
-        <div className=" mt-24  mx-4 md:mx-8 bg-card border border-neutral-200 shadow-sm rounded-2xl p-8">
+        <div className=" mt-24  mx-4 md:mx-8 bg-card border border-neutral-200 shadow-sm rounded-2xl p-5 md:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function HeroSection() {
                   Vranda Garg
                 </h1>
 
-                <div className="text-xl flex items-center gap-2 md:text-4xl font-semibold text-neutral-700 mt-4">
+                <div className="text-xl flex items-center justify-center md:justify-start gap-2 md:text-4xl font-semibold text-neutral-700 mt-4">
 
                   <RotatingText
                     texts={roles}
@@ -286,6 +286,10 @@ export default function HeroSection() {
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
         <Contact />
+        <div className="border-t border-neutral-200 relative">
+          <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
+          <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
+        </div>
       </div>
     </section>
   );
