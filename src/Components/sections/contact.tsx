@@ -100,7 +100,7 @@ export default function Contact() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-neutral-500  text-lg max-w-xl mx-auto"
+                        className="text-neutral-600 leading-tight  text-md max-w-lg mx-auto"
                     >
                         Whether you have a question, a project proposal, or just want to say hi, I&apos;ll try my best to get back to you!
                     </motion.p>
