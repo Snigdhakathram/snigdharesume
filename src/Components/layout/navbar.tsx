@@ -63,27 +63,31 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const navItems = [
-      { href: "/" },
-      { href: "/projects" },
-      { href: "/#contact" },
-    ];
+    const updateSelected = () => {
+      const navItems = [
+        { href: "/" },
+        { href: "/projects" },
+        { href: "/#contact" },
+      ];
 
-    const currentIndex = navItems.findIndex((item) => {
-      if (item.href === "/#contact") {
-        return pathname === "/" && window.location.hash === "#contact";
+      const currentIndex = navItems.findIndex((item) => {
+        if (item.href === "/#contact") {
+          return pathname === "/" && window.location.hash === "#contact";
+        }
+        return pathname === item.href || pathname?.startsWith(item.href + "/");
+      });
+
+      if (currentIndex !== -1) {
+        setSelected(currentIndex);
       }
-      return pathname === item.href || pathname?.startsWith(item.href + "/");
-    });
+    };
 
-    if (currentIndex !== -1) {
-      // Wrap state update in a transition or check if mounted to avoid sync render issues if strict mode is on
-      // but for simple nav state, just ensuring it doesn't cycle is key.
-      // The linter warning about setState in effect is generally about render loops,
-      // but here it depends on pathname which is external.
-      // We can suppress or ignore if we are sure, but let's keep it simple.
-      setSelected(currentIndex);
-    }
+    updateSelected();
+    window.addEventListener("hashchange", updateSelected);
+
+    return () => {
+      window.removeEventListener("hashchange", updateSelected);
+    };
   }, [pathname]);
 
   if (!isClient) return null;

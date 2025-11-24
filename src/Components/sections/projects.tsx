@@ -28,7 +28,7 @@ export default function Projects({ limit }: ProjectsProps) {
             Work
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground text-center">
-            Featured Projects
+            {pathname === "/projects" ? "My Projects" : "Featured Projects"}
           </h2>
           <div className="max-w-md text-center mt-3 text-neutral-700">
             These are some of the projects I&apos;ve worked on. I love building
