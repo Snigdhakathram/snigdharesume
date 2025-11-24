@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { IconBrandGithub } from "@tabler/icons-react";
+import ReactMarkdown from "react-markdown";
 
 interface ProjectCardProps {
   id: string;
@@ -66,9 +67,16 @@ export default function ProjectCard({
             </Link>
           </div>
 
-          <p className="text-sm text-justify text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow">
-            {description}
-          </p>
+          <div className="text-sm text-justify text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow prose prose-sm prose-neutral max-w-none">
+            <ReactMarkdown
+              components={{
+                strong: ({ children }) => <strong className="font-bold text-neutral-700">{children}</strong>,
+                p: ({ children }) => <span>{children}</span>,
+              }}
+            >
+              {description}
+            </ReactMarkdown>
+          </div>
 
           <div className="flex flex-wrap gap-2 mb-3 md:mb-6">
             {techStack.slice(0, 4).map((tech) => (

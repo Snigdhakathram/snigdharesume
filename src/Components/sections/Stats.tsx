@@ -116,7 +116,7 @@ export default function Stats() {
                     <Link href="https://github.com/VrandaaGarg/" target="_blank" className="h-full block">
                         <div className="h-full bg-card border border-neutral-300/70 rounded-xl p-4 flex items-center justify-center shadow-sm relative overflow-hidden">
                             <div className="absolute inset-0 bg-card" />
-                            <div className="relative -rotate-2 scale-105  z-10 w-full h-full flex flex-col justify-center">
+                            <div className="relative  scale-105  z-10 w-full h-full flex flex-col justify-center">
                                 <div className="flex items-center gap-2 mb-2 px-2">
                                     <div className="w-3 h-3 rounded-sm bg-green-700" />
                                     <div className="w-3 h-3 rounded-sm bg-green-500" />
@@ -126,7 +126,7 @@ export default function Stats() {
                                 </div>
                                 {/* Using an image for heatmap as per request visual style, referencing user's actual github if possible or placeholder */}
                                 {/* Since I can't dynamically generate it easily without a library, I'll use a stylized placeholder or an image API */}
-                                <div className="w-full h-full overflow-hidden blur-[1px] rounded-xl opacity-100 transition-opacity relative">
+                                <div className="w-full h-full overflow-hidden  rounded-xl opacity-100 transition-opacity relative">
                                     {/* Using ghchart as a placeholder representation */}
                                     <Image
                                         src="https://ghchart.rshah.org/03C851/VrandaaGarg"
