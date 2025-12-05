@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Code, Star } from "lucide-react";
 import { useState, useEffect } from "react";
+import SpotlightCard from "../ui/SpotlightCard";
 
 interface WakaTimeStats {
     humanReadableTotal: string;
@@ -191,9 +192,14 @@ export default function Stats() {
                             className="flex-1 shadow-sm rounded-xl"
                         >
                             <Link href="https://x.com/vrandaagarg" target="_blank" className="h-full block">
-                                <div className="h-full bg-card border border-neutral-300/70 rounded-xl flex items-center justify-center hover:bg-neutral-100 transition-all">
-                                    <RiTwitterXLine className="w-8 h-8 text-foreground" />
-                                </div>
+                                <SpotlightCard
+                                    className="h-full bg-card rounded-xl flex items-center justify-center hover:bg-neutral-100 transition-all"
+                                    spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+                                >
+                                    <div className="flex items-center justify-center h-full w-full">
+                                        <RiTwitterXLine className="w-8 h-8 text-foreground" />
+                                    </div>
+                                </SpotlightCard>
                             </Link>
                         </motion.div>
                     </div>
@@ -204,23 +210,27 @@ export default function Stats() {
                         viewport={{ once: true }}
                         className="h-1/2"
                     >
-                        <div className="h-full bg-card border border-neutral-200 hover:bg-neutral-100 transition-all shadow-sm rounded-xl flex items-center justify-center relative overflow-hidden">
-                            <div className="text-center relative z-10 rotate-2">
+                        <SpotlightCard
+                            className="h-full bg-card hover:bg-neutral-100 transition-all shadow-sm rounded-xl flex items-center justify-center relative overflow-hidden"
+                            spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+                        >
+                          <div className="h-full w-full flex items-center justify-center">
+                              <div className="text-center relative z-10 rotate-2">
                                 <Code className="w-6 mx-auto h-6 text-neutral-400 mb-1" />
                                 <h3 className="text-md font-mono font-bold text-foreground">
                                     {loading ? '...' : wakaTime?.humanReadableTotal || '0h'}
                                 </h3>
                                 <p className="text-[10px] text-neutral-600">
                                     coding stats (last 7 days) <br />
-
                                 </p>
                             </div>
-                            <div className="absolute -bottom-4 -right-4 w-20 h-20  blur-3xl rounded-full" />
-                        </div>
+                          </div>
+                           
+                        </SpotlightCard>
                     </motion.div>
                 </div>
 
-                {/* Discord/Offchain Card */}
+                {/* Discord Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -228,8 +238,12 @@ export default function Stats() {
                     viewport={{ once: true }}
                     className="md:col-span-2 h-48"
                 >
-                    <div className="h-full bg-card border border-neutral-300/70 rounded-xl shadow flex items-center justify-center relative overflow-hidden group">
-                        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                    <SpotlightCard
+                        className="h-full bg-card rounded-xl shadow flex items-center justify-center relative overflow-hidden group"
+                        spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+                    >
+                       <div className="h-full w-full flex items-center justify-center">
+                         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
                             <IconBrandDiscord className="w-40 h-40 text-foreground rotate-12" />
                         </div>
 
@@ -239,9 +253,10 @@ export default function Stats() {
                                 <span className="text-neutral-400 font-medium tracking-widest uppercase text-sm">Discord</span>
                             </div>
                             <h3 className="text-2xl font-bold text-foreground mb-1">vrandagarg</h3>
-                            <p className="text-neutral-500 text-sm">Let&apos;s chat about tech & anime</p>
+                            <p className="text-neutral-500 text-sm">Let&apos;s chat about tech & projects</p>
                         </div>
-                    </div>
+                       </div>
+                    </SpotlightCard>
                 </motion.div>
 
             </div>

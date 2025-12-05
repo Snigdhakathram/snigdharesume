@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { experienceData } from "@/data/experience";
 import Image from "next/image";
 import { Trophy, Medal, Code, GraduationCap, Briefcase } from "lucide-react";
+import SpotlightCard from "../ui/SpotlightCard";
 
 const iconMap = {
   trophy: Trophy,
@@ -45,11 +46,14 @@ export default function Experience() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-card border border-neutral-200 shadow-sm rounded-2xl p-5 md:p-8  transition-all duration-300">
+            <SpotlightCard
+              className="bg-card shadow-sm rounded-2xl p-5 md:p-8 transition-all duration-300"
+              spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+            >
               <div className="flex flex-col md:flex-row gap-6 md:items-start">
                 {/* Logo Section */}
                 <div className="shrink-0 flex flex-row gap-2">
-                  <div className="relative w-12 h-12 md:w-20 md:h-20 overflow-hidden  ">
+                  <div className="relative w-12 h-12 md:w-20 md:h-20 overflow-hidden">
                     <Image
                       src={item.logo}
                       alt={item.name}
@@ -79,14 +83,20 @@ export default function Experience() {
                         {item.name} {item.company && <span className="text-neutral-400">•</span>} {item.company}
                       </p>
                     </div>
-                    <span className="self-start rounded-lg md:self-start text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
-                      {item.duration}
-                    </span>
+                    <div className="flex items-center gap-2 self-start md:self-start">
+                      <span className="rounded-lg text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
+                        {item.duration}
+                      </span>
+                    </div>
                   </div>
 
-                  <p className="text-base text-neutral-600 leading-relaxed mb-3 md:mb-6 text-justify">
-                    {item.description}
-                  </p>
+                  <ul className="text-base text-neutral-600 leading-relaxed mb-3 md:mb-6 space-y-2 list-disc list-items pl-3">
+                    {item.description.map((point, index) => (
+                      <li key={index} className="text-justify">
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
 
                   <div className="flex flex-wrap gap-2">
                     {item.technologies.map((tech) => (
@@ -100,7 +110,7 @@ export default function Experience() {
                   </div>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           </motion.div>
         </motion.div>
       </section>
@@ -152,7 +162,10 @@ export default function Experience() {
                   >
                     {/* Content Side */}
                     <div className="flex-1 md:w-1/2 md:px-8 pl-20">
-                      <div className="bg-card border border-neutral-200 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300">
+                      <SpotlightCard
+                        className="bg-card rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
+                        spotlightColor="rgba(120, 120, 120, 0.15)"
+                      >
                         <div className="flex items-start justify-between mb-4 gap-4">
                           <div className="flex items-center gap-3">
                             <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
@@ -172,14 +185,18 @@ export default function Experience() {
                               </p>
                             </div>
                           </div>
-                          <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
-                            {item.duration}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
+                              {item.duration}
+                            </span>
+                          </div>
                         </div>
 
-                        <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                          {item.description}
-                        </p>
+                        <ul className="text-sm text-neutral-600 leading-relaxed mb-4 space-y-1.5 list-disc list-inside">
+                          {item.description.map((point, index) => (
+                            <li key={index}>{point}</li>
+                          ))}
+                        </ul>
 
                         <div className="flex flex-wrap gap-2">
                           {item.technologies.map((tech) => (
@@ -191,7 +208,7 @@ export default function Experience() {
                             </span>
                           ))}
                         </div>
-                      </div>
+                      </SpotlightCard>
                     </div>
 
                     {/* Center Icon */}
