@@ -47,15 +47,24 @@ export default function Contact() {
         setFormState("submitting");
 
         const formData = new FormData(event.currentTarget);
+        const data = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            message: formData.get("message") as string,
+        };
 
         try {
-            const response = await fetch("https://formsubmit.co/ajax/gargvranda963@gmail.com", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                body: formData,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
             });
 
             if (response.ok) {
                 setFormState("success");
+                (event.target as HTMLFormElement).reset();
             } else {
                 setFormState("error");
             }
@@ -302,7 +311,7 @@ export default function Contact() {
                                                                     <Check className="w-8 h-8 text-green-500" />
                                                                 </motion.div>
                                                                 <div>
-                                                                    <h3 className="text-xl font-bold text-neutral-200">Message Sent!</h3>
+                                                                    <h3 className="text-xl font-bold text-neutral-700">Message Sent!</h3>
                                                                     <p className="text-neutral-500 mt-1 text-xs">Function execution completed successfully.</p>
                                                                 </div>
                                                                 <button
@@ -488,7 +497,7 @@ export default function Contact() {
                                                 <Button
                                                     variant="outline"
                                                     onClick={() => setFormState("idle")}
-                                                    className="rounded-full cursor-pointer text-background bg-foreground"
+                                                    className="rounded-full hover:bg-neutral-700 hover:text-background cursor-pointer text-background bg-foreground"
                                                 >
                                                     Send another message
                                                 </Button>
