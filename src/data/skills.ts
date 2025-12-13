@@ -18,7 +18,8 @@ import {
   SiFirebase, 
   SiAppwrite, 
   SiGithub, 
-  SiVercel 
+  SiVercel,
+  SiRedis
 } from 'react-icons/si';
 import { 
   DiNodejs 
@@ -31,14 +32,15 @@ import {
 } from 'react-icons/tb';
 import { 
   GitBranch, 
-  Hash 
+  Hash,
 } from 'lucide-react';
 import type { IconType } from 'react-icons';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Skill {
   name: string;
-  icon: IconType | LucideIcon;
+  icon?: IconType | LucideIcon;
+  image?: string;
 }
 
 export const skillsData: Record<string, Skill[]> = {
@@ -49,6 +51,7 @@ export const skillsData: Record<string, Skill[]> = {
     { name: "JavaScript", icon: SiJavascript },
     { name: "Tailwind CSS", icon: RiTailwindCssFill },
     { name: "Framer Motion", icon: SiFramer },
+    { name: "Zustand", image: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765632165/zustand_tcnlhr.png" },
   ],
   "Backend & Database": [
     { name: "Node.js", icon: DiNodejs },
@@ -57,6 +60,7 @@ export const skillsData: Record<string, Skill[]> = {
     { name: "Firebase", icon: SiFirebase },
     { name: "Appwrite", icon: SiAppwrite },
     { name: "MySQL", icon: GrMysql },
+    { name: "Redis", icon: SiRedis },
   ],
   "Programming Languages & Tools": [
     { name: "Vercel AI SDK", icon: SiVercel },
@@ -66,6 +70,6 @@ export const skillsData: Record<string, Skill[]> = {
     { name: "C++", icon: TbBrandCpp },
     { name: "C", icon: Hash },
     { name: "Java", icon: FaJava },
-    { name: "Python", icon: FaPython },
+    { name: "Python", icon: FaPython }, 
   ],
 };

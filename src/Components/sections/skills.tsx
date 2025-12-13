@@ -93,6 +93,7 @@ export default function Skills() {
                 <SkillCard
                   name={skill.name}
                   icon={skill.icon}
+                  image={skill.image}
                 />
               </motion.div>
             ))}
