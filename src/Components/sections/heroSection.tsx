@@ -190,7 +190,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="space-y-3"
+              className="space-y-3 my-4 md:my-8"
             >
               <p className="text-md md:text-lg text-center md:text-justify text-neutral-600 leading-relaxed">
                 Full Stack Developer specializing in modern web applications with{" "}
@@ -213,7 +213,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-              className="flex flex-col  items-center sm:items-start gap-4 pt-4"
+              className="flex flex-col  items-center sm:items-start gap-4"
             >
               <div className="flex flex-nowrap justify-center gap-3 text-center">
                 <Link

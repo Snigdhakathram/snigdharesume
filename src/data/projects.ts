@@ -224,7 +224,7 @@ export const projectsData: Project[] = [
     id: "7",
     name: "Portfolio",
     image:
-      "https://res.cloudinary.com/dyetf2h9n/image/upload/q_60/v1752582425/portfolio_qamgzu.png",
+      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
     description:
       "This portfolio showcases my skills, projects, and experiences. It features a modern design with smooth animations, responsive layout, and interactive elements.",
     techStack: [

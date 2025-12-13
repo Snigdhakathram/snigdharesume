@@ -1,0 +1,16 @@
+# robots.txt for vrandagarg.in
+
+User-agent: *
+Allow: /
+Allow: /projects/
+Allow: /projects/*
+
+# Disallow admin or private routes if any
+# Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://vrandagarg.in/sitemap.xml
+
+# Crawl-delay (optional, remove if not needed)
+# Crawl-delay: 1
+

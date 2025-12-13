@@ -5,6 +5,7 @@ import Background from "@/Components/ui/Background";
 import Navbar from "@/Components/layout/navbar";
 import Footer from "@/Components/layout/footer";
 import ThemeProvider from "@/Components/layout/ThemeProvider";
+import { StructuredData } from "@/Components/seo/StructuredData";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -16,9 +17,87 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://vrandagarg.in";
+const siteName = "Vranda Garg - Portfolio";
+const description =
+  "Full Stack Developer specializing in Next.js, TypeScript, and React. Expert in building scalable web applications, AI-powered platforms, and real-time systems. Frontend Developer at Kakiyo OÜ. Creator of CappyChat, Quoridor Online, ResuMate, and more.";
+
 export const metadata: Metadata = {
-  title: "Vranda Garg - Portfolio",
-  description: "Full Stack Developer | Frontend Expert | Website Designer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description,
+  keywords: [
+    "Vranda Garg",
+    "Full Stack Developer",
+    "Frontend Developer",
+    "Next.js Developer",
+    "React Developer",
+    "TypeScript Developer",
+    "Web Developer",
+    "UI/UX Developer",
+    "Portfolio",
+    "Software Engineer",
+    "CappyChat",
+    "Quoridor Online",
+    "ResuMate",
+    "AI Developer",
+    "Real-time Systems",
+    "Kakiyo OÜ",
+  ],
+  authors: [{ name: "Vranda Garg" }],
+  creator: "Vranda Garg",
+  publisher: "Vranda Garg",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName,
+    title: siteName,
+    description,
+    images: [
+      {
+        url: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
+        width: 1200,
+        height: 630,
+        alt: "Vranda Garg - Full Stack Developer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description,
+    creator: "@vrandaagarg",
+    images: ["https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/logo.jpg",
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
+  // TODO: Add Google Search Console verification
+  // verification: {
+  //   google: "your-google-verification-code",
+  // },
 };
 
 export default function RootLayout({
@@ -31,6 +110,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased flex flex-col min-h-screen relative font-sans`}
       >
+        <StructuredData />
         <ThemeProvider>
           <Background />
           <div className="relative z-10 flex flex-col min-h-screen">
