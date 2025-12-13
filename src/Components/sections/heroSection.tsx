@@ -192,21 +192,18 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="space-y-3"
             >
-              <p className="text-sm md:text-lg text-justify text-neutral-600 leading-relaxed">
-                I&apos;m a Full Stack Developer with a passion for creating
-                beautiful, responsive, and user-friendly web experiences. I
-                specialize in building modern web applications that combine
-                stunning design with seamless functionality. With expertise in{" "}
+              <p className="text-md md:text-lg text-center md:text-justify text-neutral-600 leading-relaxed">
+                Full Stack Developer specializing in modern web applications with{" "}
                 <span className="text-foreground font-semibold">Next.js</span>,{" "}
-                <span className="text-foreground font-semibold">TypeScript</span>,
-                and <span className="text-foreground font-semibold">React</span>,
-                I craft scalable and performant solutions. My backend experience
-                spans{" "}
-                <span className="text-foreground font-semibold">Firebase</span>{" "}
-                and{" "}
-                <span className="text-foreground font-semibold">Appwrite</span>,
-                enabling me to build full-stack applications with real-time
-                capabilities, authentication, and database management.
+                <span className="text-foreground font-semibold">TypeScript</span>, and{" "}
+                <span className="text-foreground font-semibold">React</span>. I build scalable,
+                performant solutions featuring real-time systems, AI integration, and seamless
+                user experiences. 
+                {/* Expert in{" "}
+                <span className="text-foreground font-semibold">Appwrite</span>,{" "}
+                <span className="text-foreground font-semibold">Redis</span>, and{" "}
+                <span className="text-foreground font-semibold">Server-Sent Events</span> for
+                cutting-edge full-stack applications. */}
               </p>
 
 
@@ -216,9 +213,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-              className="flex flex-col  items-start sm:items-start gap-4 pt-4"
+              className="flex flex-col  items-center sm:items-start gap-4 pt-4"
             >
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-nowrap justify-center gap-3 text-center">
                 <Link
                   href="#contact"
                   className="group w-full md:w-auto relative inline-flex h-8 md:h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-300 font-medium"

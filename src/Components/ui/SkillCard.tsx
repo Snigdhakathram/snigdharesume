@@ -34,7 +34,7 @@ export default function SkillCard({
     >
       <div className="flex flex-col items-center justify-center h-full w-full">
         {showIcon && (
-          <div className="mb-4 h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-lg md:rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
+          <div className="mb-4 shrink-0 h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-lg md:rounded-2xl bg-neutral-100 border border-neutral-200 text-neutral-600 transition-colors duration-300 group-hover:scale-110">
             {image ? (
               <Image
                 src={image}
@@ -48,7 +48,7 @@ export default function SkillCard({
             ) : null}
           </div>
         )}
-        <span className="text-[10px] md:text-sm font-bold text-center text-foreground leading-tight">
+        <span className="text-[9px] md:text-sm font-bold text-center text-foreground leading-tight">
           {name}
         </span>
       </div>

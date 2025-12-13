@@ -22,14 +22,15 @@ export const experienceData: Experience[] = [
     duration: "Nov 2025 - Present",
     isCurrent: true,
     description: [
-      "Built and optimized a responsive, user-friendly landing page using TypeScript, Tailwind CSS, and Framer Motion to enhance user engagement and improve website comprehension.",
-      "Architected and redesigned the dashboard section with intuitive UI/UX patterns, significantly reducing client friction and improving overall user experience.",
-      "Developed interactive micro-components and animations to create seamless user interactions across the platform.",
-    
+      "Developed core features with optimized, scalable architecture ensuring efficient rendering and maintainable code structure.",
+      "Built intuitive UI/UX designs focusing on seamless user navigation and accessibility across all device types.",
+      "Implemented responsive layouts with high uptime, leveraging performance optimizations and code splitting techniques.",
+      "Created interactive micro-components and animations using Framer Motion, enhancing user engagement and visual feedback.",
     ],
     technologies: [
       "Next.js",
       "React.js",
+      "TypeScript",
       "Tailwind CSS",
       "Framer Motion",
       "Appwrite",
