@@ -41,7 +41,7 @@ export default function SkillCard({
                 alt={name}
                 width={56}
                 height={56}
-                className="md:w-24 md:h-24 w-10 h-10 object-contain filter grayscale"
+                className="md:w-12 md:h-12 w-5 h-5 object-contain filter grayscale"
               />
             ) : Icon ? (
               <Icon className="md:w-8 md:h-8 w-5 h-5" />
