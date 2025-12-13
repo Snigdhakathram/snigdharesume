@@ -15,6 +15,7 @@ import {
   Plus,
   ChevronLeft,
   ChevronRight,
+  Lightbulb,
 } from "lucide-react";
 import { Project, projectsData } from "@/data/projects";
 import ReactMarkdown from "react-markdown";
@@ -171,6 +172,41 @@ export default function ProjectDetailsView({
                       </ReactMarkdown>
                     </div>
                   </motion.div>
+
+                  {project.whyBuildIt && (
+                    <motion.div variants={fadeInUp}>
+                      <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5 text-neutral-500" />
+                        Why I Built It?
+                      </h2>
+                      <div className="prose prose-neutral prose-lg max-w-none text-neutral-600 leading-relaxed text-sm md:text-base">
+                        <ReactMarkdown
+                          components={{
+                            strong: ({ children }) => (
+                              <strong className="font-bold text-foreground">
+                                {children}
+                              </strong>
+                            ),
+                            ul: ({ children }) => (
+                              <ul className="space-y-3 list-disc pl-4 marker:text-neutral-400">
+                                {children}
+                              </ul>
+                            ),
+                            li: ({ children }) => (
+                              <li className="pl-1">{children}</li>
+                            ),
+                            p: ({ children }) => (
+                              <p className="whitespace-pre-wrap mb-4">
+                                {children}
+                              </p>
+                            ),
+                          }}
+                        >
+                          {project.whyBuildIt}
+                        </ReactMarkdown>
+                      </div>
+                    </motion.div>
+                  )}
 
                   {project.videoLinks && project.videoLinks.length > 0 && (
                     <motion.div variants={fadeInUp} className="space-y-4">

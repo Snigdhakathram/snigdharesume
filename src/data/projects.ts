@@ -16,9 +16,11 @@ export interface Project {
   isLive: boolean;
   contributors: Contributor[];
   videoLinks?: string[];
+  whyBuildIt?: string;
 }
 
 export const projectsData: Project[] = [
+  
   {
     id: "2",
     name: "CappyChat",
@@ -48,6 +50,34 @@ export const projectsData: Project[] = [
     isLive: true,
     contributors: [
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
+      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+    ],
+  },
+  {
+    id: "8",
+    name: "Quoridor Online",
+    image:
+      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765577464/Quoridor_gctz2q.png",
+    description:
+      "A beautiful, animated implementation of the classic strategy board game **Quoridor**, built with Next.js and real-time multiplayer capabilities.\n\n• **Local Pass & Play** - Two-player mode on a **single device**\n• **Online Multiplayer** - Real-time matches with friends via **shareable room codes**\n• **Real-Time Synchronization** - Serverless-friendly approach using **HTTP + SSE (Server-Sent Events)** with **Redis** as single source of truth",
+    whyBuildIt:
+      "The goal was to understand **how real-time systems work under the hood** without requiring user sign-ups. I explored how to synchronize game state instantly between two players, researching various real-time communication patterns: **Short Polling**, **Long Polling**, **WebSockets / Socket.io**, and **Server-Sent Events (SSE)**.\n\n**Implementation Details:**\nFor this project, I implemented a **Serverless-friendly approach using HTTP + SSE (Server-Sent Events)**.\n• **Redis** acts as the single source of truth for game state\n• **SSE** pushes updates instantly to clients without them needing to refresh or poll\n• The system is completely stateless and frictionless—users can jump in via a link and play immediately",
+    techStack: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Zustand",
+      "Redis (Upstash)",
+      "Server-Sent Events (SSE)",
+      "React Icons",
+    ],
+    liveDemoUrl: "https://quoridor.vrandagarg.in",
+    githubUrl: "https://github.com/VrandaaGarg/quoridor-game",
+    dateCreated: "December 2025",
+    timeCreatedIn: "2 days",
+    isLive: true,
+    contributors: [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
