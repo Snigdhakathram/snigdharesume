@@ -20,9 +20,8 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
-  
   {
-    id: "2",
+    id: "9",
     name: "CappyChat",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1759138327/AV_1_zztl3w.png",
@@ -31,17 +30,11 @@ export const projectsData: Project[] = [
     techStack: [
       "Next.js 15",
       "TypeScript",
-
-
       "Zustand",
-
       "Appwrite",
       "OpenRouter",
-
-
       "Cloudinary",
       "Better Stack",
-
     ],
     liveDemoUrl: "https://cappychat.com",
     githubUrl: "https://github.com/cyberboyayush/cappychat",
@@ -53,8 +46,58 @@ export const projectsData: Project[] = [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
-  {
+   {
     id: "8",
+    name: "ResuMate",
+    image: "https://resumate.vrandagarg.in/banner.png",
+    description:
+      "AI-powered resume builder designed to help job seekers craft **professional, ATS-friendly resumes** with **intelligent optimization**.\n\n• **Step-by-Step Builder** - Guided form inputs for personal info, education, experience, and **certifications**\n• **Resume Upload & Analysis** - Upload resumes (PDF/DOCX) with instant **ATS scoring**\n• **Create from Upload** - Auto-populate templates with **intelligent parsing**\n• **Live Preview & Editor** - Real-time editing with **formatting options** and hyperlink support\n• **3 Professional Templates** - Classic, Sidebar, and Standard with **instant switching**\n• **AI Bullet Enhancer** - Transform points into **action-oriented** statements\n• **Role-Specific Optimization** - Tailor resumes with **AI-powered suggestions**\n• **Job Description Matching** - Get match scores and **improvement tips**\n• **ATS Compatibility Checker** - Score (0-100) on **ATS friendliness**\n• **PDF Export** - Download **pixel-perfect PDFs** ready for applications",
+    techStack: [
+      "React (Vite)",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "OpenAI API",
+      "Firebase",
+      "Appwrite",
+      "react-to-print",
+    ],
+    liveDemoUrl: "https://resumate.vrandagarg.in/",
+    githubUrl: "https://github.com/VrandaaGarg/ResuMate",
+    dateCreated: "May 2025",
+    timeCreatedIn: "3 weeks",
+    isLive: true,
+    contributors: [
+      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+    ],
+  },
+  {
+    id: "7",
+    name: "CappyUI",
+    image:
+      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1766867568/image_xij1nl.png",
+    description:
+      "Beautiful animated React component library for building **stunning interfaces faster**.\n\n• **Copy-Paste Components** - Ready-to-use components for **rapid development**\n• **Built with Modern Stack** - **React, Tailwind CSS, and Framer Motion**\n• **TypeScript Support** - Full type safety with **TypeScript** integration\n• **Next.js Compatible** - Works seamlessly with **Next.js** projects\n• **shadcn/ui Inspired** - Following the **copy-paste philosophy**\n• **Radix UI Primitives** - Built on top of **accessible primitives**\n• **Interactive Demos** - Live previews for every component\n• **Developer Friendly** - Easy to customize and extend",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Next.js",
+      "Radix UI",
+      "MDX",
+    ],
+    liveDemoUrl: "https://ui.cappychat.com",
+    githubUrl: "https://github.com/VrandaaGarg/cappyui",
+    dateCreated: "December 2025",
+    timeCreatedIn: "2 weeks",
+    isLive: true,
+    contributors: [
+      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+    ],
+  },
+  {
+    id: "6",
     name: "Quoridor Online",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765577464/Quoridor_gctz2q.png",
@@ -81,31 +124,7 @@ export const projectsData: Project[] = [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
-  {
-    id: "1",
-    name: "ResuMate",
-    image: "https://resumate.vrandagarg.in/banner.png",
-    description:
-      "AI-powered resume builder designed to help job seekers craft **professional, ATS-friendly resumes** with **intelligent optimization**.\n\n• **Step-by-Step Builder** - Guided form inputs for personal info, education, experience, and **certifications**\n• **Resume Upload & Analysis** - Upload resumes (PDF/DOCX) with instant **ATS scoring**\n• **Create from Upload** - Auto-populate templates with **intelligent parsing**\n• **Live Preview & Editor** - Real-time editing with **formatting options** and hyperlink support\n• **3 Professional Templates** - Classic, Sidebar, and Standard with **instant switching**\n• **AI Bullet Enhancer** - Transform points into **action-oriented** statements\n• **Role-Specific Optimization** - Tailor resumes with **AI-powered suggestions**\n• **Job Description Matching** - Get match scores and **improvement tips**\n• **ATS Compatibility Checker** - Score (0-100) on **ATS friendliness**\n• **PDF Export** - Download **pixel-perfect PDFs** ready for applications",
-    techStack: [
-      "React (Vite)",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "OpenAI API",
-      "Firebase",
-      "Appwrite",
-      "react-to-print",
-    ],
-    liveDemoUrl: "https://resumate.vrandagarg.in/",
-    githubUrl: "https://github.com/VrandaaGarg/ResuMate",
-    dateCreated: "May 2025",
-    timeCreatedIn: "3 weeks",
-    isLive: true,
-    contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
-    ],
-  },
+ 
   {
     id: "5",
     name: "SkillCompass",
@@ -137,7 +156,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: "3",
+    id: "4",
     name: "SmartBite",
     image: "https://smartbite.vrandagarg.in/banner.png",
     description:
@@ -162,7 +181,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: "4",
+    id: "3",
     name: "Arcadia",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/q_60/v1752582425/arcadia_cq0ncn.png",
@@ -190,7 +209,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: "6",
+    id: "2",
     name: "FinWise",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/q_60/v1752582425/finwise_obzcir.png",
@@ -221,7 +240,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: "7",
+    id: "1",
     name: "Portfolio",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",

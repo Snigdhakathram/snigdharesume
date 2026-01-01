@@ -100,10 +100,8 @@ const socialProfiles = [
 export function StructuredData() {
   const siteUrl = "https://vrandagarg.in";
 
-  // Get top/featured projects (CappyChat, Quoridor, ResuMate)
-  const featuredProjects = projectsData
-    .filter((p) => ["CappyChat", "Quoridor Online", "ResuMate"].includes(p.name))
-    .slice(0, 3);
+  // Get top 4 featured projects (first 4 in the array are always featured)
+  const featuredProjects = projectsData.slice(0, 4);
 
   // Get all skills
   const allSkills = Object.values(skillsData)
@@ -141,7 +139,7 @@ export function StructuredData() {
       name: "Vranda Garg",
       jobTitle: "Full Stack Developer",
       description:
-        "Full Stack Developer specializing in Next.js, TypeScript, and React. Frontend Developer at Kakiyo OÜ. Creator of innovative web applications including CappyChat, Quoridor Online, and ResuMate.",
+        "Full Stack Developer specializing in Next.js, TypeScript, and React. Frontend Developer at Kakiyo OÜ. Creator of innovative web applications including CappyUI, CappyChat, Quoridor Online, and ResuMate.",
     },
   };
 
