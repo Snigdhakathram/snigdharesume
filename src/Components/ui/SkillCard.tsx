@@ -24,7 +24,7 @@ export default function SkillCard({
     <SpotlightCard
       className={cn(
         "p-2 md:p-4 rounded-2xl",
-        "bg-white dark:bg-card text-foreground",
+        "bg-card text-foreground",
         "border-neutral-200",
         "transition-all duration-300 ease-out cursor-default",
         "aspect-square",

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -39,7 +39,7 @@ export default function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-900 ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-neutral-200 bg-card text-foreground ${className}`}
       {...props}
     >
       <div
