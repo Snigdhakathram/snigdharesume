@@ -20,6 +20,7 @@ import {
 import { Project, projectsData } from "@/data/projects";
 import ReactMarkdown from "react-markdown";
 import Magnetic from "@/Components/ui/Magnetic";
+import ContributorStats from "@/Components/ui/ContributorStats";
 
 interface ProjectDetailsViewProps {
   project: Project;
@@ -304,52 +305,13 @@ export default function ProjectDetailsView({
                       ))}
                     </div>
                   </motion.div>
-
-                  {project.contributors && project.contributors.length > 0 && (
-                    <motion.div variants={fadeInUp} className="space-y-4">
-                      <h3 className="font-semibold text-foreground text-sm uppercase tracking-wider flex items-center gap-2">
-
-                        Team
-                      </h3>
-                      <div className="flex flex-wrap gap-3">
-                        {project.contributors.map((contributor) => {
-                          const username = contributor.githubUrl
-                            .replace(/\/$/, "")
-                            .split("/")
-                            .pop();
-                          return (
-                            <Link
-                              key={contributor.name}
-                              href={contributor.githubUrl}
-                              target="_blank"
-                              className="group flex items-center gap-3 p-1.5 pr-4 rounded-full bg-card border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50 transition-all shadow-sm"
-                            >
-                              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-neutral-200 group-hover:scale-105 transition-transform bg-neutral-100">
-                                <Image
-                                  src={`https://github.com/${username}.png`}
-                                  alt={contributor.name}
-                                  fill
-                                  className="object-cover"
-                                  sizes="36px"
-                                />
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-sm font-medium text-foreground group-hover:text-foreground transition-colors">
-                                  {contributor.name}
-                                </span>
-                                <span className="text-[10px] text-neutral-500 font-medium flex items-center gap-1">
-
-                                  @{username}
-                                </span>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
                 </div>
               </div>
+
+              {/* Contributor Stats Section - Full Width Horizontal */}
+              <motion.div variants={fadeInUp} className="pt-4">
+                <ContributorStats githubUrl={project.githubUrl} />
+              </motion.div>
             </motion.div>
           </div>
 
