@@ -67,7 +67,7 @@ export default function ProjectCard({
             </Link>
           </div>
 
-          <div className="text-sm text-justify text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow prose prose-sm prose-neutral max-w-none">
+          <div className="text-sm text-left text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow prose prose-sm prose-neutral max-w-none">
             <ReactMarkdown
               components={{
                 strong: ({ children }) => <strong className="font-bold text-neutral-700">{children}</strong>,

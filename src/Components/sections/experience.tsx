@@ -92,7 +92,7 @@ export default function Experience() {
 
                   <ul className="text-base text-neutral-600 leading-relaxed mb-3 md:mb-6 space-y-2 list-disc list-items pl-3">
                     {item.description.map((point, index) => (
-                      <li key={index} className="text-justify">
+                      <li key={index} className="text-left">
                         {point}
                       </li>
                     ))}

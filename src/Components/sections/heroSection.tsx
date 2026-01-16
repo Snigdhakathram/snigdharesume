@@ -192,7 +192,7 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="space-y-3 my-4 md:my-8"
             >
-              <p className="text-md md:text-lg text-center md:text-justify text-neutral-600 leading-relaxed">
+              <p className="text-md md:text-lg text-center md:text-left text-neutral-600 leading-relaxed">
                 Full Stack Developer specializing in modern web applications with{" "}
                 <span className="text-foreground font-semibold">Next.js</span>,{" "}
                 <span className="text-foreground font-semibold">TypeScript</span>, and{" "}
