@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 const siteUrl = "https://vrandagarg.in";
-const siteName = "Vranda Garg - Portfolio";
+const siteName = "Vranda Garg - Full Stack Developer";
 const description =
   "Full Stack Developer specializing in Next.js, TypeScript, and React. Expert in building scalable web applications, AI-powered platforms, and real-time systems. Frontend Developer at Kakiyo OÜ. Creator of CappyChat, Quoridor Online, ResuMate, and more.";
 
@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "TypeScript Developer",
     "Web Developer",
     "UI/UX Developer",
-    "Portfolio",
     "Software Engineer",
     "CappyChat",
     "Quoridor Online",
@@ -67,7 +66,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
         width: 1200,
         height: 630,
-        alt: "Vranda Garg - Full Stack Developer Portfolio",
+        alt: "Vranda Garg - Full Stack Developer",
       },
     ],
   },
