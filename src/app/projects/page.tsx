@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Explore my portfolio of innovative web applications including CappyChat (AI chat platform), Quoridor Online (multiplayer board game), ResuMate (AI resume builder), SkillCompass, SmartBite, and more. Built with Next.js, React, TypeScript, and modern web technologies.",
+    "Explore my portfolio of innovative web applications including CappyChat (AI chat platform), Bashio (AI CLI tool), Quoridor Online (multiplayer board game), ResuMate (AI resume builder), CappyUI, SkillCompass, SmartBite, and more. Built with Next.js, React, TypeScript, and modern web technologies.",
   keywords: [
     "Vranda Garg Projects",
     "Web Development Projects",
@@ -13,8 +13,10 @@ export const metadata: Metadata = {
     "React Projects",
     "Portfolio Projects",
     "CappyChat",
+    "Bashio",
     "Quoridor Online",
     "ResuMate",
+    "CappyUI",
     "Full Stack Projects",
   ],
   openGraph: {

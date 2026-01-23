@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,6 +30,34 @@ interface ProjectDetailsViewProps {
 export default function ProjectDetailsView({
   project,
 }: ProjectDetailsViewProps) {
+  const hasVideo = !!project.video;
+  const [showVideo, setShowVideo] = useState(hasVideo);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current || !showVideo) return;
+
+    const videoElement = videoRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoElement.currentTime = 0;
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(videoElement);
+
+    return () => observer.disconnect();
+  }, [showVideo]);
+
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -124,18 +153,49 @@ export default function ProjectDetailsView({
                 </motion.div>
               </div>
 
-              {/* Main Image */}
+              {/* Main Image/Video */}
               <motion.div
                 variants={fadeInUp}
                 className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-neutral-200 bg-neutral-100"
               >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+                {hasVideo && (
+                  <>
+                    <button
+                      onClick={() => setShowVideo((prev) => !prev)}
+                      className="absolute cursor-pointer left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full backdrop-blur-sm transition-all bg-black/50 text-white hover:bg-black/70"
+                      aria-label="Previous"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setShowVideo((prev) => !prev)}
+                      className="absolute cursor-pointer right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full backdrop-blur-sm transition-all bg-black/50 text-white hover:bg-black/70"
+                      aria-label="Next"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+
+                {showVideo && project.video ? (
+                  <video
+                    ref={videoRef}
+                    src={project.video}
+                    muted
+                    playsInline
+                    controls={false}
+                    disablePictureInPicture
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                )}
               </motion.div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-10 md:pt-4">

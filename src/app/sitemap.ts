@@ -20,8 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic project routes
-  const projectRoutes = projectsData.map((project) => ({
+  // Dynamic project routes - only featured projects
+  const featuredProjects = projectsData.filter((project) => project.featured);
+  const projectRoutes = featuredProjects.map((project) => ({
     url: `${baseUrl}/projects/${project.name.toLowerCase().replace(/\s+/g, "-")}`,
     lastModified: new Date(project.dateCreated),
     changeFrequency: "monthly" as const,

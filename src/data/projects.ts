@@ -7,6 +7,7 @@ export interface Project {
   id: string;
   name: string;
   image: string;
+  video?: string;
   description: string;
   techStack: string[];
   liveDemoUrl?: string;
@@ -14,14 +15,16 @@ export interface Project {
   dateCreated: string;
   timeCreatedIn: string;
   isLive: boolean;
+  featured: boolean;
   contributors: Contributor[];
   videoLinks?: string[];
   whyBuildIt?: string;
 }
 
 export const projectsData: Project[] = [
+  
   {
-    id: "9",
+    id: "10",
     name: "CappyChat",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1759138327/AV_1_zztl3w.png",
@@ -43,6 +46,34 @@ export const projectsData: Project[] = [
     isLive: true,
     contributors: [
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
+      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+    ],
+    featured: true,
+  },
+  {
+    id: "9",
+    name: "Bashio",
+    video:"https://res.cloudinary.com/dyetf2h9n/video/upload/v1769146942/BashIOVideo_1_qlrib7.mp4",
+    image:
+      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1769023957/Natural_language_to_shell_commands._Stop_Googling_start_doing._1_u8e0qd.png",
+    description:
+      "AI-powered CLI tool that converts **plain English into shell commands**. Stop Googling, start doing.\n\n• **Natural Language to Shell** - Describe what you want, get the exact command\n• **Multiple AI Providers** - Claude, OpenAI, GitHub Copilot, Ollama, OpenRouter with **easy switching**\n• **Chat Mode** - Full-screen AI chat with **streaming responses** and session history\n• **Custom Shortcuts** - Save frequently used commands with **placeholders**\n• **Safety First** - Warns about **dangerous commands** before execution\n• **Command Options** - Execute, explain, copy, or edit commands before running\n• **Local Storage** - All data stored locally at `~/.bashio/` with **no telemetry**\n• **Usage Statistics** - Track command history and **suggest shortcuts**\n• **Theme Support** - Multiple color themes with **easy switching**\n• **Published on npm** - Install globally with `npm i -g bashio`",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Claude API",
+      "OpenAI API",
+      "Ollama",
+      "tsup",
+      "Biome",
+    ],
+    liveDemoUrl: "https://www.npmjs.com/package/bashio",
+    githubUrl: "https://github.com/VrandaaGarg/bashio",
+    dateCreated: "January 2026",
+    timeCreatedIn: "1 week",
+    isLive: true,
+    featured: true,
+    contributors: [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
@@ -70,34 +101,10 @@ export const projectsData: Project[] = [
     contributors: [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
+    featured: true,
   },
   {
     id: "7",
-    name: "CappyUI",
-    image:
-      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1766867568/image_xij1nl.png",
-    description:
-      "Beautiful animated React component library for building **stunning interfaces faster**.\n\n• **Copy-Paste Components** - Ready-to-use components for **rapid development**\n• **Built with Modern Stack** - **React, Tailwind CSS, and Framer Motion**\n• **TypeScript Support** - Full type safety with **TypeScript** integration\n• **Next.js Compatible** - Works seamlessly with **Next.js** projects\n• **shadcn/ui Inspired** - Following the **copy-paste philosophy**\n• **Radix UI Primitives** - Built on top of **accessible primitives**\n• **Interactive Demos** - Live previews for every component\n• **Developer Friendly** - Easy to customize and extend",
-    techStack: [
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Next.js",
-      "Radix UI",
-      "MDX",
-    ],
-    liveDemoUrl: "https://ui.cappychat.com",
-    githubUrl: "https://github.com/VrandaaGarg/cappyui",
-    dateCreated: "December 2025",
-    timeCreatedIn: "2 weeks",
-    isLive: true,
-    contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
-    ],
-  },
-  {
-    id: "6",
     name: "Quoridor Online",
     image:
       "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765577464/Quoridor_gctz2q.png",
@@ -120,10 +127,38 @@ export const projectsData: Project[] = [
     dateCreated: "December 2025",
     timeCreatedIn: "2 days",
     isLive: true,
+    featured: true,
     contributors: [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
+  {
+    id: "6",
+    name: "CappyUI",
+    image:
+      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1766867568/image_xij1nl.png",
+    description:
+      "Beautiful animated React component library for building **stunning interfaces faster**.\n\n• **Copy-Paste Components** - Ready-to-use components for **rapid development**\n• **Built with Modern Stack** - **React, Tailwind CSS, and Framer Motion**\n• **TypeScript Support** - Full type safety with **TypeScript** integration\n• **Next.js Compatible** - Works seamlessly with **Next.js** projects\n• **shadcn/ui Inspired** - Following the **copy-paste philosophy**\n• **Radix UI Primitives** - Built on top of **accessible primitives**\n• **Interactive Demos** - Live previews for every component\n• **Developer Friendly** - Easy to customize and extend",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Next.js",
+      "Radix UI",
+      "MDX",
+    ],
+    liveDemoUrl: "https://ui.cappychat.com",
+    githubUrl: "https://github.com/VrandaaGarg/cappyui",
+    dateCreated: "December 2025",
+    timeCreatedIn: "2 weeks",
+    isLive: true,
+    featured: true,
+    contributors: [
+      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+    ],
+  },
+  
  
   {
     id: "5",
@@ -154,6 +189,7 @@ export const projectsData: Project[] = [
       { name: "Raghav Gaba", githubUrl: "https://github.com/raghavvvgaba" },
       { name: "Atishay Jain", githubUrl: "https://github.com/atishay-jain04" },
     ],
+    featured: false,
   },
   {
     id: "4",
@@ -179,6 +215,7 @@ export const projectsData: Project[] = [
     contributors: [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
     ],
+    featured: false,
   },
   {
     id: "3",
@@ -207,6 +244,7 @@ export const projectsData: Project[] = [
       { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
     ],
+    featured: false,
   },
   {
     id: "2",
@@ -238,28 +276,30 @@ export const projectsData: Project[] = [
       { name: "Raghav Gaba", githubUrl: "https://github.com/raghavvvgaba" },
       { name: "Raghav Katta", githubUrl: "https://github.com/raghavxkatta" },
     ],
+    featured: false,
   },
-  {
-    id: "1",
-    name: "Portfolio",
-    image:
-      "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
-    description:
-      "This portfolio showcases my skills, projects, and experiences. It features a modern design with smooth animations, responsive layout, and interactive elements.",
-    techStack: [
-      "Next JS",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-    ],
-    liveDemoUrl: "https://vrandagarg.in/",
-    githubUrl: "https://github.com/VrandaaGarg/next-portfolio",
-    dateCreated: "July 2024",
-    timeCreatedIn: "2 weeks",
-    isLive: true,
-    contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
-    ],
-  },
+  // {
+  //   id: "1",
+  //   name: "Portfolio",
+  //   image:
+  //     "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
+  //   description:
+  //     "This portfolio showcases my skills, projects, and experiences. It features a modern design with smooth animations, responsive layout, and interactive elements.",
+  //   techStack: [
+  //     "Next JS",
+  //     "TypeScript",
+  //     "Tailwind CSS",
+  //     "Framer Motion",
+  //     "Lucide Icons",
+  //   ],
+  //   liveDemoUrl: "https://vrandagarg.in/",
+  //   githubUrl: "https://github.com/VrandaaGarg/next-portfolio",
+  //   dateCreated: "July 2024",
+  //   timeCreatedIn: "2 weeks",
+  //   isLive: true,
+  //   contributors: [
+  //     { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+  //   ],
+  //   featured: false,
+  // },
 ];

@@ -12,8 +12,22 @@ interface ProjectsProps {
 }
 
 export default function Projects({ limit }: ProjectsProps) {
-  const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const sortedProjects = [...projectsData].sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return 0;
+  });
+
+  const filteredProjects = isHomePage
+    ? sortedProjects.filter((project) => project.featured)
+    : sortedProjects;
+
+  const displayedProjects = limit
+    ? filteredProjects.slice(0, limit)
+    : filteredProjects;
 
   return (
     <section className="py-10 md:py-16 px-5 md:px-8">
@@ -55,6 +69,7 @@ export default function Projects({ limit }: ProjectsProps) {
               name={project.name}
               description={project.description}
               image={project.image}
+              video={project.video}
               techStack={project.techStack}
               githubUrl={project.githubUrl}
               liveDemoUrl={project.liveDemoUrl}

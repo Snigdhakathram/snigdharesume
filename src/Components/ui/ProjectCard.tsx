@@ -1,33 +1,71 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { IconBrandGithub } from "@tabler/icons-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import SpotlightCard from "./SpotlightCard";
 
 interface ProjectCardProps {
   id: string;
   name: string;
   description: string;
   image: string;
+  video?: string;
   techStack: string[];
   githubUrl: string;
   liveDemoUrl?: string;
   index: number;
 }
 
-import SpotlightCard from "./SpotlightCard";
-
 export default function ProjectCard({
   name,
   description,
   image,
+  video,
   techStack,
   githubUrl,
   liveDemoUrl,
   index,
 }: ProjectCardProps) {
+  const hasVideo = !!video;
+  const [showVideo, setShowVideo] = useState(hasVideo);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const router = useRouter();
+  const projectUrl = `/projects/${name.toLowerCase().replace(/\s+/g, "-")}`;
+
+  useEffect(() => {
+    if (!videoRef.current || !showVideo) return;
+
+    const videoElement = videoRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoElement.currentTime = 0;
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(videoElement);
+
+    return () => observer.disconnect();
+  }, [showVideo]);
+
+  const handleCardClick = () => {
+    router.push(projectUrl);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -37,29 +75,66 @@ export default function ProjectCard({
       className="h-full"
     >
       <SpotlightCard
-        className="group h-full bg-neutral-100 border-neutral-200 transition-all duration-300 flex flex-col"
+        className="group h-full bg-neutral-100 border-neutral-200 transition-all duration-300 flex flex-col cursor-pointer"
         spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
+        onClick={handleCardClick}
       >
-        <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="relative h-48 w-full overflow-hidden block cursor-pointer">
-          <Image
-            src={image}
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </Link>
+        <div className="relative h-48 w-full overflow-hidden">
+          {hasVideo && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowVideo((prev) => !prev);
+                }}
+                className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full backdrop-blur-sm transition-all bg-black/50 text-white hover:bg-black/70"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowVideo((prev) => !prev);
+                }}
+                className="absolute right-2 cursor-pointer top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full backdrop-blur-sm transition-all bg-black/50 text-white hover:bg-black/70"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </>
+          )}
+
+          {showVideo && video ? (
+            <video
+              ref={videoRef}
+              src={video}
+              muted
+              playsInline
+              controls={false}
+              disablePictureInPicture
+              className="w-full h-full object-cover pointer-events-none"
+            />
+          ) : (
+            <Image
+              src={image}
+              alt={name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
+        </div>
 
         <div className="p-3 md:p-6 flex flex-col grow">
           <div className="flex items-center justify-between mb-2">
-            <Link href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:underline decoration-neutral-400 underline-offset-4 transition-all">
-              <h3 className="text-xl md:text-2xl font-bold text-foreground">
-                {name}
-              </h3>
-            </Link>
+            <h3 className="text-xl md:text-2xl font-bold text-foreground hover:underline decoration-neutral-400 underline-offset-4 transition-all">
+              {name}
+            </h3>
             <Link
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="p-2 rounded-full border border-neutral-300 bg-card hover:bg-neutral-200 transition-colors z-10"
               aria-label="View GitHub"
             >
@@ -70,7 +145,11 @@ export default function ProjectCard({
           <div className="text-sm text-left text-neutral-600 mb-2 md:mb-4 leading-relaxed line-clamp-3 grow prose prose-sm prose-neutral max-w-none">
             <ReactMarkdown
               components={{
-                strong: ({ children }) => <strong className="font-bold text-neutral-700">{children}</strong>,
+                strong: ({ children }) => (
+                  <strong className="font-bold text-neutral-700">
+                    {children}
+                  </strong>
+                ),
                 p: ({ children }) => <span>{children}</span>,
               }}
             >
@@ -95,20 +174,24 @@ export default function ProjectCard({
           </div>
 
           <div className="flex gap-3 mt-auto z-10 relative">
-            <Link
-              href={`/projects/${name.toLowerCase().replace(/\s+/g, "-")}`}
-              className="flex-1 px-4 py-2.5 rounded-lg border border-foreground bg-neutral-800 text-background hover:bg-neutral-800 transition-colors text-center text-sm font-medium"
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(projectUrl);
+              }}
+              className="flex-1 px-4 py-2.5 rounded-lg border border-foreground bg-neutral-800 text-background hover:bg-neutral-950 transition-colors text-center text-sm font-medium cursor-pointer"
             >
               Details
-            </Link>
+            </button>
             {liveDemoUrl && (
               <Link
                 href={liveDemoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 className="flex-1 px-4 py-2.5 bg-card hover:bg-neutral-100 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-colors text-center text-sm font-medium text-foreground flex items-center justify-center gap-2"
               >
-                Live 
+                Live
               </Link>
             )}
           </div>

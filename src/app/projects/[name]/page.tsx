@@ -4,7 +4,8 @@ import ProjectDetailsView from "@/Components/sections/ProjectDetailsView";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
-  return projectsData.map((project) => ({
+  const featuredProjects = projectsData.filter((project) => project.featured);
+  return featuredProjects.map((project) => ({
     name: project.name.toLowerCase().replace(/\s+/g, "-"),
   }));
 }

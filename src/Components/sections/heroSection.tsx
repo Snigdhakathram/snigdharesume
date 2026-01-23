@@ -227,7 +227,7 @@ export default function HeroSection() {
                   </div>
                 </Link>
                 <Link
-                  href="https://vrandagarg.in/VrandaGargResume.pdf"
+                  href="/VrandaGargResume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative w-full md:w-auto  inline-flex text-sm md:text-base h-8 md:h-12 items-center outline-1 outline-neutral-50 justify-center overflow-hidden rounded-lg border border-neutral-200 font-medium"
@@ -277,7 +277,7 @@ export default function HeroSection() {
           <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
-        <Projects limit={2} />
+        <Projects limit={4} />
         <div className="border-t border-neutral-200 relative">
           <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
