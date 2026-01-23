@@ -9,6 +9,7 @@ import { IconBrandGithub } from "@tabler/icons-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import SpotlightCard from "./SpotlightCard";
+import { getOptimizedMediaUrl } from "@/lib/utils";
 
 interface ProjectCardProps {
   id: string;
@@ -108,7 +109,7 @@ export default function ProjectCard({
           {showVideo && video ? (
             <video
               ref={videoRef}
-              src={video}
+              src={getOptimizedMediaUrl(video, "video")}
               muted
               playsInline
               controls={false}
@@ -117,9 +118,10 @@ export default function ProjectCard({
             />
           ) : (
             <Image
-              src={image}
+              src={getOptimizedMediaUrl(image, "image")}
               alt={name}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           )}

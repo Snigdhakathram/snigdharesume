@@ -83,12 +83,45 @@ export default function Experience() {
                         {item.name} {item.company && <span className="text-neutral-400">•</span>} {item.company}
                       </p>
                     </div>
-                    <div className="flex items-center gap-2 self-start md:self-start">
-                      <span className="rounded-lg text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
-                        {item.duration}
-                      </span>
-                    </div>
+                    {!item.positions && (
+                      <div className="flex items-center gap-2 self-start md:self-start">
+                        <span className="rounded-lg text-xs md:text-sm font-mono text-neutral-500 bg-neutral-200 px-3 py-1.5 whitespace-nowrap border border-neutral-300/50">
+                          {item.duration}
+                        </span>
+                      </div>
+                    )}
                   </div>
+
+                  {/* Positions Section for Single Layout */}
+                  {item.positions && (
+                    <div className="mb-6 relative pl-4 space-y-6">
+                      <div className="absolute left-0 top-2 h-[60%] bottom-0 w-px bg-neutral-600"/>
+
+                      {item.positions.map((pos, idx) => (
+                        <div key={idx} className="relative">
+                          {/* Dot indicator */}
+                          <div className={`absolute -left-[21px] top-1.5 w-3 h-3 rounded-full border-2 border-white ${idx === 0 ? "bg-emerald-500" : "bg-neutral-400"}`} />
+                          
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                           <div className=" flex gap-4 items-center">
+                             <h4 className={`text-lg font-bold ${idx === 0 ? "text-foreground" : "text-neutral-600"}`}>
+                              {pos.role}
+                            </h4>
+                            {/* {idx === 0 && (
+                            <span className="inline-block mt-1 text-xs font-medium text-neutral-200 bg-neutral-900 px-2 py-0.5 rounded-full">
+                              Latest Role
+                            </span>
+                          )} */}
+                           </div>
+                            <span className="text-xs font-mono text-neutral-600 bg-neutral-200 px-2 py-1 rounded whitespace-nowrap self-start sm:self-auto">
+                              {pos.duration}
+                            </span>
+                          </div>
+                          
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   <ul className="text-base text-neutral-600 leading-relaxed mb-3 md:mb-6 space-y-2 list-disc list-items pl-3">
                     {item.description.map((point, index) => (
@@ -166,30 +199,55 @@ export default function Experience() {
                         className="bg-card rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300"
                         spotlightColor="rgba(120, 120, 120, 0.15)"
                       >
-                        <div className="flex items-start justify-between mb-4 gap-4">
-                          <div className="flex items-center gap-3">
-                            <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
-                              <Image
-                                src={item.logo}
-                                alt={item.name}
-                                fill
-                                className="object-contain p-1"
-                              />
+                        <div className="flex flex-col mb-4 gap-2">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              <div className="relative w-12 h-12 overflow-hidden bg-white border border-neutral-200 p-1">
+                                <Image
+                                  src={item.logo}
+                                  alt={item.name}
+                                  fill
+                                  className="object-contain p-1"
+                                />
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-bold text-foreground leading-tight">
+                                  {item.role}
+                                </h3>
+                                <p className="text-sm font-medium text-neutral-600">
+                                  {item.name} {item.company && `• ${item.company}`}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <h3 className="text-lg font-bold text-foreground leading-tight">
-                                {item.role}
-                              </h3>
-                              <p className="text-sm font-medium text-neutral-600">
-                                {item.name} {item.company && `• ${item.company}`}
-                              </p>
+                            {!item.positions && (
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
+                                  {item.duration}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Positions Section for Timeline Layout */}
+                          {item.positions && (
+                            <div className="mt-4 mb-2 relative pl-4 border-l-2 border-neutral-200 space-y-4 ml-6">
+                              {item.positions.map((pos, idx) => (
+                                <div key={idx} className="relative">
+                                  {/* Dot indicator */}
+                                  <div className={`absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-white ${idx === 0 ? "bg-emerald-500" : "bg-neutral-400"}`} />
+                                  
+                                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h4 className={`text-base font-bold ${idx === 0 ? "text-foreground" : "text-neutral-600"}`}>
+                                      {pos.role}
+                                    </h4>
+                                    <span className="text-[10px] font-mono text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded whitespace-nowrap self-start sm:self-auto">
+                                      {pos.duration}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono text-neutral-500 bg-neutral-200 px-2 py-1 border border-neutral-300/50 whitespace-nowrap">
-                              {item.duration}
-                            </span>
-                          </div>
+                          )}
                         </div>
 
                         <ul className="text-sm text-neutral-600 leading-relaxed mb-4 space-y-1.5 list-disc list-inside">

@@ -22,6 +22,7 @@ import { Project, projectsData } from "@/data/projects";
 import ReactMarkdown from "react-markdown";
 import Magnetic from "@/Components/ui/Magnetic";
 import ContributorStats from "@/Components/ui/ContributorStats";
+import { getOptimizedMediaUrl } from "@/lib/utils";
 
 interface ProjectDetailsViewProps {
   project: Project;
@@ -180,7 +181,7 @@ export default function ProjectDetailsView({
                 {showVideo && project.video ? (
                   <video
                     ref={videoRef}
-                    src={project.video}
+                    src={getOptimizedMediaUrl(project.video, "video")}
                     muted
                     playsInline
                     controls={false}
@@ -189,11 +190,12 @@ export default function ProjectDetailsView({
                   />
                 ) : (
                   <Image
-                    src={project.image}
+                    src={getOptimizedMediaUrl(project.image, "image")}
                     alt={project.name}
                     fill
-                    className="object-cover"
                     priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 66vw"
+                    className="object-cover"
                   />
                 )}
               </motion.div>
