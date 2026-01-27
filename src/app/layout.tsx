@@ -64,8 +64,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
-        width: 1200,
-        height: 630,
+        width: 2160,
+        height: 1215,
         alt: "Vranda Garg - Full Stack Developer",
       },
     ],
