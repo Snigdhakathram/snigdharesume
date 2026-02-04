@@ -39,11 +39,10 @@ export const experienceData: Experience[] = [
       },
     ],
     description: [
-      // "Transitioned to Full Stack role, leading backend integration and database architecture while maintaining frontend excellence.",
-      "Developed core features with optimized, scalable architecture ensuring efficient rendering and maintainable code structure.",
-      "Built intuitive UI/UX designs focusing on seamless user navigation and accessibility across all device types.",
-      "Implemented responsive layouts, leveraging performance optimizations and code splitting techniques.",
-      "Created interactive micro-components and animations using Framer Motion, enhancing user engagement and visual feedback.",
+      "Delivered the website build, including micro-interactive elements that highlight key features and provide clear visual feedback.",
+      "Redesigned the dashboard UI/UX to improve clarity and make the workflow easier to follow between pages.",
+      "Resolved user-flow blocking bugs, including real-time updates that improved car-queue productivity and reliability.",
+      "Shipped core product features with thoughtful UI/UX enhancements to elevate overall usability and engagement.",
     ],
     technologies: [
       "Next.js",
