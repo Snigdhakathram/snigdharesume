@@ -33,14 +33,7 @@ export default function Contact() {
     const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [view, setView] = useState<"technical" | "non-technical">("technical");
     const [activeFile, setActiveFile] = useState<"contact.tsx" | "socialLinks.tsx">("contact.tsx");
-    const [copied, setCopied] = useState(false);
     const email = "gargvranda963@gmail.com";
-
-    const handleCopyEmail = () => {
-        navigator.clipboard.writeText(email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -601,43 +594,13 @@ export default function Contact() {
                             })}
 
                             <Magnetic>
-                                <button
-                                    onClick={handleCopyEmail}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group relative"
-                                    aria-label="Copy Email"
+                                <a
+                                    href={`mailto:${email}`}
+                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group"
+                                    aria-label="Email"
                                 >
-                                    <AnimatePresence mode="wait">
-                                        {copied ? (
-                                            <motion.div
-                                                key="check"
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                exit={{ scale: 0 }}
-                                            >
-                                                <Check className="w-5 h-5 text-green-500" />
-                                            </motion.div>
-                                        ) : (
-                                            <motion.div
-                                                key="copy"
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                exit={{ scale: 0 }}
-                                            >
-                                                <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                    {copied && (
-                                        <motion.span
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: -40 }}
-                                            exit={{ opacity: 0 }}
-                                            className="absolute text-xs font-medium bg-neutral-900  text-foreground  px-2 py-1 rounded-md whitespace-nowrap pointer-events-none"
-                                        >
-                                            Copied!
-                                        </motion.span>
-                                    )}
-                                </button>
+                                    <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
+                                </a>
                             </Magnetic>
                         </div>
 
