@@ -5,65 +5,11 @@ import { IconBrandGithub, IconBrandLinkedin, IconBrandDiscord } from "@tabler/ic
 import { RiTwitterXLine } from "react-icons/ri";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Code, Star } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowUpRight, Star } from "lucide-react";
+
 import SpotlightCard from "../ui/SpotlightCard";
 
-interface WakaTimeStats {
-    humanReadableTotal: string;
-    error?: string;
-}
-
 export default function Stats() {
-    const [wakaTime, setWakaTime] = useState<WakaTimeStats | null>(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const STORAGE_KEY = 'wakatime_stats';
-        const STORAGE_DATE_KEY = 'wakatime_stats_date';
-
-        const fetchWakaTimeStats = async () => {
-            try {
-                const response = await fetch('/api/wakatime');
-                const data = await response.json();
-
-                // Store in localStorage with current date
-                const today = new Date().toDateString();
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-                localStorage.setItem(STORAGE_DATE_KEY, today);
-
-                setWakaTime(data);
-            } catch (error) {
-                console.error('Failed to fetch WakaTime stats:', error);
-                setWakaTime({ humanReadableTotal: '53h', error: 'Failed to load' });
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        const loadWakaTimeStats = () => {
-            const today = new Date().toDateString();
-            const cachedDate = localStorage.getItem(STORAGE_DATE_KEY);
-            const cachedData = localStorage.getItem(STORAGE_KEY);
-
-            // Check if we have cached data for today
-            if (cachedDate === today && cachedData) {
-                try {
-                    const parsedData = JSON.parse(cachedData);
-                    setWakaTime(parsedData);
-                    setLoading(false);
-                } catch (error) {
-                    console.error('Failed to parse cached data:', error);
-                    fetchWakaTimeStats();
-                }
-            } else {
-                // Fetch fresh data if date doesn't match or no cache exists
-                fetchWakaTimeStats();
-            }
-        };
-
-        loadWakaTimeStats();
-    }, []);
 
     return (
         <section className="py-10 relative z-20 px-5 md:px-8">
@@ -168,9 +114,9 @@ export default function Stats() {
                     </Link>
                 </motion.div>
 
-                {/* Socials & WakaTime */}
+                {/* Socials */}
                 <div className="md:col-span-1 flex flex-col gap-4 h-48">
-                    <div className="flex gap-4 h-1/2">
+                    <div className="flex gap-4 h-full">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -203,31 +149,6 @@ export default function Stats() {
                             </Link>
                         </motion.div>
                     </div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.5 }}
-                        viewport={{ once: true }}
-                        className="h-1/2"
-                    >
-                        <SpotlightCard
-                            className="h-full bg-card hover:bg-neutral-100 transition-all shadow-sm rounded-xl flex items-center justify-center relative overflow-hidden"
-                            spotlightColor="rgba(var(--glow-color), var(--glow-opacity))"
-                        >
-                          <div className="h-full w-full flex items-center justify-center">
-                              <div className="text-center relative z-10 rotate-2">
-                                <Code className="w-6 mx-auto h-6 text-neutral-400 mb-1" />
-                                <h3 className="text-md font-mono font-bold text-foreground">
-                                    {loading ? '...' : wakaTime?.humanReadableTotal || '0h'}
-                                </h3>
-                                <p className="text-[10px] text-neutral-600">
-                                    coding stats (last 7 days) <br />
-                                </p>
-                            </div>
-                          </div>
-                           
-                        </SpotlightCard>
-                    </motion.div>
                 </div>
 
                 {/* Discord Card */}

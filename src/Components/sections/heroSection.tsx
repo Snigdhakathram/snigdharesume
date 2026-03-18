@@ -267,7 +267,7 @@ export default function HeroSection() {
           <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
         </div>
-        <Stats />
+        {/* <Stats /> */}
         <div className="border-t border-neutral-200 relative">
           <Plus className="absolute -top-3 -left-3 h-6 w-6 text-neutral-400 z-20" />
           <Plus className="absolute -top-3 -right-3 h-6 w-6 text-neutral-400 z-20" />
