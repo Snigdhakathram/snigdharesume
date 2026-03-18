@@ -26,51 +26,86 @@ import { Input } from "@/Components/ui/input";
 import { Textarea } from "@/Components/ui/textarea";
 import { Label } from "@/Components/ui/label";
 import { cn } from "@/lib/utils";
-import Magnetic from "@/Components/ui/Magnetic";
-import RotatingText from "@/Components/ui/RotatingText";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+type FormState  = "idle" | "submitting" | "success" | "error";
+type ViewMode   = "technical" | "non-technical";
+type ActiveFile = "contact.tsx" | "config.ts";
+
+// ─── Config ───────────────────────────────────────────────────────────────────
+// Add NEXT_PUBLIC_CONTACT_EMAIL to your .env.local
+
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@yourname.dev";
+
+// ─── Rotating headline ────────────────────────────────────────────────────────
+
+const WORDS = ["New Projects", "Collaborations", "Ideas", "Growth"];
+
+function RotatingWord() {
+    const [index, setIndex] = useState(0);
+    const [visible, setVisible] = useState(true);
+
+    React.useEffect(() => {
+        const id = setInterval(() => {
+            setVisible(false);
+            setTimeout(() => {
+                setIndex((i) => (i + 1) % WORDS.length);
+                setVisible(true);
+            }, 300);
+        }, 2200);
+        return () => clearInterval(id);
+    }, []);
+
+    return (
+        <span
+            className={cn(
+                "inline-block transition-all duration-300",
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            )}
+        >
+            {WORDS[index]}
+        </span>
+    );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Contact() {
-    const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const [view, setView] = useState<"technical" | "non-technical">("technical");
-    const [activeFile, setActiveFile] = useState<"contact.tsx" | "socialLinks.tsx">("contact.tsx");
-    const email = "gargvranda963@gmail.com";
+    const [formState, setFormState]   = useState<FormState>("idle");
+    const [view, setView]             = useState<ViewMode>("technical");
+    const [activeFile, setActiveFile] = useState<ActiveFile>("contact.tsx");
 
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+    // Builds a Gmail compose URL pre-filled with the form data and opens it in a new tab.
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
         setFormState("submitting");
 
-        const formData = new FormData(event.currentTarget);
-        const data = {
-            name: formData.get("name") as string,
-            email: formData.get("email") as string,
-            message: formData.get("message") as string,
-        };
+        const data    = new FormData(e.currentTarget);
+        const name    = (data.get("name")    as string).trim();
+        const message = (data.get("message") as string).trim();
 
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
+        const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
+        const body    = encodeURIComponent(message);
 
-            if (response.ok) {
-                setFormState("success");
-                (event.target as HTMLFormElement).reset();
-            } else {
-                setFormState("error");
-            }
-        } catch {
-            setFormState("error");
-        }
+        window.open(
+            `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${subject}&body=${body}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+        setFormState("success");
+        (e.target as HTMLFormElement).reset();
     }
 
     return (
-        <section id="contact" className="w-full py-10 md:py-20 px-4 md:px-8 relative overflow-hidden  ">
+        <section
+            id="contact"
+            className="w-full py-10 md:py-20 px-4 md:px-8 relative overflow-hidden"
+        >
             <div className="max-w-4xl mx-auto relative z-10">
 
-                {/* Header Section */}
+                {/* ── Header ─────────────────────────────────────────────── */}
                 <div className="text-center mb-3 md:mb-6 space-y-2">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -82,18 +117,9 @@ export default function Contact() {
                             Let&apos;s work on
                         </h2>
                         <div className="h-14 md:h-16 flex items-center justify-center md:mt-2 overflow-hidden">
-                            <RotatingText
-                                texts={["New Projects", "Collaborations", "Ideas", "Growth"]}
-                                rotationInterval={2000}
-                                staggerDuration={0.02}
-                                staggerFrom="last"
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                exit={{ y: "-120%" }}
-                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                                mainClassName="text-3xl md:text-5xl font-bold text-foreground "
-                                splitLevelClassName="overflow-hidden pb-2"
-                            />
+                            <span className="text-3xl md:text-5xl font-bold text-foreground">
+                                <RotatingWord />
+                            </span>
                         </div>
                     </motion.div>
 
@@ -102,36 +128,39 @@ export default function Contact() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-neutral-600 leading-tight  text-md max-w-lg mx-auto"
+                        className="text-neutral-500 text-sm md:text-base leading-relaxed max-w-md mx-auto"
                     >
-                        Whether you have a question, a project proposal, or just want to say hi, I&apos;ll try my best to get back to you!
+                        Whether you have a question, a project idea, or just want to say hi —
+                        I&apos;ll get back to you as soon as I can.
                     </motion.p>
                 </div>
 
-                {/* View Toggle */}
+                {/* ── View Toggle ─────────────────────────────────────────── */}
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="flex justify-center mb-5"
                 >
-                    <div className="bg-card backdrop-blur-xs p-1.5 rounded-xl border border-neutral-200  inline-flex items-center gap-1 shadow-inner">
+                    <div className="bg-card p-1.5 rounded-xl border border-neutral-200 inline-flex items-center gap-1 shadow-inner">
                         {[
-                            { id: "non-technical" as const, icon: MessageSquare, label: "Standard" },
-                            { id: "technical" as const, icon: Code2, label: "Developer" }
+                            { id: "non-technical" as const, icon: MessageSquare, label: "Standard"  },
+                            { id: "technical"     as const, icon: Code2,         label: "Developer" },
                         ].map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => setView(item.id)}
                                 className={cn(
                                     "px-4 py-2 cursor-pointer rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 relative",
-                                    view === item.id ? "text-background " : "text-neutral-600  hover:text-neutral-700 "
+                                    view === item.id
+                                        ? "text-background"
+                                        : "text-neutral-600 hover:text-neutral-700"
                                 )}
                             >
                                 {view === item.id && (
                                     <motion.div
                                         layoutId="activeTab"
-                                        className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm border border-neutral-200 "
+                                        className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm border border-neutral-200"
                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                     />
                                 )}
@@ -144,109 +173,102 @@ export default function Contact() {
                     </div>
                 </motion.div>
 
-                {/* Main Card Content */}
+                {/* ── Main Card ───────────────────────────────────────────── */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="mb-8"
                 >
-                    <div className="bg-card  backdrop-blur-sm border border-neutral-200  rounded-xl shadow-sm overflow-hidden">
+                    <div className="bg-card border border-neutral-200 rounded-xl shadow-sm overflow-hidden">
                         <div className="relative min-h-[450px]">
                             <AnimatePresence mode="wait">
+
+                                {/* ══ Developer / IDE view ═══════════════════ */}
                                 {view === "technical" ? (
                                     <motion.div
                                         key="technical"
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
-                                        className="w-full h-full bg-card rounded-xl overflow-hidden font-mono text-sm shadow-inner  flex flex-col"
+                                        className="w-full h-full bg-card rounded-xl overflow-hidden font-mono text-sm flex flex-col"
                                     >
-                                        {/* VS Code Header */}
-                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-100 select-none  outline-none">
+                                        {/* Title bar */}
+                                        <div className="bg-neutral-100 px-4 py-3 flex items-center justify-between border-b border-neutral-200 select-none">
                                             <div className="flex items-center gap-2">
                                                 <div className="flex gap-1.5 mr-4">
                                                     <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
                                                     <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                                                     <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                                                 </div>
-                                                <div className="hidden md:flex items-center gap-2 text-neutral-700 text-xs">
+                                                <div className="hidden md:flex items-center gap-2 text-neutral-500 text-xs">
                                                     <span>portfolio</span>
                                                     <ChevronRight className="w-3 h-3" />
                                                     <span>src</span>
                                                     <ChevronRight className="w-3 h-3" />
-                                                    {/* <span>components</span>
-                                                    <ChevronRight className="w-3 h-3" /> */}
                                                     <span className="text-foreground">{activeFile}</span>
                                                 </div>
                                             </div>
-                                            <div className="text-xs text-neutral-700 flex items-center gap-3">
-                                                <div className="hidden  w-40 h-6 bg-neutral-200 border border-neutral-300 rounded md:flex items-center justify-start pl-2">
-                                                    <Search className="w-3 h-3 mr-2" />
-                                                    portfolio
-                                                </div>
+                                            <div className="hidden md:flex w-40 h-6 bg-neutral-200 border border-neutral-300 rounded items-center pl-2 text-xs text-neutral-500">
+                                                <Search className="w-3 h-3 mr-2" />
+                                                portfolio
                                             </div>
                                         </div>
 
-                                        {/* IDE Body */}
-                                        <div className="flex flex-1 overflow-hidden  outline-none">
-                                            {/* Activity Bar */}
-                                            <div className="w-8 min-h-[430px] md:w-12 bg-neutral-100 flex flex-col items-center py-4 gap-6 text-neutral-700 border-r border-t border-neutral-200 shrink-0 z-10  outline-none">
-                                                <div className="text-neutral-800 border-l-2 border-blue-400 pl-2 pr-2 ">
-                                                    <Files className="md:w-6 h-4 md:h-6 w-4" />
+                                        {/* IDE body */}
+                                        <div className="flex flex-1 overflow-hidden">
+
+                                            {/* Activity bar */}
+                                            <div className="w-8 md:w-12 bg-neutral-100 flex flex-col items-center py-4 gap-6 text-neutral-500 border-r border-neutral-200 shrink-0">
+                                                <div className="border-l-2 border-blue-400 pl-2 pr-2">
+                                                    <Files className="w-4 h-4 md:w-6 md:h-6" />
                                                 </div>
-                                                <Search className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
-                                                <GitBranch className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
-                                                <Blocks className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
+                                                <Search    className="w-4 h-4 md:w-6 md:h-6 cursor-pointer hover:text-foreground transition-colors" />
+                                                <GitBranch className="w-4 h-4 md:w-6 md:h-6 cursor-pointer hover:text-foreground transition-colors" />
+                                                <Blocks    className="w-4 h-4 md:w-6 md:h-6 cursor-pointer hover:text-foreground transition-colors" />
                                                 <div className="mt-auto">
-                                                    <Settings className="md:w-6 h-4 md:h-6 w-4 text-neutral-950 transition-colors cursor-pointer" />
+                                                    <Settings className="w-4 h-4 md:w-6 md:h-6 cursor-pointer hover:text-foreground transition-colors" />
                                                 </div>
                                             </div>
 
-                                            {/* Explorer Pane */}
-                                            <div className="w-48 bg-neutral-100 min-h-[400px] border-r border-t border-neutral-200 hidden md:flex flex-col text-neutral-700 shrink-0  outline-none">
-                                                <div className="text-[11px] font-bold px-4 py-3 text-neutral-700">EXPLORER</div>
+                                            {/* Explorer pane */}
+                                            <div className="w-48 bg-neutral-100 border-r border-neutral-200 hidden md:flex flex-col text-neutral-500 shrink-0">
+                                                <div className="text-[11px] font-bold px-4 py-3 text-neutral-400 uppercase tracking-wider">
+                                                    Explorer
+                                                </div>
                                                 <div className="px-2">
-                                                    <div className="flex items-center gap-1 py-1 px-2 text-xs font-bold text-blue-400 hover:bg-card cursor-pointer rounded-sm outline-none focus:outline-none ring-0">
+                                                    <div className="flex items-center gap-1 py-1 px-2 text-xs font-bold text-blue-400 cursor-pointer rounded-sm">
                                                         <ChevronDown className="w-3 h-3" />
                                                         PORTFOLIO
                                                     </div>
                                                     <div className="pl-3">
-                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
-                                                            <ChevronRight className="w-3 h-3 text-neutral-700" />
-                                                            <span className="text-neutral-700">.next</span>
+                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm select-none hover:bg-card">
+                                                            <ChevronRight className="w-3 h-3" />
+                                                            <span>.next</span>
                                                         </div>
-                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
-                                                            <ChevronDown className="w-3 h-3 text-neutral-700" />
-                                                            <span className="text-neutral-700">src</span>
+                                                        <div className="flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm select-none hover:bg-card">
+                                                            <ChevronDown className="w-3 h-3" />
+                                                            <span>src</span>
                                                         </div>
-                                                        <div className="pl-4">
-                                                            <div
-                                                                onClick={() => setActiveFile("contact.tsx")}
-                                                                onMouseDown={(e) => e.preventDefault()}
-                                                                className={cn(
-                                                                    "flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm transition-colors select-none",
-                                                                    activeFile === "contact.tsx" ? "bg-card border border-neutral-200 text-foreground" : "text-neutral-700 hover:bg-card border border-transparent"
-                                                                )}
-                                                                tabIndex={-1}
-                                                            >
-                                                                <FileCode className="w-3 h-3 text-blue-400" />
-                                                                contact.tsx
-                                                            </div>
-                                                            <div
-                                                                onClick={() => setActiveFile("socialLinks.tsx")}
-                                                                onMouseDown={(e) => e.preventDefault()}
-                                                                className={cn(
-                                                                    "flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm transition-colors select-none",
-                                                                    activeFile === "socialLinks.tsx" ? "bg-card border border-neutral-200 text-foreground" : "text-neutral-700 hover:bg-card border border-transparent"
-                                                                )}
-                                                                tabIndex={-1}
-                                                            >
-                                                                <FileCode className="w-3 h-3 text-yellow-400" />
-                                                                socialLinks.tsx
-                                                            </div>
-                                                            <div className="flex items-center gap-1 py-1 px-2 text-xs hover:bg-card cursor-pointer rounded-sm select-none">
+                                                        <div className="pl-4 space-y-0.5">
+                                                            {(["contact.tsx", "config.ts"] as ActiveFile[]).map((file) => (
+                                                                <div
+                                                                    key={file}
+                                                                    onClick={() => setActiveFile(file)}
+                                                                    onMouseDown={(e) => e.preventDefault()}
+                                                                    tabIndex={-1}
+                                                                    className={cn(
+                                                                        "flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm transition-colors select-none",
+                                                                        activeFile === file
+                                                                            ? "bg-card border border-neutral-200 text-foreground"
+                                                                            : "text-neutral-500 hover:bg-card border border-transparent"
+                                                                    )}
+                                                                >
+                                                                    <FileCode className={cn("w-3 h-3", file === "contact.tsx" ? "text-blue-400" : "text-yellow-400")} />
+                                                                    {file}
+                                                                </div>
+                                                            ))}
+                                                            <div className="flex items-center gap-1 py-1 px-2 text-xs cursor-pointer rounded-sm select-none hover:bg-card text-neutral-500">
                                                                 <FileCode className="w-3 h-3 text-blue-300" />
                                                                 globals.css
                                                             </div>
@@ -255,47 +277,38 @@ export default function Contact() {
                                                 </div>
                                             </div>
 
-                                            {/* Editor Area */}
-                                            <div className="flex-1 flex flex-col bg-neutral-100 min-w-0  outline-none">
-                                                {/* Tab Bar */}
-                                                <div className="flex bg-neutral-100 overflow-x-auto scrollbar-hide border-b border-t border-neutral-200  outline-none">
-                                                    <div
-                                                        onClick={() => setActiveFile("contact.tsx")}
-                                                        onMouseDown={(e) => e.preventDefault()}
-                                                        className={cn(
-                                                            "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
-                                                            activeFile === "contact.tsx"
-                                                                ? "bg-card rounded-t-sm border-t-blue-400 text-foreground"
-                                                                : "bg-neutral-100 border-t-transparent text-[#969696] hover:bg-neutral-100"
-                                                        )}
-                                                        tabIndex={-1}
-                                                    >
-                                                        <FileCode className="w-3 h-3 text-blue-400" />
-                                                        contact.tsx
-                                                        <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
-                                                    </div>
-                                                    <div
-                                                        onClick={() => setActiveFile("socialLinks.tsx")}
-                                                        onMouseDown={(e) => e.preventDefault()}
-                                                        className={cn(
-                                                            "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
-                                                            activeFile === "socialLinks.tsx"
-                                                                ? "bg-card rounded-t-sm border-t-yellow-400 text-foreground"
-                                                                : "bg-neutral-100 border-t-transparent  text-[#969696] hover:bg-neutral-100"
-                                                        )}
-                                                        tabIndex={-1}
-                                                    >
-                                                        <FileCode className="w-3 h-3 text-yellow-400" />
-                                                        socialLinks.tsx
-                                                        <span className="ml-2 hover:bg-[#333] rounded-sm p-0.5">×</span>
-                                                    </div>
+                                            {/* Editor */}
+                                            <div className="flex-1 flex flex-col bg-neutral-100 min-w-0">
+
+                                                {/* Tab bar */}
+                                                <div className="flex bg-neutral-100 overflow-x-auto border-b border-neutral-200">
+                                                    {(["contact.tsx", "config.ts"] as ActiveFile[]).map((file) => (
+                                                        <div
+                                                            key={file}
+                                                            onClick={() => setActiveFile(file)}
+                                                            onMouseDown={(e) => e.preventDefault()}
+                                                            tabIndex={-1}
+                                                            className={cn(
+                                                                "flex items-center gap-2 px-3 py-2 border-t-2 text-xs cursor-pointer min-w-fit transition-colors select-none",
+                                                                activeFile === file
+                                                                    ? cn("bg-card rounded-t-sm text-foreground", file === "contact.tsx" ? "border-t-blue-400" : "border-t-yellow-400")
+                                                                    : "bg-neutral-100 border-t-transparent text-neutral-400 hover:bg-neutral-50"
+                                                            )}
+                                                        >
+                                                            <FileCode className={cn("w-3 h-3", file === "contact.tsx" ? "text-blue-400" : "text-yellow-400")} />
+                                                            {file}
+                                                            <span className="ml-2 text-neutral-400">×</span>
+                                                        </div>
+                                                    ))}
                                                 </div>
 
-                                                {/* Editor Content */}
-                                                <div className="md:p-6 min-h-[400px] bg-card overflow-auto flex-1">
+                                                {/* Editor content */}
+                                                <div className="p-4 md:p-6 min-h-[400px] bg-card overflow-auto flex-1">
+
                                                     {activeFile === "contact.tsx" ? (
+                                                        /* ── contact.tsx: the form ── */
                                                         formState === "success" ? (
-                                                            <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
+                                                            <div className="flex flex-col items-center justify-center h-full min-h-[360px] text-center space-y-4">
                                                                 <motion.div
                                                                     initial={{ scale: 0 }}
                                                                     animate={{ scale: 1 }}
@@ -304,8 +317,15 @@ export default function Contact() {
                                                                     <Check className="w-8 h-8 text-green-500" />
                                                                 </motion.div>
                                                                 <div>
-                                                                    <h3 className="text-xl font-bold text-neutral-700">Message Sent!</h3>
-                                                                    <p className="text-neutral-500 mt-1 text-xs">Function execution completed successfully.</p>
+                                                                    <p className="text-xs text-neutral-400 font-mono mb-1">
+                                                                        {"// execution complete ✓"}
+                                                                    </p>
+                                                                    <h3 className="text-xl font-bold text-neutral-700">
+                                                                        Gmail opened!
+                                                                    </h3>
+                                                                    <p className="text-neutral-400 mt-1 text-xs">
+                                                                        Your message is pre-filled — just hit Send.
+                                                                    </p>
                                                                 </div>
                                                                 <button
                                                                     onClick={() => setFormState("idle")}
@@ -315,81 +335,90 @@ export default function Contact() {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <form onSubmit={handleSubmit} className="space-y-1.5 min-h-[400px] relative font-mono text-[13px] md:text-sm leading-relaxed">
-                                                                <div className="flex group">
-                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">1</span>
-                                                                    <div className="flex flex-wrap">
-                                                                        <span className="text-[#c678dd]">const</span>&nbsp;
-                                                                        <span className="text-[#61afef]">sendMessage</span>&nbsp;
-                                                                        <span className="text-neutral-400">=</span>&nbsp;
-                                                                        <span className="text-[#c678dd]">async</span>&nbsp;
+                                                            <form
+                                                                onSubmit={handleSubmit}
+                                                                className="space-y-1.5 min-h-[380px] relative font-mono text-[13px] md:text-sm leading-relaxed"
+                                                            >
+                                                                {/* Line 1 */}
+                                                                <div className="flex">
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 md:mr-4 shrink-0 select-none">1</span>
+                                                                    <span>
+                                                                        <span className="text-[#c678dd]">const </span>
+                                                                        <span className="text-[#61afef]">sendMessage </span>
+                                                                        <span className="text-neutral-400">= </span>
+                                                                        <span className="text-[#c678dd]">async </span>
                                                                         <span className="text-neutral-400">(</span>
                                                                         <span className="text-[#e06c75]">data</span>
-                                                                        <span className="text-neutral-400">)</span>&nbsp;
-                                                                        <span className="text-[#c678dd]">=&gt;</span>&nbsp;
-                                                                        <span className="text-neutral-400">{`{`}</span>
-                                                                    </div>
+                                                                        <span className="text-neutral-400">) =&gt; {"{"}</span>
+                                                                    </span>
                                                                 </div>
 
-                                                                <div className="flex group items-baseline">
-                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">2</span>
-                                                                    <div className="flex-1 flex flex-wrap items-center">
+                                                                {/* Line 2 — name */}
+                                                                <div className="flex items-baseline">
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 md:mr-4 shrink-0 select-none">2</span>
+                                                                    <div className="flex flex-1 flex-wrap items-center">
                                                                         <span className="text-[#e06c75] ml-4">name</span>
-                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <span className="text-neutral-400">:&nbsp;</span>
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <input
                                                                             type="text"
                                                                             name="name"
                                                                             required
-                                                                            placeholder="Your Name"
-                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                            autoComplete="name"
+                                                                            placeholder="Your name"
+                                                                            className="bg-transparent outline-none text-[#98c379] placeholder-[#98c379]/50 min-w-[120px] flex-1 p-0 focus:ring-0 h-auto"
                                                                         />
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <span className="text-neutral-400">,</span>
                                                                     </div>
                                                                 </div>
 
-                                                                <div className="flex group items-baseline">
-                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">3</span>
-                                                                    <div className="flex-1 flex flex-wrap items-center">
+                                                                {/* Line 3 — email */}
+                                                                <div className="flex items-baseline">
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 md:mr-4 shrink-0 select-none">3</span>
+                                                                    <div className="flex flex-1 flex-wrap items-center">
                                                                         <span className="text-[#e06c75] ml-4">email</span>
-                                                                        <span className="text-neutral-400">:</span>&nbsp;
+                                                                        <span className="text-neutral-400">:&nbsp;</span>
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <input
                                                                             type="email"
                                                                             name="email"
                                                                             required
-                                                                            placeholder="you@email.com"
-                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 min-w-[100px] flex-1 p-0 focus:ring-0 h-auto"
+                                                                            autoComplete="email"
+                                                                            placeholder="you@example.com"
+                                                                            className="bg-transparent outline-none text-[#98c379] placeholder-[#98c379]/50 min-w-[150px] flex-1 p-0 focus:ring-0 h-auto"
                                                                         />
                                                                         <span className="text-[#98c379]">&quot;</span>
                                                                         <span className="text-neutral-400">,</span>
                                                                     </div>
                                                                 </div>
 
-                                                                <div className="flex group items-start">
-                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none pt-1">4</span>
-                                                                    <div className="flex-1 flex flex-wrap">
+                                                                {/* Line 4 — message */}
+                                                                <div className="flex items-start">
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 md:mr-4 shrink-0 select-none pt-1">4</span>
+                                                                    <div className="flex flex-1 flex-wrap">
                                                                         <span className="text-[#e06c75] ml-4 pt-1">message</span>
-                                                                        <span className="text-neutral-400 pt-1">:</span>&nbsp;
+                                                                        <span className="text-neutral-400 pt-1">:&nbsp;</span>
                                                                         <span className="text-[#98c379] pt-1">&quot;</span>
                                                                         <textarea
                                                                             name="message"
                                                                             required
-                                                                            rows={2}
+                                                                            rows={3}
                                                                             placeholder="Let's build something cool..."
-                                                                            className="bg-transparent  outline-none text-[#98c379] placeholder-[#98c379]/60 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
+                                                                            className="bg-transparent outline-none text-[#98c379] placeholder-[#98c379]/50 w-full p-0 focus:ring-0 resize-none leading-relaxed pt-1"
                                                                         />
                                                                         <span className="text-[#98c379] pt-1">&quot;</span>
                                                                     </div>
                                                                 </div>
 
-                                                                <div className="flex group">
-                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 shrink-0 md:mr-4 select-none">5</span>
-                                                                    <span className="text-neutral-400">{`}`}</span>
+                                                                {/* Line 5 */}
+                                                                <div className="flex">
+                                                                    <span className="text-[#495162] w-6 md:w-8 text-right mr-2 md:mr-4 shrink-0 select-none">5</span>
+                                                                    <span className="text-neutral-400">{"}"}</span>
                                                                 </div>
 
-                                                                <div className="mt-8 absolute bottom-4 right-4 flex justify-end">
+                                                                {/* Submit button */}
+                                                                <div className="absolute bottom-4 right-4">
                                                                     <button
                                                                         type="submit"
                                                                         disabled={formState === "submitting"}
@@ -398,12 +427,12 @@ export default function Contact() {
                                                                         {formState === "submitting" ? (
                                                                             <>
                                                                                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                                                                                <span>Processing...</span>
+                                                                                Opening...
                                                                             </>
                                                                         ) : (
                                                                             <>
                                                                                 <Play className="w-3.5 h-3.5 fill-current text-green-400 group-hover:text-green-300" />
-                                                                                <span>Run Script</span>
+                                                                                Run script
                                                                             </>
                                                                         )}
                                                                     </button>
@@ -411,54 +440,27 @@ export default function Contact() {
                                                             </form>
                                                         )
                                                     ) : (
-                                                        // Social Links Code View
+                                                        /* ── config.ts: env var display ── */
                                                         <div className="space-y-1.5 font-mono text-[13px] md:text-sm leading-relaxed">
-                                                            <div className="flex group">
-                                                                <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">1</span>
-                                                                <div className="flex flex-wrap">
-                                                                    <span className="text-[#c678dd]">export</span>&nbsp;
-                                                                    <span className="text-[#c678dd]">const</span>&nbsp;
-                                                                    <span className="text-[#e5c07b]">socialLinks</span>&nbsp;
-                                                                    <span className="text-neutral-400">=</span>&nbsp;
-                                                                    <span className="text-neutral-400">[</span>
-                                                                </div>
+                                                            <div className="flex">
+                                                                <span className="text-[#495162] w-6 text-right mr-2 md:mr-4 shrink-0 select-none">1</span>
+                                                                <span className="text-[#495162] italic">{"// .env.local"}</span>
                                                             </div>
-                                                            {socialLinks.map((link, index) => (
-                                                                <div key={link.title} className="group">
-                                                                    <div className="flex">
-                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 2}</span>
-                                                                        <span className="text-neutral-400 ml-4">{`{`}</span>
-                                                                    </div>
-                                                                    <div className="flex items-center">
-                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 3}</span>
-                                                                        <span className="text-[#e06c75] ml-8">name</span>
-                                                                        <span className="text-neutral-400">:</span>&nbsp;
-                                                                        <span className="text-[#98c379]">&quot;{link.title}&quot;</span>
-                                                                        <span className="text-neutral-400">,</span>
-                                                                    </div>
-                                                                    <div className="flex items-center">
-                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 4}</span>
-                                                                        <span className="text-[#e06c75] ml-8">url</span>
-                                                                        <span className="text-neutral-400">:</span>&nbsp;
-                                                                        <a
-                                                                            href={link.href}
-                                                                            target="_blank"
-                                                                            rel="noopener noreferrer"
-                                                                            className="text-[#98c379] hover:underline decoration-dashed underline-offset-4 cursor-pointer"
-                                                                        >
-                                                                            &quot;{link.href}&quot;
-                                                                        </a>
-                                                                        <span className="text-neutral-400">,</span>
-                                                                    </div>
-                                                                    <div className="flex">
-                                                                        <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{index * 4 + 5}</span>
-                                                                        <span className="text-neutral-400 ml-4">{`},`}</span>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                            <div className="flex group">
-                                                                <span className="text-[#495162] w-6  text-right mr-2 shrink-0 md:mr-4 select-none">{(socialLinks.length * 4) + 2}</span>
-                                                                <span className="text-neutral-400">];</span>
+                                                            <div className="flex">
+                                                                <span className="text-[#495162] w-6 text-right mr-2 md:mr-4 shrink-0 select-none">2</span>
+                                                                <span>
+                                                                    <span className="text-[#e5c07b]">NEXT_PUBLIC_CONTACT_EMAIL</span>
+                                                                    <span className="text-neutral-400"> = </span>
+                                                                    <span className="text-[#98c379]">&quot;{CONTACT_EMAIL}&quot;</span>
+                                                                </span>
+                                                            </div>
+                                                            <div className="flex mt-6">
+                                                                <span className="text-[#495162] w-6 text-right mr-2 md:mr-4 shrink-0 select-none">3</span>
+                                                                <span className="text-[#495162] italic">{"// Gmail compose URL is built at runtime"}</span>
+                                                            </div>
+                                                            <div className="flex">
+                                                                <span className="text-[#495162] w-6 text-right mr-2 md:mr-4 shrink-0 select-none">4</span>
+                                                                <span className="text-[#495162] italic">{"// No backend or API key required"}</span>
                                                             </div>
                                                         </div>
                                                     )}
@@ -466,7 +468,9 @@ export default function Contact() {
                                             </div>
                                         </div>
                                     </motion.div>
+
                                 ) : (
+                                    /* ══ Standard view ═════════════════════════ */
                                     <motion.div
                                         key="non-technical"
                                         initial={{ opacity: 0, x: -20 }}
@@ -480,12 +484,14 @@ export default function Contact() {
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 className="flex flex-col items-center justify-center py-12 text-center"
                                             >
-                                                <div className="w-20 h-20 rounded-full bg-green-100  flex items-center justify-center mb-6 animate-pulse">
-                                                    <Check className="w-10 h-10 text-green-600 dark:text-green-400" />
+                                                <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                                                    <Check className="w-10 h-10 text-green-600" />
                                                 </div>
-                                                <h3 className="text-2xl font-bold text-neutral-800  mb-2">Message Received!</h3>
-                                                <p className="text-neutral-500  mb-8 max-w-xs mx-auto">
-                                                    Thanks for reaching out. I&apos;ll get back to you as soon as possible.
+                                                <h3 className="text-2xl font-bold text-neutral-800 mb-2">
+                                                    Gmail opened!
+                                                </h3>
+                                                <p className="text-neutral-500 mb-8 max-w-xs mx-auto text-sm">
+                                                    Your message is pre-filled. Just review it and hit Send.
                                                 </p>
                                                 <Button
                                                     variant="outline"
@@ -499,37 +505,45 @@ export default function Contact() {
                                             <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     <div className="space-y-2">
-                                                        <Label htmlFor="name" className="text-neutral-600  font-medium">Name</Label>
+                                                        <Label htmlFor="std-name" className="text-neutral-600 font-medium">
+                                                            Name
+                                                        </Label>
                                                         <Input
-                                                            id="name"
+                                                            id="std-name"
                                                             name="name"
+                                                            autoComplete="name"
                                                             placeholder="John Doe"
                                                             required
                                                             disabled={formState === "submitting"}
-                                                            className="bg-neutral-50 border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-700 "
+                                                            className="bg-neutral-50 border-neutral-200 focus:border-neutral-400 focus:ring-0 rounded-xl h-12 placeholder:text-neutral-400"
                                                         />
                                                     </div>
                                                     <div className="space-y-2">
-                                                        <Label htmlFor="email" className="text-neutral-600  font-medium">Email</Label>
+                                                        <Label htmlFor="std-email" className="text-neutral-600 font-medium">
+                                                            Email
+                                                        </Label>
                                                         <Input
-                                                            id="email"
+                                                            id="std-email"
                                                             name="email"
                                                             type="email"
+                                                            autoComplete="email"
                                                             placeholder="john@example.com"
                                                             required
                                                             disabled={formState === "submitting"}
-                                                            className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl h-12 text-neutral-900  placeholder:text-neutral-400 "
+                                                            className="bg-neutral-50 border-neutral-200 focus:border-neutral-400 focus:ring-0 rounded-xl h-12 placeholder:text-neutral-400"
                                                         />
                                                     </div>
                                                 </div>
 
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="message" className="text-neutral-600  font-medium">Message</Label>
+                                                    <Label htmlFor="std-message" className="text-neutral-600 font-medium">
+                                                        Message
+                                                    </Label>
                                                     <Textarea
-                                                        id="message"
+                                                        id="std-message"
                                                         name="message"
                                                         placeholder="Tell me about your project..."
-                                                        className="bg-neutral-50  border-neutral-200  focus:border-neutral-400  focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 text-neutral-900  placeholder:text-neutral-400 "
+                                                        className="bg-neutral-50 border-neutral-200 focus:border-neutral-400 focus:ring-0 rounded-xl min-h-[150px] resize-none p-4 placeholder:text-neutral-400"
                                                         required
                                                         disabled={formState === "submitting"}
                                                     />
@@ -538,13 +552,13 @@ export default function Contact() {
                                                 <div className="pt-2">
                                                     <Button
                                                         type="submit"
-                                                        className="w-full h-12 cursor-pointer rounded-xl bg-neutral-900 hover:bg-neutral-800   text-background  font-medium transition-all hover:scale-[1.01]"
+                                                        className="w-full h-12 cursor-pointer rounded-xl bg-neutral-900 hover:bg-neutral-800 text-background font-medium transition-all hover:scale-[1.01]"
                                                         disabled={formState === "submitting"}
                                                     >
                                                         {formState === "submitting" ? (
                                                             <>
                                                                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                                                Sending...
+                                                                Opening Gmail...
                                                             </>
                                                         ) : (
                                                             <>
@@ -553,12 +567,15 @@ export default function Contact() {
                                                             </>
                                                         )}
                                                     </Button>
+                                                    <p className="text-center text-xs text-neutral-400 mt-3">
+                                                        Opens Gmail with your message pre-filled.
+                                                    </p>
                                                 </div>
 
                                                 {formState === "error" && (
-                                                    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+                                                    <div className="p-4 rounded-xl bg-red-50 text-red-600 text-sm flex items-center gap-2">
                                                         <AlertCircle className="w-4 h-4 shrink-0" />
-                                                        <span>Something went wrong. Please try again later.</span>
+                                                        <span>Something went wrong. Please try again.</span>
                                                     </div>
                                                 )}
                                             </form>
@@ -570,42 +587,6 @@ export default function Contact() {
                     </div>
                 </motion.div>
 
-                {/* Footer / Socials */}
-                {view === "non-technical" && (
-                    <div className="flex flex-col items-center gap-4 md:gap-8">
-                        <div className="h-px w-full max-w-xs bg-linear-to-r from-transparent via-neutral-200  to-transparent" />
-
-                        <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center">
-                            {socialLinks.map((link) => {
-                                const Icon = link.icon;
-                                return (
-                                    <Magnetic key={link.title}>
-                                        <a
-                                            href={link.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="md:w-12 md:h-12 w-10 h-10 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600  hover:text-foreground  transition-all group"
-                                            aria-label={link.title}
-                                        >
-                                            <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
-                                        </a>
-                                    </Magnetic>
-                                );
-                            })}
-
-                            <Magnetic>
-                                <a
-                                    href={`mailto:${email}`}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-card  border border-neutral-200  shadow-sm hover:shadow-md text-neutral-600 cursor-pointer hover:text-foreground  transition-all group"
-                                    aria-label="Email"
-                                >
-                                    <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
-                                </a>
-                            </Magnetic>
-                        </div>
-
-                    </div>
-                )}
             </div>
         </section>
     );
