@@ -160,7 +160,7 @@ export default function HeroSection() {
                   <PixelTransition
                     firstContent={
                       <Image
-                        src="https://res.cloudinary.com/dyetf2h9n/image/upload/v1763065667/032c0f5b-f53e-4c4f-be53-d5697d0872a0_oczzk2.png"
+                        src="/pfp.png"
                         alt="Snigdha Kathram"
                         width={400}
                         height={400}
@@ -169,7 +169,7 @@ export default function HeroSection() {
                     }
                     secondContent={
                       <Image
-                        src="https://github.com/VrandaaGarg.png"
+                        src="/pfp-alt.png"
                         alt="Snigdha Kathram"
                         width={400}
                         height={400}
