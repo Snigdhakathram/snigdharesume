@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 const siteUrl = "https://vrandagarg.in";
-const siteName = "Vranda Garg - Full Stack Developer";
+const siteName = "Snigdha Kathram - Full Stack Developer";
 const description =
   "Full Stack Developer specializing in Next.js, TypeScript, and React. Expert in building scalable web applications, AI-powered platforms, and real-time systems. Frontend Developer at Kakiyo OÜ. Creator of CappyChat, Quoridor Online, ResuMate, and more.";
 
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "Vranda Garg",
+    "Snigdha Kathram",
     "Full Stack Developer",
     "Frontend Developer",
     "Next.js Developer",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     "Real-time Systems",
     "Kakiyo OÜ",
   ],
-  authors: [{ name: "Vranda Garg" }],
-  creator: "Vranda Garg",
-  publisher: "Vranda Garg",
+  authors: [{ name: "Snigdha Kathram" }],
+  creator: "Snigdha Kathram",
+  publisher: "Snigdha Kathram",
   formatDetection: {
     email: false,
     address: false,
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
         url: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
         width: 2160,
         height: 1215,
-        alt: "Vranda Garg - Full Stack Developer",
+        alt: "Snigdha Kathram - Full Stack Developer",
       },
     ],
   },

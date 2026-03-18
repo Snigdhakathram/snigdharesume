@@ -112,7 +112,7 @@ export function StructuredData() {
   const personSchema: PersonSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Vranda Garg",
+    name: "Snigdha Kathram",
     jobTitle: "Full Stack Developer",
     description:
       "Full Stack Developer specializing in Next.js, TypeScript, and React. Expert in building scalable web applications, AI-powered platforms, and real-time systems.",
@@ -136,7 +136,7 @@ export function StructuredData() {
     "@type": "ProfilePage",
     mainEntity: {
       "@type": "Person",
-      name: "Vranda Garg",
+      name: "Snigdha Kathram",
       jobTitle: "Full Stack Developer",
       description:
         "Full Stack Developer specializing in Next.js, TypeScript, and React. Frontend Developer at Kakiyo OÜ. Creator of innovative web applications including CappyUI, CappyChat, Quoridor Online, and ResuMate.",
@@ -166,7 +166,7 @@ export function StructuredData() {
       datePublished: project.dateCreated,
       creator: {
         "@type": "Person",
-        name: "Vranda Garg",
+        name: "Snigdha Kathram",
       },
       programmingLanguage: project.techStack,
     })
@@ -179,7 +179,7 @@ export function StructuredData() {
     name: "Full Stack Web Development Services",
     provider: {
       "@type": "Person",
-      name: "Vranda Garg",
+      name: "Snigdha Kathram",
     },
     description:
       "Full Stack Web Development specializing in Next.js, React, TypeScript, AI integration, real-time systems, and scalable applications.",

@@ -46,7 +46,7 @@ export const projectsData: Project[] = [
     isLive: true,
     contributors: [
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
     featured: true,
   },
@@ -74,7 +74,7 @@ export const projectsData: Project[] = [
     isLive: true,
     featured: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
    {
@@ -99,7 +99,7 @@ export const projectsData: Project[] = [
     timeCreatedIn: "3 weeks",
     isLive: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
     featured: true,
   },
@@ -129,7 +129,7 @@ export const projectsData: Project[] = [
     isLive: true,
     featured: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
   {
@@ -155,7 +155,7 @@ export const projectsData: Project[] = [
     isLive: true,
     featured: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
   },
   
@@ -185,7 +185,7 @@ export const projectsData: Project[] = [
     isLive: true,
     contributors: [
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
       { name: "Raghav Gaba", githubUrl: "https://github.com/raghavvvgaba" },
       { name: "Atishay Jain", githubUrl: "https://github.com/atishay-jain04" },
     ],
@@ -213,7 +213,7 @@ export const projectsData: Project[] = [
     timeCreatedIn: "1 weeks",
     isLive: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
     ],
     featured: false,
   },
@@ -241,7 +241,7 @@ export const projectsData: Project[] = [
     timeCreatedIn: "3 weeks",
     isLive: true,
     contributors: [
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
     ],
     featured: false,
@@ -271,7 +271,7 @@ export const projectsData: Project[] = [
     isLive: true,
     contributors: [
       { name: "Ayush Sharma", githubUrl: "https://github.com/cyberboyayush" },
-      { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+      { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
       { name: "Atishay Jain", githubUrl: "https://github.com/atishay-jain04" },
       { name: "Raghav Gaba", githubUrl: "https://github.com/raghavvvgaba" },
       { name: "Raghav Katta", githubUrl: "https://github.com/raghavxkatta" },
@@ -298,7 +298,7 @@ export const projectsData: Project[] = [
   //   timeCreatedIn: "2 weeks",
   //   isLive: true,
   //   contributors: [
-  //     { name: "Vranda Garg", githubUrl: "https://github.com/VrandaaGarg" },
+  //     { name: "Snigdha Kathram", githubUrl: "https://github.com/VrandaaGarg" },
   //   ],
   //   featured: false,
   // },

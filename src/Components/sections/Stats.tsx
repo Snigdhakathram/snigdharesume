@@ -108,7 +108,7 @@ export default function Stats() {
                                 <ArrowUpRight className="w-4 h-4 text-background" />
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-neutral-200 to-transparent">
-                                <p className="text-foreground font-bold  ">Vranda Garg</p>
+                                <p className="text-foreground font-bold  ">Snigdha Kathram</p>
                             </div>
                         </div>
                     </Link>

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | Vranda Garg",
+  title: "404 - Page Not Found | Snigdha Kathram",
   description:
-    "The page you're looking for doesn't exist. Return to Vranda Garg's portfolio to explore projects and skills.",
+    "The page you're looking for doesn't exist. Return to Snigdha Kathram's portfolio to explore projects and skills.",
   robots: {
     index: false,
     follow: true,

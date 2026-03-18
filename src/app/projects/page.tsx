@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Explore my portfolio of innovative web applications including CappyChat (AI chat platform), Bashio (AI CLI tool), Quoridor Online (multiplayer board game), ResuMate (AI resume builder), CappyUI, SkillCompass, SmartBite, and more. Built with Next.js, React, TypeScript, and modern web technologies.",
   keywords: [
-    "Vranda Garg Projects",
+    "Snigdha Kathram Projects",
     "Web Development Projects",
     "Next.js Projects",
     "React Projects",
@@ -20,24 +20,24 @@ export const metadata: Metadata = {
     "Full Stack Projects",
   ],
   openGraph: {
-    title: "Projects - Vranda Garg Portfolio",
+    title: "Projects - Snigdha Kathram Portfolio",
     description:
       "Explore innovative web applications and projects built with Next.js, React, TypeScript, and modern web technologies.",
     url: "https://vrandagarg.in/projects",
-    siteName: "Vranda Garg - Portfolio",
+    siteName: "Snigdha Kathram - Portfolio",
     type: "website",
     images: [
       {
         url: "https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png",
         width: 2160,
         height: 1215,
-        alt: "Vranda Garg - Projects Portfolio",
+        alt: "Snigdha Kathram - Projects Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects - Vranda Garg Portfolio",
+    title: "Projects - Snigdha Kathram Portfolio",
     description:
       "Explore innovative web applications and projects built with modern web technologies.",
     creator: "@vrandaagarg",

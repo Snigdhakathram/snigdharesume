@@ -1,4 +1,4 @@
-# Vranda Garg - Full Stack Developer
+# Snigdha Kathram - Full Stack Developer
 
 ![Banner](https://res.cloudinary.com/dyetf2h9n/image/upload/v1765637887/banner_hfyoau.png)
 

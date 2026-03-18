@@ -75,7 +75,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-4 md:mt-16 pt-8 border-t border-neutral-200/50 flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-neutral-500">
-          <p>© {currentYear} Vranda Garg. All rights reserved.</p>
+          <p>© {currentYear} Snigdha Kathram. All rights reserved.</p>
           {/* <div className="flex gap-6">
             <span className="hover:text-black transition-colors cursor-pointer">
               Privacy Policy

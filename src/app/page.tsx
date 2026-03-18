@@ -2,7 +2,7 @@ import HeroSection from "@/Components/sections/heroSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Vranda Garg - Full Stack Developer | Portfolio",
+  title: "Snigdha Kathram - Full Stack Developer | Portfolio",
   description:
     "Full Stack Developer specializing in Next.js, TypeScript, and React. Frontend Developer at Kakiyo OÜ. Expert in building scalable web applications, AI-powered platforms, and real-time systems. Creator of CappyChat, Quoridor Online, ResuMate, and more.",
   alternates: {

@@ -130,7 +130,7 @@ export default function HeroSection() {
 
                 </h1>
                 <h1 className="text-2xl text-center md:text-left md:text-6xl mt-2 font-semibold text-foreground">
-                  Vranda Garg
+                  Snigdha Kathram
                 </h1>
 
                 <div className="text-xl flex items-center justify-center md:justify-start gap-2 md:text-4xl font-semibold text-neutral-700 mt-4">
@@ -161,7 +161,7 @@ export default function HeroSection() {
                     firstContent={
                       <Image
                         src="https://res.cloudinary.com/dyetf2h9n/image/upload/v1763065667/032c0f5b-f53e-4c4f-be53-d5697d0872a0_oczzk2.png"
-                        alt="Vranda Garg"
+                        alt="Snigdha Kathram"
                         width={400}
                         height={400}
                         className="w-full bg-neutral-200 h-full object-cover"
@@ -170,7 +170,7 @@ export default function HeroSection() {
                     secondContent={
                       <Image
                         src="https://github.com/VrandaaGarg.png"
-                        alt="Vranda Garg"
+                        alt="Snigdha Kathram"
                         width={400}
                         height={400}
                         className="w-full bg-neutral-200 h-full object-cover"
