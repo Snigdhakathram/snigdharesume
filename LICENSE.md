@@ -1,12 +1,12 @@
 # License
 
-Copyright 2025 Snigdha Kathram
+Copyright 2025 Vranda Garg
 
 ## Additional Terms
 
 If you use, modify, or distribute this project or any part of it, you MUST:
 
-1. **Attribution**: Give clear and visible credit to **Snigdha Kathram** as the original author
+1. **Attribution**: Give clear and visible credit to **Vranda Garg** as the original author
 2. **Link Back**: Include a link to the original repository: https://github.com/VrandaaGarg/next-portfolio
 
 ---
